@@ -1,0 +1,10 @@
+[    6.239][W/DBG][cpu:0][dump_exp_stack:42] [0xc00628e0]
+[    6.245][W/DBG][cpu:0][dump_exp_stack:90] [0xc009e8b8]
+[    6.251][W/DBG][cpu:0][dump_exp_stack:100] [0xc009ed30]
+[    6.257][W/DBG][cpu:0][dump_exp_stack:100] [0xc00b275c]
+[    6.263][W/DBG][cpu:0][dump_exp_stack:100] [0xc00867c4]
+[    6.269][W/DBG][cpu:0][dump_exp_stack:100] [0xc00e1008]
+[    6.275][W/DBG][cpu:0][dump_exp_stack:100] [0xc0030940]
+[    6.281][W/DBG][cpu:0][dump_exp_stack:104] End: fp [0xdeadbeef]
+[    6.288][E/DBG][cpu:0][dump_exp_stack:106] total memory 264220672, use 63541136, max_used 63551608
+[    6.297][W/DBG][cpu:0][dump_exp_context:138] dump memory around sp(0xc0d9be30):---- dump memory [0xc0d9be10, 0xc0d9be90] ----

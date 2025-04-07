@@ -1,0 +1,25 @@
+export LOMBO_CPU=n7
+export LOMBO_SOC=v1
+export LOMBO_BOARD=cdr
+
+export TOP_DIR=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test
+export SCRIPT_DIR=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/scripts
+export SCRIPT_BUILD=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/scripts/build
+export KERN_DIR=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos
+export BSP_DIR=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo
+export BSP_PLAT=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/platform
+export BSP_CFG=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/config
+export PACK_DIR=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack
+export PACK_PLAT=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/platform
+export PACK_TOOLS=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/tools
+export PACK_LIB=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/tools/lib
+
+export BSP_PLAT_CPU=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/platform/n7
+export BSP_PLAT_SOC=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/platform/n7/v1
+export BSP_CFG_CPU=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/config/n7
+export BSP_CFG_SOC=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/eos/bsp/lombo/config/n7/v1
+export PACK_PLAT_CPU=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/platform/n7
+export PACK_PLAT_SOC=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/platform/n7/v1
+export PACK_PLAT_BOARD=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/platform/n7/v1/cdr
+export PACK_OUT=/home/jaylen/xdsm/yizhi/keshi/sa100/ssh_sa100/1_sa100_test/pack/platform/n7/v1/cdr/files/out
+export FAST_BOOT=0
