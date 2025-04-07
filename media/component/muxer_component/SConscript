@@ -1,0 +1,31 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+#Import('env')
+
+#env.Append(CPPPATH=paths)
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd, str(Dir('#'))]
+
+# add static lib
+LIBPATH = [os.path.join(cwd, "tsmuxer")]
+LIBPATH += [RTT_ROOT + '/../media/common/prebuilts']
+LIBS = ['libalc.a', 'libtsmuxer.a']
+
+group = DefineGroup('media', src, depend = ['ARCH_LOMBO_N7'], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+# build for sub-directory
+list = os.listdir(cwd)
+objs = []
+
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+if GetDepend('ARCH_LOMBO_N7'):
+	group = group + objs
+
+
+Return('group')

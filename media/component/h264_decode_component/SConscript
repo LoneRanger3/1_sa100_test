@@ -1,0 +1,16 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd,
+	   os.path.join(cwd, "../omxbase/inc"),
+	   os.path.join(cwd, "../omxbase")]
+LIBPATH = [os.path.join(cwd, "libs"),
+	   os.path.join(cwd, "../video_encode_component/libs")]
+print LIBPATH
+LIBS = ['libalc.a', 'libvccore.a', 'libvde_h264.a']
+group = DefineGroup('h264dec_component', src, depend = [""], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+Return('group')

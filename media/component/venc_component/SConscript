@@ -1,0 +1,17 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd,
+	   os.path.join(cwd, "../inc_ex"),
+	   os.path.join(cwd, "../omxbase/inc"),
+	   os.path.join(cwd, "../omxbase")]
+LIBPATH = [os.path.join(cwd, "libs")]
+LIBPATH += [RTT_ROOT + '/../media/common/prebuilts']
+print("venc cmp LIBPATH: " + str(LIBPATH))
+LIBS = ['libalc.a', 'libvccore.a', 'libvce_h264.a', 'libmjpeg_enc_codec.a']
+group = DefineGroup('video_encode_component', src, depend = [""], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+Return('group')

@@ -1,0 +1,16 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd, str(Dir('#'))]
+
+src += ['display/oscl_display.c']
+src += ['vrec/oscl_vrec.c']
+src += ['watermark/watermark.c']
+src += ['audio/pcm.c']
+
+group = DefineGroup('omx_core', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

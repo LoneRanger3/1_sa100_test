@@ -1,0 +1,24 @@
+#Import('RTT_ROOT')
+#Import('rtconfig')
+#from building import *
+
+#cwd     = os.path.join(str(Dir('#')), 'mp4muxer')
+#src	= Glob('*.c')
+#CPPPATH = [cwd, str(Dir('#'))]
+
+#group = DefineGroup('mp4muxer', src, depend = [''], CPPPATH = CPPPATH)
+
+#Return('group')
+from building import *
+
+src = Glob('*.c') + Glob('*.cpp')
+src += Glob('src/*.c') + Glob('src/*.cpp')
+#src +=['/usr/local/bin/arm-2011.03/lib/gcc/arm-none-eabi/4.5.2/libgcc.a']
+cwd = GetCurrentDir()
+
+CPPPATH = [str(cwd)+"/../include"]
+#print (">>>>>>>>"+str(src))
+#print ("========"+str(CPPPATH))
+group = DefineGroup('', src, depend = [''], CPPPATH=CPPPATH)
+
+Return('group')

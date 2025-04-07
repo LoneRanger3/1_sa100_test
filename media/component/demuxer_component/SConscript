@@ -1,0 +1,22 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+src     += Glob('demuxer/*.c')
+src     += Glob('lombo_cycle_buf/*.c')
+CPPPATH = [cwd, str(Dir('#'))]
+CPPPATH += [ cwd + '../../../../eos/bsp/lombo/libraries/demo/inc/']
+CPPPATH += [ cwd + '../muxer_component/include/']
+
+# add static lib
+#src += Glob('/libs/*.a')
+LIBPATH = [os.path.join(cwd, "libs")]
+LIBPATH += [RTT_ROOT + '/../media/common/prebuilts']
+print(" dmx cmp LIBPATH: " + str(LIBPATH))
+LIBS = ['libalc.a', 'libmovdemuxer.a', 'libwavdemuxer.a', 'libtsdemuxer.a', 'libiostream.a']
+
+group = DefineGroup('demuxer_component', src, depend = [""], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+Return('group')

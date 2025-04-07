@@ -1,0 +1,15 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd,
+	   os.path.join(cwd, "../inc_ex")]
+LIBPATH = [os.path.join(cwd, "libs")]
+LIBPATH += [RTT_ROOT + '/../media/common/prebuilts']
+print("jpeg cmp LIBPATH: " + str(LIBPATH))
+LIBS = ['libjpeg_enc_codec.a','libjpeg_dec_codec.a','libvc_core.a','libalc.a']
+group = DefineGroup('jpeg_component', src, depend = [""], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+Return('group')

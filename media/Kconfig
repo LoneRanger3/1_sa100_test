@@ -1,0 +1,13 @@
+menu "RT-Thread Media"
+
+config RT_USING_LBMEDIA
+	bool "lombo mutimedia"
+	select LOMBO_DISP
+	default n
+
+config LOMBO_TEST_MEDIA
+	bool "test lombo mutimedia"
+	depends on RT_USING_LBMEDIA
+	default y
+
+endmenu

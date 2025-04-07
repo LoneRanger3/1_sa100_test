@@ -1,0 +1,16 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c') + Glob('*.cpp')
+CPPPATH = [cwd,
+	   os.path.join(cwd, "../inc_ex"),
+	   os.path.join(cwd, "../omxbase/inc"),
+	   os.path.join(cwd, "../omxbase")]
+LIBPATH = [os.path.join(cwd, "libs")]
+
+LIBS = ['libpano.a']
+group = DefineGroup('pano_component', src, depend = [""], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = LIBPATH)
+
+Return('group')
