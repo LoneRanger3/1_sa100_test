@@ -1,0 +1,2 @@
+src     = Glob('*.c')
+Program(target = 'json2config', source = src) 

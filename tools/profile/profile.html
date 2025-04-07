@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="profile.css">
+	</head>
+	<body>
+		<script src="dist/apexcharts.min.js"></script>
+		<script src="csv_proc.js"></script>
+
+		<br>
+		<div id="input_content">
+			<div class="input-group mb-3">
+				<div class="custom-file">
+					<input type="file" class="custom-file-input" id="csv" aria-describedby="inputGroupFileAddon03">
+					<label class="custom-file-label" for="inputGroupFile03" id="file_label">Choose csv file</label>
+				</div>
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="inputGroupSelect01">Statistical type</label>
+				</div>
+				<select class="custom-select" id="type_select">
+					<option selected value="1">Total time</option>
+					<option value="2">Average time</option>
+					<option value="3">Number of calls</option>
+				</select>
+			</div>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<label class="input-group-text" for="inputGroupSelect01">List count</label>
+				</div>
+				<select class="custom-select" id="count_select">
+					<option selected value="1">30</option>
+					<option value="2">50</option>
+					<option value="3">100</option>
+					<option value="4">200</option>
+					<option value="5">All</option>
+				</select>
+			</div>
+		</div>
+
+		<div id="chart_content">
+			<h5>Result Chart:</h5>
+			<div id="chart"></div>
+		</div>
+
+		<script src="profile.js"></script>
+	</body>
+</html>

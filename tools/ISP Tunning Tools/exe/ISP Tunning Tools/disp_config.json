@@ -1,0 +1,29 @@
+{
+	"disp": [
+		{
+			"ce": {
+				"status": "okay",
+				"brightness": 53,
+				"saturation": 66,
+				"contrast": 80,
+				"min": 0,
+				"max": 100
+			},
+			"lti": {
+				"status": "disabled",
+				"value": 5,
+				"min": 0,
+				"max": 31
+			},
+			"peak": {
+				"status": "disabled",
+				"value": 10,
+				"min": 0,
+				"max": 15
+			},
+			"gamma": {
+				"status": "okay"
+			}
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{ 
+	"ce":[
+		{"name":"status","data_type":"drop_down","data_source":"disabled@okay","description":"","display":true,"enable":true},
+		{"name":"brightness","data_type":"int","data_source":"0@100","description":"","display":true,"enable":true},
+		{"name":"saturation","data_type":"int","data_source":"0@100","description":"","display":true,"enable":true},
+		{"name":"contrast","data_type":"int","data_source":"0@100","description":"","display":true,"enable":true},
+		{"name":"min","data_type":"int","data_source":"0@0","description":"","display":false,"enable":false},
+		{"name":"max","data_type":"int","data_source":"100@100","description":"","display":false,"enable":false}
+	],
+	"lti":[
+		{"name":"status","data_type":"drop_down","data_source":"disabled@okay","description":"","display":true,"enable":true},
+		{"name":"value","data_type":"int","data_source":"0@31","description":"","display":true,"enable":true},
+		{"name":"min","data_type":"int","data_source":"0@255","description":"","display":false,"enable":false},
+		{"name":"max","data_type":"int","data_source":"0@255","description":"","display":false,"enable":false}
+	],
+	"peak":[
+		{"name":"status","data_type":"drop_down","data_source":"disabled@okay","description":"","display":true,"enable":true},
+		{"name":"value","data_type":"int","data_source":"0@15","description":"","display":true,"enable":true},
+		{"name":"min","data_type":"int","data_source":"0@255","description":"","display":false,"enable":false},
+		{"name":"max","data_type":"int","data_source":"0@255","description":"","display":false,"enable":false}
+	],
+	"gamma":[
+		{"name":"status","data_type":"drop_down","data_source":"disabled@okay","description":"","display":true,"enable":true}
+	]
+
+}
