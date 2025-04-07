@@ -1,0 +1,4 @@
+files/out/kernel.img
+files/out/leaver_boot.img
+files/out/rootfs_fat.img
+*.pkg
