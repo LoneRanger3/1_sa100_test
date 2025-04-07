@@ -1,0 +1,17 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+tetris_src = Split("""
+tetris/tetris_modal.c
+tetris/tetris_ui.c
+tetris/tetris_view.c
+""")
+
+cwd     = os.path.join(str(Dir('#')), 'applications')
+src	= Glob('*.c') + tetris_src
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

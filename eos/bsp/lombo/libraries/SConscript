@@ -1,0 +1,31 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+#
+# add the general libraries.
+#
+src = []
+CPPPATH = [cwd]
+
+group = DefineGroup('Libraries', src, depend = [''], CPPPATH = CPPPATH)
+
+#
+# add libs' SConscript
+#
+objs = []
+list = [cwd + '/release/']
+
+if GetDepend('RT_USING_ISP'):
+	list += ['libisp']
+
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+group = group + objs
+
+Return('group')

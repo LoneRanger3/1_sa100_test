@@ -1,0 +1,149 @@
+{
+
+//	"DRV_LEVEL1":{"a":2},
+	"test_int":[
+		{"zero":0},
+		{"valhex":0xFFFFFFFF},
+		{"negative":-0x7FFFFFFF},
+		{"positive":1234},
+		{"predef":"GPIO_INPUT"}
+	],
+
+	"test_intarray":[
+		{"one member":[1]},
+		{"ten member":[-1, "PRE_INT_0", "PRE_INT_1", 2, 3, 4, 5, 6, 7, 8]}
+	],
+
+	"test_string":[
+//		{"null":null},
+		{"char":"a"},
+		{"predef":"PRE_STRING"},
+		{"special":"~!@#$%^&*()`-={}[];'\\:\"|<>?,./"}
+	],
+
+	"test_stringarray":[
+		{"one":["abc"]},
+		{"multi":["a","PRE_STRING","abc","bcd"]},
+		{"predef":"PRE_STRING"},
+		{"on":"abc"}
+	],
+
+	"test_gpio":[
+		{"onepin":[
+			{"pins" : ["gpa-6"]},
+			{"pin-function" : 3},
+			{"pin-data" : 0},
+			{"pin-drv" : "DRV_LEVEL1"},
+			{"pin-pud" : "ENABLE_PULL_UP"},
+			{"pin-pud-res" : "PULL_100K"}
+			]
+		},
+		{"twopin":[
+			{"pins" : ["gpa-6","gpc-13"]},
+			{"pin-function" : "GPIO_INPUT"},
+			{"pin-data" : 1},
+			{"pin-drv" : "DRV_LEVEL1"},
+			{"pin-pud" : "ENABLE_PULL_UP"},
+			{"pin-pud-res" : "PULL_100K"}
+			]
+		},
+		{"onlypin":[
+			{"pins" : ["gpb-1"]}
+			]
+		}
+	],
+	/*可以有注释*/
+	"pre-define":
+	[
+		{"GPIO_INPUT" : 1},
+		{"GPIO_OUT_PUT" : 2},
+		{"DISABLE_PULL_UP_DOWN":0},
+		{"ENABLE_PULL_UP":1},
+		{"ENABLE_PULL_DOWN":2},
+		{"DRV_LEVEL0":0},
+		{"DRV_LEVEL1":1},
+		{"DRV_LEVEL2":2},
+		{"DRV_LEVEL3":3},
+		{"DRV_LEVEL4":4},
+		{"DRV_LEVEL5":5},
+		{"DRV_LEVEL6":6},
+		{"DRV_LEVEL7":7},
+		{"PULL_100K":0},
+		{"PULL_20K":1},
+		{"PRE_STRING":"predef test string"},
+		{"PRE_INT_0":0},
+		{"PRE_INT_1":1}     //不能有逗号
+	]
+/*
+	"pin-ctrl":[
+		{
+			"gpio-uart2":
+			[
+				{"pins" : "gpa-6"},
+				{"pin-function" : "@GPIO_INPUT"},
+				{"pin-drv" : "@DRV_LEVEL1"},
+				{"pin-pud" : "@ENABLE_PULL_UP"},
+				{"pin-pud-reg" : "@PULL_100K"}
+			]
+		}
+	],
+
+	"uart":
+	[
+		{enabled:1},
+		{
+			"gpio-uart1":[
+				{"pins" : ["gpa-6","gpa-7","gpa-8","gpa-9","gpa-10"]},
+				{"pin-function" : "GPIO_INPUT"},
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-reg" : "PULL_100K"}
+			]
+		},
+		{"CLK_32K_NAME" : "clk"}
+	],
+
+
+	"id": "0001",
+	"code": "0",
+	"msg": "",
+	"files":
+	[
+		{
+			"code": "0",
+				"msg": "",
+				"filename": "1.jpg",
+				"filesize": "1000",
+				"width": "1024",
+				"height": "682",
+				"images":
+			[
+			{
+				"url": "qq.com",
+					"type": "large",
+					"width": "720",
+					"height": "479"
+			},
+			{
+				"url": "qq.com",
+					"type": "main",
+					"width": "200",
+					"height": "133"
+			}
+			]
+		}
+	],
+	"sections" :
+	[
+	{
+		"name" : "DRAM",
+		"clk"  : 24,
+		"type" : "P1",
+		"tsize" : "0x123  45678   ",
+		"a":[ 1,1,123,333],
+		"fds" : "eee",
+		"a" : [1,2,3]
+	}
+	]
+*/
+}

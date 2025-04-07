@@ -1,0 +1,21 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = []
+
+if GetDepend(['LOMBO_GPS']):
+	src += ['gps_dev.c', 'gps_protocal.c']
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+if GetDepend(['LOMBO_GPS_Q8']):
+	src += ['q8_protocal.c']
+
+if GetDepend(['LOMBO_GPS_ST658G']):
+	src += ['st658g_protocal.c']
+
+group = DefineGroup('gps', src, depend = ['ARCH_LOMBO_N7'], CPPPATH = CPPPATH)
+
+Return('group')

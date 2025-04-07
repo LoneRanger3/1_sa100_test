@@ -1,0 +1,17 @@
+config LOMBO_CPU_ADPLL
+	bool "LOMBO CPU use ADPLL"
+	depends on LOMBO_CPUFREQ
+	default y
+	help
+	This support cpu use ADPLL instead of PRCM.
+
+	If in doubt, say N.
+
+config CPUFREQ_GOVERNOR_ADAPTIVE
+	bool "Cpufreq Adaptive Governor"
+	depends on LOMBO_CPUFREQ
+	default y
+	help
+	This support cpu use adaptive governor.
+
+	If in doubt, say N.

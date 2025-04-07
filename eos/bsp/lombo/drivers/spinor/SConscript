@@ -1,0 +1,11 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('lombo_spinor', src, depend = ['LOMBO_SPI_NOR'], CPPPATH = CPPPATH)
+
+Return('group')

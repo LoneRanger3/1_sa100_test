@@ -1,0 +1,19 @@
+import rtconfig
+from building import *
+
+src = Glob('*.c') + Glob('*.cpp')
+src += Glob('../static/libstatic.a')
+
+cwd = GetCurrentDir()
+CPPPATH = [ cwd + '/../inc' ]
+
+if GetDepend('RT_USING_CPLUSPLUS'):
+	# add C++ runtime wrapper if needed
+	#LIBPATH = [ rtconfig.EXEC_PATH + '/../arm-none-eabi/lib']
+	#LIBS = ['libstdc++']
+	#group = DefineGroup('dynamic', src, depend = [''], CPPPATH=CPPPATH, LIBS = LIBS, LIBPATH=LIBPATH)
+	group = DefineGroup('dynamic', src, depend = [''], CPPPATH=CPPPATH)
+else:
+	group = DefineGroup('dynamic', src, depend = [''], CPPPATH=CPPPATH)
+
+Return('group')

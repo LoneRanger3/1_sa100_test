@@ -1,0 +1,77 @@
+Import('RTT_ROOT')
+import rtconfig
+import shutil
+from building import *
+from rtconfig import *
+
+src_dir=RTT_ROOT + '/bsp/lombo/drivers/disp/panel/'
+#print('src_dir=', src_dir)
+PACK_PLAT_BOARD=os.environ['PACK_PLAT_BOARD']
+des_dir=PACK_PLAT_BOARD + '/files/rootfs_raw/etc/'
+#print('des_dir=', des_dir)
+
+cwd = os.path.join(str(Dir('#')), 'drivers')
+
+# add the general drivers.
+# src = Glob('*.c')
+src = ['panel.c']
+
+if GetDepend('PANEL_SPC_S92048'):
+        src += ['panel-spc-s92048.c']
+
+if GetDepend('PANEL_TIANMA_TM070JDHG30'):
+        src += ['panel-tianma-tm070jdhg30-00.c']
+
+if GetDepend('PANEL_SLM5P5_HX8399C'):
+        src += ['panel-slm5p5-hx8399c.c']
+
+if GetDepend('PANEL_YC024B_10HV'):
+        src += ['panel-yc024b-10hv.c']
+        if os.path.isfile(src_dir + 'panel_yc024b_config.json'):
+                shutil.copy(src_dir + 'panel_yc024b_config.json', des_dir + 'disp_config.json')
+        if os.path.isfile(src_dir + 'panel_yc024b_gamma.bin'):
+                shutil.copy(src_dir + 'panel_yc024b_gamma.bin', des_dir + 'disp_gamma.bin')
+
+if GetDepend('PANEL_WT1096601G01_24_IVO'):
+        src += ['panel-wtl096601G01-24-ivo.c']
+        if os.path.isfile(src_dir + 'panel_wtl096601_config.json'):
+                shutil.copy(src_dir + 'panel_wtl096601_config.json', des_dir + 'disp_config.json')
+        if os.path.isfile(src_dir + 'panel_wtl096601_gamma.bin'):
+                shutil.copy(src_dir + 'panel_wtl096601_gamma.bin', des_dir + 'disp_gamma.bin')
+
+if GetDepend('PANEL_WT1096602G02_24'):
+        src += ['panel-wtl096602G02-24.c']
+
+if GetDepend('PANEL_ZT0936BOE'):
+        src += ['panel-ZT0936BOE.c']
+        if os.path.isfile(src_dir + 'panel_ZT0936BOE_config.json'):
+                shutil.copy(src_dir + 'panel_ZT0936BOE_config.json', des_dir + 'disp_config.json')
+        if os.path.isfile(src_dir + 'panel_ZT0936BOE_gamma.bin'):
+                shutil.copy(src_dir + 'panel_ZT0936BOE_gamma.bin', des_dir + 'disp_gamma.bin')
+
+if GetDepend('PANEL_WT1116601G01_24'):
+        src += ['panel-wtl116601G01-24.c']
+
+if GetDepend('PANEL_ZT1180_2401'):
+        src += ['panel-zt1180-2401.c']
+
+if GetDepend('PANEL_EK79003A_WKS70002'):
+        src += ['panel-ek79003a-wks70002.c']
+        if os.path.isfile(src_dir + 'panel_wks7002_config.json'):
+                shutil.copy(src_dir + 'panel_wks7002_config.json', des_dir + 'disp_config.json')
+        if os.path.isfile(src_dir + 'panel_wks7002_gamma.bin'):
+                shutil.copy(src_dir + 'panel_wks7002_gamma.bin', des_dir + 'disp_gamma.bin')
+
+if GetDepend('PANEL_FCX701B21B2'):
+        src += ['panel-fcx701b21b2.c']
+
+if not os.path.isfile(des_dir + 'disp_config.json'):
+        shutil.copy(src_dir + 'disp_config_default.json', des_dir + 'disp_config.json')
+if not os.path.isfile(des_dir + 'disp_gamma.bin'):
+        shutil.copy(src_dir + 'disp_gamma_default.bin', des_dir + 'disp_gamma.bin')
+
+CPPPATH = [GetCurrentDir(), cwd]
+
+group = DefineGroup('panel', src, depend = ['ARCH_LOMBO_N7', 'LOMBO_DISP'], CPPPATH = CPPPATH)
+
+Return('group')

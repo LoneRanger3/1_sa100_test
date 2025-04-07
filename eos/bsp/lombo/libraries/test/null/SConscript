@@ -1,0 +1,11 @@
+import rtconfig
+from building import *
+
+src = Glob('*.c')
+cwd = GetCurrentDir()
+
+CPPPATH = [ cwd ]
+
+group = DefineGroup('null', src, depend = [''], CPPPATH=CPPPATH)
+
+Return('group')

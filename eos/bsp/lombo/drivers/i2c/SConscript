@@ -1,0 +1,25 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+src = ['i2c_drv.c']
+
+if GetDepend('LOMBO_I2C_BY24C'):
+	src += ['i2c_devs/by24c.c']
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('lombo_i2c', src, depend = ['LOMBO_I2C'], CPPPATH = CPPPATH)
+objs = []
+list = ['csp-n7']
+
+for d in list :
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+group += objs
+Return('group')
+

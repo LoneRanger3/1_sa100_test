@@ -1,0 +1,27 @@
+# for module compiling
+import os
+Import('RTT_ROOT')
+
+cwd = str(Dir('#'))
+list = os.listdir(cwd)
+
+#
+# move these extra dirs to BSP_DIR/SConstruct
+#
+#case_cwd = RTT_ROOT + '/../case'
+#plugin_manage_cwd = RTT_ROOT + '/../case/common'
+#gui_cwd = RTT_ROOT + '/../framework'
+#media_cwd = RTT_ROOT + '/../media'
+#list.append(case_cwd)
+#list.append(plugin_manage_cwd)
+#list.append(gui_cwd)
+#list.append(media_cwd)
+
+objs = []
+
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+Return('objs')

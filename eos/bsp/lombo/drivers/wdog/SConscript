@@ -1,0 +1,10 @@
+from building import *
+
+src = Glob('*.c')
+
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+group = []
+group = DefineGroup('wdt', src, depend = ['RT_USING_WDT'], CPPPATH = CPPPATH)
+
+Return('group')

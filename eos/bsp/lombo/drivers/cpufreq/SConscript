@@ -1,0 +1,19 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+src = ['cpufreq.c', 'lombo_cpufreq.c']
+
+if GetDepend('LOMBO_CPU_ADPLL'):
+	src += ['cpu_adpll.c']
+
+if GetDepend('CPUFREQ_GOVERNOR_ADAPTIVE'):
+	src += ['cpufreq_adaptive.c']
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('cpufreq', src, depend = ['LOMBO_CPUFREQ'], CPPPATH = CPPPATH)
+
+Return('group')

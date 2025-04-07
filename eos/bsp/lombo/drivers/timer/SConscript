@@ -1,0 +1,10 @@
+from building import *
+
+src = Glob('*.c')
+
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+group = []
+group = DefineGroup('timer', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

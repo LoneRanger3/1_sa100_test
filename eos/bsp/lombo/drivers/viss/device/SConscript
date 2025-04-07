@@ -1,0 +1,39 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = os.path.join(str(Dir('#')), 'drivers')
+CPPPATH = [cwd, GetCurrentDir()]
+
+src = []
+if GetDepend('RT_USING_OV5640_DVP'):
+    src += ['ov5640_dvp.c']
+if GetDepend('RT_USING_OV5640_MIPI'):
+    src += ['ov5640_mipi.c']
+if GetDepend('RT_USING_OV2710_DVP'):
+    src += ['ov2710_dvp.c']
+if GetDepend('RT_USING_SC2363_MIPI'):
+    src += ['sc2363_mipi.c']
+if GetDepend('RT_USING_SC4353_MIPI'):
+    src += ['sc4353_mipi.c']
+if GetDepend('RT_USING_SC1335T_MIPI'):
+    src += ['sc1335t_mipi.c']
+if GetDepend('RT_USING_SC2363P_MIPI'):
+    src += ['sc2363p_mipi.c']
+if GetDepend('RT_USING_RN6752_DVP'):
+    src += ['rn6752_dvp.c']
+if GetDepend('RT_USING_GC2053_MIPI'):
+    src += ['gc2053_mipi.c']
+if GetDepend('RT_USING_IMX307_MIPI'):
+    src += ['imx307_mipi.c']
+if GetDepend('RT_USING_BG0806_MIPI'):
+    src += ['bg0806_mipi.c']
+if GetDepend('RT_USING_RN6752M_DVP'):
+   src += ['rn6752m_dvp.c']
+if GetDepend('RT_USING_TP9930_DVP'):
+   src += ['tp9930_dvp.c']
+if GetDepend('RT_USING_TP9950_DVP'):
+   src += ['tp9950_dvp.c']
+group = DefineGroup('device', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

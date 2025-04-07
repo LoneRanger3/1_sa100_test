@@ -1,0 +1,22 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+import os
+from building import *
+
+cwd     = GetCurrentDir()
+objs 	= []
+list 	= os.listdir(cwd)
+
+src = []
+CPPPATH = [cwd]
+
+group = DefineGroup('usb', src, depend = [''], CPPPATH = CPPPATH)
+
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+group = group + objs
+
+Return('group')

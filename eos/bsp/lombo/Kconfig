@@ -1,0 +1,111 @@
+mainmenu "RT-Thread Project Configuration"
+
+config $BSP_DIR
+    string
+    option env="BSP_ROOT"
+    default "."
+
+config $RTT_DIR
+    string
+    option env="RTT_ROOT"
+    default "../.."
+
+source "$RTT_DIR/Kconfig"
+
+config ENABLE_MMU
+    bool "enable mmu on boot"
+    default y
+
+config ENABLE_DCACHE
+    bool "enable data cache on boot"
+    select RT_USING_CACHE
+    default y
+
+config RT_USING_CACHE
+    bool
+    default y if ENABLE_DCACHE
+    default n
+
+config ENABLE_ICACHE
+    bool "enable instruction cache on boot"
+    default y
+
+config RT_USING_VFP
+    bool "enable VFP"
+    default y
+
+config USING_NEON_LIBC
+    bool "enable use neon libc function"
+    default y
+
+config ARCH_LOMBO
+    bool "lombo platform support"
+
+#---------------------------start of board selection---------------------------
+
+#
+# 1. CPU arch select
+#
+if ARCH_LOMBO
+choice
+    prompt "lombo CPU arch select"
+    default ARCH_LOMBO_N7
+
+    config ARCH_LOMBO_N7
+        bool "E81 CPU architecture"
+        select ARCH_ARM_CORTEX_A7
+endchoice
+endif  # ARCH_LOMBO
+
+#
+# 2. Soc select
+#
+if ARCH_LOMBO_N7
+choice
+    prompt "Soc select"
+    default ARCH_LOMBO_N7V1
+
+    config ARCH_LOMBO_N7V1
+        bool "The Second Soc with E81 CPU"
+endchoice
+endif  # ARCH_LOMBO_N7
+
+#
+# 3. board select
+#
+if ARCH_LOMBO_N7V1
+choice
+    prompt "Board select"
+    default ARCH_LOMBO_N7V1_CDR
+
+    config ARCH_LOMBO_N7V1_CDR
+        bool "CDR board for N7V1 Soc"
+endchoice
+endif  # ARCH_LOMBO_N7V1
+
+#---------------------------end of board selection-----------------------------
+
+config LOMBO_DRAM_PBASE
+    hex "The dram start physic address"
+    default 0x40000000
+    help
+        It should be configured once, according to the spec.
+        If you are not sure, keep the default value.
+
+#config LOMBO_DRAM_SIZE
+#    hex "The dram size for the platform"
+#    default 0x10000000
+#    help
+#        The dram size is different for each platform, and it
+#        should be configured to the actual size.
+
+if ENABLE_MMU
+config LOMBO_DRAM_VBASE
+    hex "The dram start virtual address"
+    default 0xC0000000
+    help
+        This value is normally 0xC0000000, it is passed to the linker
+        script when mmu is enabled.
+endif
+
+source "$BSP_DIR/drivers/Kconfig"

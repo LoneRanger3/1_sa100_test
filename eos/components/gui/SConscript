@@ -1,0 +1,69 @@
+#Import('env')
+#Import('rtconfig')
+Import('RTT_ROOT')
+from building import *
+
+cwd = GetCurrentDir()
+
+common_src = Split("""
+common/rtgui_object.c
+common/rtgui_system.c
+common/rtgui_theme.c
+common/asc12font.c
+common/asc16font.c
+common/color.c
+common/dc.c
+common/dc_buffer.c
+common/dc_hw.c
+common/font.c
+common/font_hz_file.c
+common/font_hz_bmp.c
+common/filerw.c
+common/image.c
+common/image_xpm.c
+common/image_hdc.c
+common/region.c
+common/hz12font.c
+common/hz16font.c
+""")
+
+server_src = Split("""
+server/driver.c
+server/mouse.c
+server/panel.c
+server/server.c
+server/topwin.c
+""")
+
+widgets_src = Split("""
+widgets/box.c
+widgets/button.c
+widgets/container.c
+widgets/iconbox.c
+widgets/label.c
+widgets/textbox.c
+widgets/title.c
+widgets/list_view.c
+widgets/toplevel.c
+widgets/view.c
+widgets/widget.c
+widgets/window.c
+widgets/workbench.c
+""")
+
+# The set of source files associated with this SConscript file.
+src = common_src + server_src + widgets_src
+
+CPPPATH = [cwd + '/include']
+
+group = []
+if GetDepend('RT_USING_GUIENGINE'):
+    group = DefineGroup('GUIEngine', src, depend = ['RT_USING_GUIENGINE'], CPPPATH = CPPPATH)
+
+    list = os.listdir(cwd)
+    for d in list:
+        path = os.path.join(cwd, d)
+        if os.path.isfile(os.path.join(path, 'SConscript')):
+            group = group + SConscript(os.path.join(d, 'SConscript'))
+
+Return('group')

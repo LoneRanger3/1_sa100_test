@@ -1,0 +1,6 @@
+config LOMBO_CPUFREQ_COOLING
+	bool "lombo cpufreq cooling module"
+	depends on LOMBO_CPUFREQ
+	depends on LOMBO_THERMAL
+	default n
+

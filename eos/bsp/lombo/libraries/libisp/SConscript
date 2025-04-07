@@ -1,0 +1,12 @@
+from building import *
+
+cwd  = GetCurrentDir()
+#print ('test libslib.\n')
+src  = Glob('*.c')
+CPPPATH = [cwd + '/inc']
+#LIBS = ['libslib']
+LIBS   = Glob('*.a')
+
+group = DefineGroup('slib', src, depend = ['ARCH_LOMBO_N7'], CPPPATH = CPPPATH, LIBS = LIBS, LIBPATH = [cwd])
+
+Return('group')

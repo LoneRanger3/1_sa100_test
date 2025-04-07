@@ -1,0 +1,16 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = os.path.join(str(Dir('#')), 'applications')
+src     = ['application.c']
+src     += ['uap.c']
+src     += ['vcom_pwm.c']
+CPPPATH = [cwd, str(Dir('#'))]
+CPPPATH += [cwd + '..' + '/libraries/libisp/inc/']
+CPPPATH += [RTT_ROOT + '/../framework/eui/inc']
+if GetDepend(['ARCH_LOMBO_N7', 'RT_USING_EGUI' ,'RT_SEL_CAR_VIDEO_CASE']):
+	src += ['park_monitor.c']
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

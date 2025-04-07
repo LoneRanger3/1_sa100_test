@@ -1,0 +1,11 @@
+
+config LOMBO_I2C_BY24C
+	bool "Enable by24c EEPROM driver"
+	depends on LOMBO_I2C
+	default y
+
+if LOMBO_I2C_BY24C
+	config RT_I2C_BY24C_HOST
+		int "Set by24c i2c host"
+		default 0
+endif

@@ -1,0 +1,7814 @@
+/* gicd.h */
+
+#ifndef ___GICD___H___
+#define ___GICD___H___
+
+#define BASE_GICD                0x01051000
+
+#define VA_GICD_CTLR                 (0x00000000 + BASE_GICD + VA_GICD)
+#define VA_GICD_TYPER                (0x00000004 + BASE_GICD + VA_GICD)
+#define VA_GICD_IIDR                 (0x00000008 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR0             (0x00000080 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR1             (0x00000084 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR2             (0x00000088 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR3             (0x0000008C + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR4             (0x00000090 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR5             (0x00000094 + BASE_GICD + VA_GICD)
+#define VA_GICD_IGROUPR6             (0x00000098 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER0           (0x00000100 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER1           (0x00000104 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER2           (0x00000108 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER3           (0x0000010C + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER4           (0x00000110 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER5           (0x00000114 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISENABLER6           (0x00000118 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER0           (0x00000180 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER1           (0x00000184 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER2           (0x00000188 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER3           (0x0000018C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER4           (0x00000190 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER5           (0x00000194 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICENABLER6           (0x00000198 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR0             (0x00000200 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR1             (0x00000204 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR2             (0x00000208 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR3             (0x0000020C + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR4             (0x00000210 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR5             (0x00000214 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISPENDR6             (0x00000218 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR0             (0x00000280 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR1             (0x00000284 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR2             (0x00000288 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR3             (0x0000028C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR4             (0x00000290 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR5             (0x00000294 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICPENDR6             (0x00000298 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER0           (0x00000300 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER1           (0x00000304 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER2           (0x00000308 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER3           (0x0000030C + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER4           (0x00000310 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER5           (0x00000314 + BASE_GICD + VA_GICD)
+#define VA_GICD_ISACTIVER6           (0x00000318 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER0           (0x00000380 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER1           (0x00000384 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER2           (0x00000388 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER3           (0x0000038C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER4           (0x00000390 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER5           (0x00000394 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICACTIVER6           (0x00000398 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR0          (0x00000400 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR1          (0x00000404 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR2          (0x00000408 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR3          (0x0000040C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR4          (0x00000410 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR5          (0x00000414 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR6          (0x00000418 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR7          (0x0000041C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR8          (0x00000420 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR9          (0x00000424 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR10         (0x00000428 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR11         (0x0000042C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR12         (0x00000430 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR13         (0x00000434 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR14         (0x00000438 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR15         (0x0000043C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR16         (0x00000440 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR17         (0x00000444 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR18         (0x00000448 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR19         (0x0000044C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR20         (0x00000450 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR21         (0x00000454 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR22         (0x00000458 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR23         (0x0000045C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR24         (0x00000460 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR25         (0x00000464 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR26         (0x00000468 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR27         (0x0000046C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR28         (0x00000470 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR29         (0x00000474 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR30         (0x00000478 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR31         (0x0000047C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR32         (0x00000480 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR33         (0x00000484 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR34         (0x00000488 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR35         (0x0000048C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR36         (0x00000490 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR37         (0x00000494 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR38         (0x00000498 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR39         (0x0000049C + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR40         (0x000004A0 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR41         (0x000004A4 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR42         (0x000004A8 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR43         (0x000004AC + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR44         (0x000004B0 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR45         (0x000004B4 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR46         (0x000004B8 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR47         (0x000004BC + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR48         (0x000004C0 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR49         (0x000004C4 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR50         (0x000004C8 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR51         (0x000004CC + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR52         (0x000004D0 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR53         (0x000004D4 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR54         (0x000004D8 + BASE_GICD + VA_GICD)
+#define VA_GICD_IPRIORITYR55         (0x000004DC + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR0           (0x00000800 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR1           (0x00000804 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR2           (0x00000808 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR3           (0x0000080C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR4           (0x00000810 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR5           (0x00000814 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR6           (0x00000818 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR7           (0x0000081C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR8           (0x00000820 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR9           (0x00000824 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR10          (0x00000828 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR11          (0x0000082C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR12          (0x00000830 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR13          (0x00000834 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR14          (0x00000838 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR15          (0x0000083C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR16          (0x00000840 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR17          (0x00000844 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR18          (0x00000848 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR19          (0x0000084C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR20          (0x00000850 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR21          (0x00000854 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR22          (0x00000858 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR23          (0x0000085C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR24          (0x00000860 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR25          (0x00000864 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR26          (0x00000868 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR27          (0x0000086C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR28          (0x00000870 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR29          (0x00000874 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR30          (0x00000878 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR31          (0x0000087C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR32          (0x00000880 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR33          (0x00000884 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR34          (0x00000888 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR35          (0x0000088C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR36          (0x00000890 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR37          (0x00000894 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR38          (0x00000898 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR39          (0x0000089C + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR40          (0x000008A0 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR41          (0x000008A4 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR42          (0x000008A8 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR43          (0x000008AC + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR44          (0x000008B0 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR45          (0x000008B4 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR46          (0x000008B8 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR47          (0x000008BC + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR48          (0x000008C0 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR49          (0x000008C4 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR50          (0x000008C8 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR51          (0x000008CC + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR52          (0x000008D0 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR53          (0x000008D4 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR54          (0x000008D8 + BASE_GICD + VA_GICD)
+#define VA_GICD_ITARGETSR55          (0x000008DC + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR0               (0x00000C00 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR1               (0x00000C04 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR2               (0x00000C08 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR3               (0x00000C0C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR4               (0x00000C10 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR5               (0x00000C14 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR6               (0x00000C18 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR7               (0x00000C1C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR8               (0x00000C20 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR9               (0x00000C24 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR10              (0x00000C28 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR11              (0x00000C2C + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR12              (0x00000C30 + BASE_GICD + VA_GICD)
+#define VA_GICD_ICFGR13              (0x00000C34 + BASE_GICD + VA_GICD)
+#define VA_GICD_SGIR                 (0x00000F00 + BASE_GICD + VA_GICD)
+#define VA_GICD_CPENDSGIR0           (0x00000F10 + BASE_GICD + VA_GICD)
+#define VA_GICD_CPENDSGIR1           (0x00000F14 + BASE_GICD + VA_GICD)
+#define VA_GICD_CPENDSGIR2           (0x00000F18 + BASE_GICD + VA_GICD)
+#define VA_GICD_CPENDSGIR3           (0x00000F1C + BASE_GICD + VA_GICD)
+#define VA_GICD_SPENDSGIR0           (0x00000F20 + BASE_GICD + VA_GICD)
+#define VA_GICD_SPENDSGIR1           (0x00000F24 + BASE_GICD + VA_GICD)
+#define VA_GICD_SPENDSGIR2           (0x00000F28 + BASE_GICD + VA_GICD)
+#define VA_GICD_SPENDSGIR3           (0x00000F2C + BASE_GICD + VA_GICD)
+
+#define DATA_GICD_CTLR                   0x00000000
+#define DATA_GICD_TYPER                  0x00000086
+#define DATA_GICD_IIDR                   0x00000000
+#define DATA_GICD_IGROUPR0               0x00000000
+#define DATA_GICD_IGROUPR1               0x00000000
+#define DATA_GICD_IGROUPR2               0x00000000
+#define DATA_GICD_IGROUPR3               0x00000000
+#define DATA_GICD_IGROUPR4               0x00000000
+#define DATA_GICD_IGROUPR5               0x00000000
+#define DATA_GICD_IGROUPR6               0x00000000
+#define DATA_GICD_ISENABLER0             0x00000000
+#define DATA_GICD_ISENABLER1             0x00000000
+#define DATA_GICD_ISENABLER2             0x00000000
+#define DATA_GICD_ISENABLER3             0x00000000
+#define DATA_GICD_ISENABLER4             0x00000000
+#define DATA_GICD_ISENABLER5             0x00000000
+#define DATA_GICD_ISENABLER6             0x00000000
+#define DATA_GICD_ICENABLER0             0x00000000
+#define DATA_GICD_ICENABLER1             0x00000000
+#define DATA_GICD_ICENABLER2             0x00000000
+#define DATA_GICD_ICENABLER3             0x00000000
+#define DATA_GICD_ICENABLER4             0x00000000
+#define DATA_GICD_ICENABLER5             0x00000000
+#define DATA_GICD_ICENABLER6             0x00000000
+#define DATA_GICD_ISPENDR0               0x00000000
+#define DATA_GICD_ISPENDR1               0x00000000
+#define DATA_GICD_ISPENDR2               0x00000000
+#define DATA_GICD_ISPENDR3               0x00000000
+#define DATA_GICD_ISPENDR4               0x00000000
+#define DATA_GICD_ISPENDR5               0x00000000
+#define DATA_GICD_ISPENDR6               0x00000000
+#define DATA_GICD_ICPENDR0               0x00000000
+#define DATA_GICD_ICPENDR1               0x00000000
+#define DATA_GICD_ICPENDR2               0x00000000
+#define DATA_GICD_ICPENDR3               0x00000000
+#define DATA_GICD_ICPENDR4               0x00000000
+#define DATA_GICD_ICPENDR5               0x00000000
+#define DATA_GICD_ICPENDR6               0x00000000
+#define DATA_GICD_ISACTIVER0             0x00000000
+#define DATA_GICD_ISACTIVER1             0x00000000
+#define DATA_GICD_ISACTIVER2             0x00000000
+#define DATA_GICD_ISACTIVER3             0x00000000
+#define DATA_GICD_ISACTIVER4             0x00000000
+#define DATA_GICD_ISACTIVER5             0x00000000
+#define DATA_GICD_ISACTIVER6             0x00000000
+#define DATA_GICD_ICACTIVER0             0x00000000
+#define DATA_GICD_ICACTIVER1             0x00000000
+#define DATA_GICD_ICACTIVER2             0x00000000
+#define DATA_GICD_ICACTIVER3             0x00000000
+#define DATA_GICD_ICACTIVER4             0x00000000
+#define DATA_GICD_ICACTIVER5             0x00000000
+#define DATA_GICD_ICACTIVER6             0x00000000
+#define DATA_GICD_IPRIORITYR0            0x00000000
+#define DATA_GICD_IPRIORITYR1            0x00000000
+#define DATA_GICD_IPRIORITYR2            0x00000000
+#define DATA_GICD_IPRIORITYR3            0x00000000
+#define DATA_GICD_IPRIORITYR4            0x00000000
+#define DATA_GICD_IPRIORITYR5            0x00000000
+#define DATA_GICD_IPRIORITYR6            0x00000000
+#define DATA_GICD_IPRIORITYR7            0x00000000
+#define DATA_GICD_IPRIORITYR8            0x00000000
+#define DATA_GICD_IPRIORITYR9            0x00000000
+#define DATA_GICD_IPRIORITYR10           0x00000000
+#define DATA_GICD_IPRIORITYR11           0x00000000
+#define DATA_GICD_IPRIORITYR12           0x00000000
+#define DATA_GICD_IPRIORITYR13           0x00000000
+#define DATA_GICD_IPRIORITYR14           0x00000000
+#define DATA_GICD_IPRIORITYR15           0x00000000
+#define DATA_GICD_IPRIORITYR16           0x00000000
+#define DATA_GICD_IPRIORITYR17           0x00000000
+#define DATA_GICD_IPRIORITYR18           0x00000000
+#define DATA_GICD_IPRIORITYR19           0x00000000
+#define DATA_GICD_IPRIORITYR20           0x00000000
+#define DATA_GICD_IPRIORITYR21           0x00000000
+#define DATA_GICD_IPRIORITYR22           0x00000000
+#define DATA_GICD_IPRIORITYR23           0x00000000
+#define DATA_GICD_IPRIORITYR24           0x00000000
+#define DATA_GICD_IPRIORITYR25           0x00000000
+#define DATA_GICD_IPRIORITYR26           0x00000000
+#define DATA_GICD_IPRIORITYR27           0x00000000
+#define DATA_GICD_IPRIORITYR28           0x00000000
+#define DATA_GICD_IPRIORITYR29           0x00000000
+#define DATA_GICD_IPRIORITYR30           0x00000000
+#define DATA_GICD_IPRIORITYR31           0x00000000
+#define DATA_GICD_IPRIORITYR32           0x00000000
+#define DATA_GICD_IPRIORITYR33           0x00000000
+#define DATA_GICD_IPRIORITYR34           0x00000000
+#define DATA_GICD_IPRIORITYR35           0x00000000
+#define DATA_GICD_IPRIORITYR36           0x00000000
+#define DATA_GICD_IPRIORITYR37           0x00000000
+#define DATA_GICD_IPRIORITYR38           0x00000000
+#define DATA_GICD_IPRIORITYR39           0x00000000
+#define DATA_GICD_IPRIORITYR40           0x00000000
+#define DATA_GICD_IPRIORITYR41           0x00000000
+#define DATA_GICD_IPRIORITYR42           0x00000000
+#define DATA_GICD_IPRIORITYR43           0x00000000
+#define DATA_GICD_IPRIORITYR44           0x00000000
+#define DATA_GICD_IPRIORITYR45           0x00000000
+#define DATA_GICD_IPRIORITYR46           0x00000000
+#define DATA_GICD_IPRIORITYR47           0x00000000
+#define DATA_GICD_IPRIORITYR48           0x00000000
+#define DATA_GICD_IPRIORITYR49           0x00000000
+#define DATA_GICD_IPRIORITYR50           0x00000000
+#define DATA_GICD_IPRIORITYR51           0x00000000
+#define DATA_GICD_IPRIORITYR52           0x00000000
+#define DATA_GICD_IPRIORITYR53           0x00000000
+#define DATA_GICD_IPRIORITYR54           0x00000000
+#define DATA_GICD_IPRIORITYR55           0x00000000
+#define DATA_GICD_ITARGETSR0             0x00000000
+#define DATA_GICD_ITARGETSR1             0x00000000
+#define DATA_GICD_ITARGETSR2             0x00000000
+#define DATA_GICD_ITARGETSR3             0x00000000
+#define DATA_GICD_ITARGETSR4             0x00000000
+#define DATA_GICD_ITARGETSR5             0x00000000
+#define DATA_GICD_ITARGETSR6             0x00000000
+#define DATA_GICD_ITARGETSR7             0x00000000
+#define DATA_GICD_ITARGETSR8             0x00000000
+#define DATA_GICD_ITARGETSR9             0x00000000
+#define DATA_GICD_ITARGETSR10            0x00000000
+#define DATA_GICD_ITARGETSR11            0x00000000
+#define DATA_GICD_ITARGETSR12            0x00000000
+#define DATA_GICD_ITARGETSR13            0x00000000
+#define DATA_GICD_ITARGETSR14            0x00000000
+#define DATA_GICD_ITARGETSR15            0x00000000
+#define DATA_GICD_ITARGETSR16            0x00000000
+#define DATA_GICD_ITARGETSR17            0x00000000
+#define DATA_GICD_ITARGETSR18            0x00000000
+#define DATA_GICD_ITARGETSR19            0x00000000
+#define DATA_GICD_ITARGETSR20            0x00000000
+#define DATA_GICD_ITARGETSR21            0x00000000
+#define DATA_GICD_ITARGETSR22            0x00000000
+#define DATA_GICD_ITARGETSR23            0x00000000
+#define DATA_GICD_ITARGETSR24            0x00000000
+#define DATA_GICD_ITARGETSR25            0x00000000
+#define DATA_GICD_ITARGETSR26            0x00000000
+#define DATA_GICD_ITARGETSR27            0x00000000
+#define DATA_GICD_ITARGETSR28            0x00000000
+#define DATA_GICD_ITARGETSR29            0x00000000
+#define DATA_GICD_ITARGETSR30            0x00000000
+#define DATA_GICD_ITARGETSR31            0x00000000
+#define DATA_GICD_ITARGETSR32            0x00000000
+#define DATA_GICD_ITARGETSR33            0x00000000
+#define DATA_GICD_ITARGETSR34            0x00000000
+#define DATA_GICD_ITARGETSR35            0x00000000
+#define DATA_GICD_ITARGETSR36            0x00000000
+#define DATA_GICD_ITARGETSR37            0x00000000
+#define DATA_GICD_ITARGETSR38            0x00000000
+#define DATA_GICD_ITARGETSR39            0x00000000
+#define DATA_GICD_ITARGETSR40            0x00000000
+#define DATA_GICD_ITARGETSR41            0x00000000
+#define DATA_GICD_ITARGETSR42            0x00000000
+#define DATA_GICD_ITARGETSR43            0x00000000
+#define DATA_GICD_ITARGETSR44            0x00000000
+#define DATA_GICD_ITARGETSR45            0x00000000
+#define DATA_GICD_ITARGETSR46            0x00000000
+#define DATA_GICD_ITARGETSR47            0x00000000
+#define DATA_GICD_ITARGETSR48            0x00000000
+#define DATA_GICD_ITARGETSR49            0x00000000
+#define DATA_GICD_ITARGETSR50            0x00000000
+#define DATA_GICD_ITARGETSR51            0x00000000
+#define DATA_GICD_ITARGETSR52            0x00000000
+#define DATA_GICD_ITARGETSR53            0x00000000
+#define DATA_GICD_ITARGETSR54            0x00000000
+#define DATA_GICD_ITARGETSR55            0x00000000
+#define DATA_GICD_ICFGR0                 0x00000000
+#define DATA_GICD_ICFGR1                 0x00000000
+#define DATA_GICD_ICFGR2                 0x00000000
+#define DATA_GICD_ICFGR3                 0x00000000
+#define DATA_GICD_ICFGR4                 0x00000000
+#define DATA_GICD_ICFGR5                 0x00000000
+#define DATA_GICD_ICFGR6                 0x00000000
+#define DATA_GICD_ICFGR7                 0x00000000
+#define DATA_GICD_ICFGR8                 0x00000000
+#define DATA_GICD_ICFGR9                 0x00000000
+#define DATA_GICD_ICFGR10                0x00000000
+#define DATA_GICD_ICFGR11                0x00000000
+#define DATA_GICD_ICFGR12                0x00000000
+#define DATA_GICD_ICFGR13                0x00000000
+#define DATA_GICD_SGIR                   0x00000000
+#define DATA_GICD_CPENDSGIR0             0x00000000
+#define DATA_GICD_CPENDSGIR1             0x00000000
+#define DATA_GICD_CPENDSGIR2             0x00000000
+#define DATA_GICD_CPENDSGIR3             0x00000000
+#define DATA_GICD_SPENDSGIR0             0x00000000
+#define DATA_GICD_SPENDSGIR1             0x00000000
+#define DATA_GICD_SPENDSGIR2             0x00000000
+#define DATA_GICD_SPENDSGIR3             0x00000000
+
+/* Distributor Control Register */
+typedef union {
+	u32 val;
+	struct {
+	u32 enablegrp0:1;/**/
+	u32 enablegrp1:1;/**/
+	u32 rsvd0:30;   /**/
+	} bits;
+} reg_gicd_ctlr_t;
+
+#define GICD_CTLR_ENABLEGRP0_0  0x0
+#define GICD_CTLR_ENABLEGRP0_1  0x1
+#define GICD_CTLR_ENABLEGRP1_0  0x0
+#define GICD_CTLR_ENABLEGRP1_1  0x1
+
+/* Interrupt Controller Type Register */
+typedef union {
+	u32 val;
+	struct {
+	u32 itlinesnumber:5;    /**/
+	u32 cpunumber:3;        /**/
+	u32 rsvd0:2;            /**/
+	u32 securityextn:1;     /**/
+	u32 lspi:5;             /**/
+	u32 rsvd1:16;           /**/
+	} bits;
+} reg_gicd_typer_t;
+
+#define GICD_TYPER_SECURITYEXTN_0       0x0
+#define GICD_TYPER_SECURITYEXTN_1       0x1
+
+/* Distributor Implementer Identification Register */
+typedef union {
+	u32 val;
+	struct {
+	u32 implementor:12;/**/
+	u32 revision:4; /**/
+	u32 variant:4;  /**/
+	u32 rsvd0:4;    /**/
+	u32 productid:8;/**/
+	} bits;
+} reg_gicd_iidr_t;
+
+/* Interrupt Group Registers0It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id0:1;   /**/
+	u32 grp_status_id1:1;   /**/
+	u32 grp_status_id2:1;   /**/
+	u32 grp_status_id3:1;   /**/
+	u32 grp_status_id4:1;   /**/
+	u32 grp_status_id5:1;   /**/
+	u32 grp_status_id6:1;   /**/
+	u32 grp_status_id7:1;   /**/
+	u32 grp_status_id8:1;   /**/
+	u32 grp_status_id9:1;   /**/
+	u32 grp_status_id10:1;  /**/
+	u32 grp_status_id11:1;  /**/
+	u32 grp_status_id12:1;  /**/
+	u32 grp_status_id13:1;  /**/
+	u32 grp_status_id14:1;  /**/
+	u32 grp_status_id15:1;  /**/
+	u32 grp_status_id16:1;  /**/
+	u32 grp_status_id17:1;  /**/
+	u32 grp_status_id18:1;  /**/
+	u32 grp_status_id19:1;  /**/
+	u32 grp_status_id20:1;  /**/
+	u32 grp_status_id21:1;  /**/
+	u32 grp_status_id22:1;  /**/
+	u32 grp_status_id23:1;  /**/
+	u32 grp_status_id24:1;  /**/
+	u32 grp_status_id25:1;  /**/
+	u32 grp_status_id26:1;  /**/
+	u32 grp_status_id27:1;  /**/
+	u32 grp_status_id28:1;  /**/
+	u32 grp_status_id29:1;  /**/
+	u32 grp_status_id30:1;  /**/
+	u32 grp_status_id31:1;  /**/
+	} bits;
+} reg_gicd_igroupr0_t;
+
+#define GICD_IGROUPR0_GRP_STATUS_ID0_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID0_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID1_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID1_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID2_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID2_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID3_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID3_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID4_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID4_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID5_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID5_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID6_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID6_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID7_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID7_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID8_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID8_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID9_0  0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID9_1  0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID10_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID10_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID11_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID11_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID12_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID12_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID13_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID13_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID14_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID14_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID15_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID15_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID16_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID16_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID17_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID17_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID18_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID18_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID19_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID19_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID20_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID20_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID21_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID21_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID22_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID22_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID23_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID23_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID24_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID24_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID25_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID25_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID26_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID26_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID27_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID27_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID28_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID28_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID29_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID29_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID30_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID30_1 0x1
+#define GICD_IGROUPR0_GRP_STATUS_ID31_0 0x0
+#define GICD_IGROUPR0_GRP_STATUS_ID31_1 0x1
+
+/* Interrupt Group Registers1It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id32:1;  /**/
+	u32 grp_status_id33:1;  /**/
+	u32 grp_status_id34:1;  /**/
+	u32 grp_status_id35:1;  /**/
+	u32 grp_status_id36:1;  /**/
+	u32 grp_status_id37:1;  /**/
+	u32 grp_status_id38:1;  /**/
+	u32 grp_status_id39:1;  /**/
+	u32 grp_status_id40:1;  /**/
+	u32 grp_status_id41:1;  /**/
+	u32 grp_status_id42:1;  /**/
+	u32 grp_status_id43:1;  /**/
+	u32 grp_status_id44:1;  /**/
+	u32 grp_status_id45:1;  /**/
+	u32 grp_status_id46:1;  /**/
+	u32 grp_status_id47:1;  /**/
+	u32 grp_status_id48:1;  /**/
+	u32 grp_status_id49:1;  /**/
+	u32 grp_status_id50:1;  /**/
+	u32 grp_status_id51:1;  /**/
+	u32 grp_status_id52:1;  /**/
+	u32 grp_status_id53:1;  /**/
+	u32 grp_status_id54:1;  /**/
+	u32 grp_status_id55:1;  /**/
+	u32 grp_status_id56:1;  /**/
+	u32 grp_status_id57:1;  /**/
+	u32 grp_status_id58:1;  /**/
+	u32 grp_status_id59:1;  /**/
+	u32 grp_status_id60:1;  /**/
+	u32 grp_status_id61:1;  /**/
+	u32 grp_status_id62:1;  /**/
+	u32 grp_status_id63:1;  /**/
+	} bits;
+} reg_gicd_igroupr1_t;
+
+#define GICD_IGROUPR1_GRP_STATUS_ID32_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID32_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID33_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID33_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID34_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID34_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID35_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID35_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID36_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID36_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID37_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID37_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID38_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID38_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID39_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID39_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID40_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID40_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID41_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID41_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID42_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID42_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID43_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID43_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID44_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID44_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID45_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID45_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID46_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID46_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID47_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID47_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID48_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID48_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID49_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID49_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID50_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID50_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID51_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID51_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID52_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID52_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID53_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID53_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID54_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID54_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID55_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID55_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID56_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID56_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID57_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID57_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID58_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID58_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID59_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID59_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID60_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID60_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID61_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID61_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID62_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID62_1 0x1
+#define GICD_IGROUPR1_GRP_STATUS_ID63_0 0x0
+#define GICD_IGROUPR1_GRP_STATUS_ID63_1 0x1
+
+/* Interrupt Group Registers2It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id64:1;  /**/
+	u32 grp_status_id65:1;  /**/
+	u32 grp_status_id66:1;  /**/
+	u32 grp_status_id67:1;  /**/
+	u32 grp_status_id68:1;  /**/
+	u32 grp_status_id69:1;  /**/
+	u32 grp_status_id70:1;  /**/
+	u32 grp_status_id71:1;  /**/
+	u32 grp_status_id72:1;  /**/
+	u32 grp_status_id73:1;  /**/
+	u32 grp_status_id74:1;  /**/
+	u32 grp_status_id75:1;  /**/
+	u32 grp_status_id76:1;  /**/
+	u32 grp_status_id77:1;  /**/
+	u32 grp_status_id78:1;  /**/
+	u32 grp_status_id79:1;  /**/
+	u32 grp_status_id80:1;  /**/
+	u32 grp_status_id81:1;  /**/
+	u32 grp_status_id82:1;  /**/
+	u32 grp_status_id83:1;  /**/
+	u32 grp_status_id84:1;  /**/
+	u32 grp_status_id85:1;  /**/
+	u32 grp_status_id86:1;  /**/
+	u32 grp_status_id87:1;  /**/
+	u32 grp_status_id88:1;  /**/
+	u32 grp_status_id89:1;  /**/
+	u32 grp_status_id90:1;  /**/
+	u32 grp_status_id91:1;  /**/
+	u32 grp_status_id92:1;  /**/
+	u32 grp_status_id93:1;  /**/
+	u32 grp_status_id94:1;  /**/
+	u32 grp_status_id95:1;  /**/
+	} bits;
+} reg_gicd_igroupr2_t;
+
+#define GICD_IGROUPR2_GRP_STATUS_ID64_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID64_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID65_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID65_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID66_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID66_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID67_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID67_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID68_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID68_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID69_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID69_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID70_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID70_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID71_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID71_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID72_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID72_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID73_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID73_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID74_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID74_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID75_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID75_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID76_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID76_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID77_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID77_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID78_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID78_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID79_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID79_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID80_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID80_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID81_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID81_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID82_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID82_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID83_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID83_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID84_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID84_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID85_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID85_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID86_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID86_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID87_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID87_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID88_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID88_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID89_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID89_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID90_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID90_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID91_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID91_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID92_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID92_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID93_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID93_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID94_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID94_1 0x1
+#define GICD_IGROUPR2_GRP_STATUS_ID95_0 0x0
+#define GICD_IGROUPR2_GRP_STATUS_ID95_1 0x1
+
+/* Interrupt Group Registers3It provides a status bit for each interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id96:1;  /**/
+	u32 grp_status_id97:1;  /**/
+	u32 grp_status_id98:1;  /**/
+	u32 grp_status_id99:1;  /**/
+	u32 grp_status_id100:1; /**/
+	u32 grp_status_id101:1; /**/
+	u32 grp_status_id102:1; /**/
+	u32 grp_status_id103:1; /**/
+	u32 grp_status_id104:1; /**/
+	u32 grp_status_id105:1; /**/
+	u32 grp_status_id106:1; /**/
+	u32 grp_status_id107:1; /**/
+	u32 grp_status_id108:1; /**/
+	u32 grp_status_id109:1; /**/
+	u32 grp_status_id110:1; /**/
+	u32 grp_status_id111:1; /**/
+	u32 grp_status_id112:1; /**/
+	u32 grp_status_id113:1; /**/
+	u32 grp_status_id114:1; /**/
+	u32 grp_status_id115:1; /**/
+	u32 grp_status_id116:1; /**/
+	u32 grp_status_id117:1; /**/
+	u32 grp_status_id118:1; /**/
+	u32 grp_status_id119:1; /**/
+	u32 grp_status_id120:1; /**/
+	u32 grp_status_id121:1; /**/
+	u32 grp_status_id122:1; /**/
+	u32 grp_status_id123:1; /**/
+	u32 grp_status_id124:1; /**/
+	u32 grp_status_id125:1; /**/
+	u32 grp_status_id126:1; /**/
+	u32 grp_status_id127:1; /**/
+	} bits;
+} reg_gicd_igroupr3_t;
+
+#define GICD_IGROUPR3_GRP_STATUS_ID96_0         0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID96_1         0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID97_0         0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID97_1         0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID98_0         0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID98_1         0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID99_0         0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID99_1         0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID100_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID100_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID101_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID101_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID102_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID102_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID103_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID103_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID104_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID104_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID105_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID105_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID106_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID106_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID107_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID107_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID108_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID108_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID109_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID109_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID110_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID110_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID111_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID111_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID112_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID112_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID113_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID113_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID114_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID114_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID115_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID115_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID116_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID116_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID117_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID117_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID118_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID118_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID119_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID119_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID120_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID120_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID121_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID121_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID122_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID122_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID123_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID123_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID124_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID124_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID125_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID125_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID126_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID126_1        0x1
+#define GICD_IGROUPR3_GRP_STATUS_ID127_0        0x0
+#define GICD_IGROUPR3_GRP_STATUS_ID127_1        0x1
+
+/* Interrupt Group Registers4It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id128:1; /**/
+	u32 grp_status_id129:1; /**/
+	u32 grp_status_id130:1; /**/
+	u32 grp_status_id131:1; /**/
+	u32 grp_status_id132:1; /**/
+	u32 grp_status_id133:1; /**/
+	u32 grp_status_id134:1; /**/
+	u32 grp_status_id135:1; /**/
+	u32 grp_status_id136:1; /**/
+	u32 grp_status_id137:1; /**/
+	u32 grp_status_id138:1; /**/
+	u32 grp_status_id139:1; /**/
+	u32 grp_status_id140:1; /**/
+	u32 grp_status_id141:1; /**/
+	u32 grp_status_id142:1; /**/
+	u32 grp_status_id143:1; /**/
+	u32 grp_status_id144:1; /**/
+	u32 grp_status_id145:1; /**/
+	u32 grp_status_id146:1; /**/
+	u32 grp_status_id147:1; /**/
+	u32 grp_status_id148:1; /**/
+	u32 grp_status_id149:1; /**/
+	u32 grp_status_id150:1; /**/
+	u32 grp_status_id151:1; /**/
+	u32 grp_status_id152:1; /**/
+	u32 grp_status_id153:1; /**/
+	u32 grp_status_id154:1; /**/
+	u32 grp_status_id155:1; /**/
+	u32 grp_status_id156:1; /**/
+	u32 grp_status_id157:1; /**/
+	u32 grp_status_id158:1; /**/
+	u32 grp_status_id159:1; /**/
+	} bits;
+} reg_gicd_igroupr4_t;
+
+#define GICD_IGROUPR4_GRP_STATUS_ID128_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID128_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID129_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID129_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID130_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID130_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID131_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID131_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID132_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID132_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID133_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID133_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID134_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID134_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID135_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID135_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID136_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID136_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID137_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID137_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID138_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID138_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID139_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID139_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID140_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID140_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID141_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID141_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID142_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID142_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID143_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID143_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID144_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID144_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID145_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID145_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID146_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID146_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID147_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID147_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID148_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID148_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID149_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID149_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID150_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID150_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID151_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID151_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID152_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID152_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID153_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID153_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID154_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID154_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID155_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID155_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID156_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID156_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID157_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID157_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID158_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID158_1        0x1
+#define GICD_IGROUPR4_GRP_STATUS_ID159_0        0x0
+#define GICD_IGROUPR4_GRP_STATUS_ID159_1        0x1
+
+/* Interrupt Group Registers5It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id160:1; /**/
+	u32 grp_status_id161:1; /**/
+	u32 grp_status_id162:1; /**/
+	u32 grp_status_id163:1; /**/
+	u32 grp_status_id164:1; /**/
+	u32 grp_status_id165:1; /**/
+	u32 grp_status_id166:1; /**/
+	u32 grp_status_id167:1; /**/
+	u32 grp_status_id168:1; /**/
+	u32 grp_status_id169:1; /**/
+	u32 grp_status_id170:1; /**/
+	u32 grp_status_id171:1; /**/
+	u32 grp_status_id172:1; /**/
+	u32 grp_status_id173:1; /**/
+	u32 grp_status_id174:1; /**/
+	u32 grp_status_id175:1; /**/
+	u32 grp_status_id176:1; /**/
+	u32 grp_status_id177:1; /**/
+	u32 grp_status_id178:1; /**/
+	u32 grp_status_id179:1; /**/
+	u32 grp_status_id180:1; /**/
+	u32 grp_status_id181:1; /**/
+	u32 grp_status_id182:1; /**/
+	u32 grp_status_id183:1; /**/
+	u32 grp_status_id184:1; /**/
+	u32 grp_status_id185:1; /**/
+	u32 grp_status_id186:1; /**/
+	u32 grp_status_id187:1; /**/
+	u32 grp_status_id188:1; /**/
+	u32 grp_status_id189:1; /**/
+	u32 grp_status_id190:1; /**/
+	u32 grp_status_id191:1; /**/
+	} bits;
+} reg_gicd_igroupr5_t;
+
+#define GICD_IGROUPR5_GRP_STATUS_ID160_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID160_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID161_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID161_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID162_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID162_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID163_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID163_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID164_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID164_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID165_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID165_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID166_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID166_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID167_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID167_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID168_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID168_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID169_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID169_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID170_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID170_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID171_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID171_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID172_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID172_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID173_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID173_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID174_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID174_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID175_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID175_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID176_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID176_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID177_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID177_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID178_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID178_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID179_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID179_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID180_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID180_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID181_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID181_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID182_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID182_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID183_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID183_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID184_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID184_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID185_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID185_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID186_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID186_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID187_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID187_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID188_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID188_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID189_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID189_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID190_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID190_1        0x1
+#define GICD_IGROUPR5_GRP_STATUS_ID191_0        0x0
+#define GICD_IGROUPR5_GRP_STATUS_ID191_1        0x1
+
+/* Interrupt Group Registers6It provides a status bit for each corresponding interrupt which is in Group0 or Group1.Each bit controls whether the corresponding interrupt is in Group0 or Group1. */
+typedef union {
+	u32 val;
+	struct {
+	u32 grp_status_id192:1; /**/
+	u32 grp_status_id193:1; /**/
+	u32 grp_status_id194:1; /**/
+	u32 grp_status_id195:1; /**/
+	u32 grp_status_id196:1; /**/
+	u32 grp_status_id197:1; /**/
+	u32 grp_status_id198:1; /**/
+	u32 grp_status_id199:1; /**/
+	u32 grp_status_id200:1; /**/
+	u32 grp_status_id201:1; /**/
+	u32 grp_status_id202:1; /**/
+	u32 grp_status_id203:1; /**/
+	u32 grp_status_id204:1; /**/
+	u32 grp_status_id205:1; /**/
+	u32 grp_status_id206:1; /**/
+	u32 grp_status_id207:1; /**/
+	u32 grp_status_id208:1; /**/
+	u32 grp_status_id209:1; /**/
+	u32 grp_status_id210:1; /**/
+	u32 grp_status_id211:1; /**/
+	u32 grp_status_id212:1; /**/
+	u32 grp_status_id213:1; /**/
+	u32 grp_status_id214:1; /**/
+	u32 grp_status_id215:1; /**/
+	u32 grp_status_id216:1; /**/
+	u32 grp_status_id217:1; /**/
+	u32 grp_status_id218:1; /**/
+	u32 grp_status_id219:1; /**/
+	u32 grp_status_id220:1; /**/
+	u32 grp_status_id221:1; /**/
+	u32 grp_status_id222:1; /**/
+	u32 grp_status_id223:1; /**/
+	} bits;
+} reg_gicd_igroupr6_t;
+
+#define GICD_IGROUPR6_GRP_STATUS_ID192_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID192_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID193_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID193_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID194_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID194_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID195_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID195_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID196_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID196_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID197_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID197_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID198_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID198_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID199_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID199_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID200_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID200_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID201_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID201_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID202_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID202_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID203_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID203_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID204_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID204_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID205_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID205_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID206_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID206_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID207_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID207_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID208_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID208_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID209_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID209_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID210_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID210_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID211_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID211_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID212_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID212_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID213_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID213_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID214_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID214_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID215_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID215_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID216_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID216_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID217_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID217_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID218_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID218_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID219_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID219_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID220_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID220_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID221_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID221_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID222_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID222_1        0x1
+#define GICD_IGROUPR6_GRP_STATUS_ID223_0        0x0
+#define GICD_IGROUPR6_GRP_STATUS_ID223_1        0x1
+
+/* Interrupt Set-Enable Register0It provides a Set-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id0:1;/**/
+	u32 set_en_id1:1;/**/
+	u32 set_en_id2:1;/**/
+	u32 set_en_id3:1;/**/
+	u32 set_en_id4:1;/**/
+	u32 set_en_id5:1;/**/
+	u32 set_en_id6:1;/**/
+	u32 set_en_id7:1;/**/
+	u32 set_en_id8:1;/**/
+	u32 set_en_id9:1;/**/
+	u32 set_en_id10:1;/**/
+	u32 set_en_id11:1;/**/
+	u32 set_en_id12:1;/**/
+	u32 set_en_id13:1;/**/
+	u32 set_en_id14:1;/**/
+	u32 set_en_id15:1;/**/
+	u32 set_en_id16:1;/**/
+	u32 set_en_id17:1;/**/
+	u32 set_en_id18:1;/**/
+	u32 set_en_id19:1;/**/
+	u32 set_en_id20:1;/**/
+	u32 set_en_id21:1;/**/
+	u32 set_en_id22:1;/**/
+	u32 set_en_id23:1;/**/
+	u32 set_en_id24:1;/**/
+	u32 set_en_id25:1;/**/
+	u32 set_en_id26:1;/**/
+	u32 set_en_id27:1;/**/
+	u32 set_en_id28:1;/**/
+	u32 set_en_id29:1;/**/
+	u32 set_en_id30:1;/**/
+	u32 set_en_id31:1;/**/
+	} bits;
+} reg_gicd_isenabler0_t;
+
+#define GICD_ISENABLER0_SET_EN_ID16_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID16_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID17_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID17_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID18_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID18_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID19_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID19_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID20_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID20_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID21_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID21_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID22_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID22_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID23_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID23_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID24_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID24_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID25_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID25_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID26_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID26_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID27_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID27_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID28_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID28_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID29_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID29_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID30_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID30_1   0x1
+#define GICD_ISENABLER0_SET_EN_ID31_0   0x0
+#define GICD_ISENABLER0_SET_EN_ID31_1   0x1
+
+/* Interrupt Set-Enable Register1It provides a Set-enable bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id32:1;/**/
+	u32 set_en_id33:1;/**/
+	u32 set_en_id34:1;/**/
+	u32 set_en_id35:1;/**/
+	u32 set_en_id36:1;/**/
+	u32 set_en_id37:1;/**/
+	u32 set_en_id38:1;/**/
+	u32 set_en_id39:1;/**/
+	u32 set_en_id40:1;/**/
+	u32 set_en_id41:1;/**/
+	u32 set_en_id42:1;/**/
+	u32 set_en_id43:1;/**/
+	u32 set_en_id44:1;/**/
+	u32 set_en_id45:1;/**/
+	u32 set_en_id46:1;/**/
+	u32 set_en_id47:1;/**/
+	u32 set_en_id48:1;/**/
+	u32 set_en_id49:1;/**/
+	u32 set_en_id50:1;/**/
+	u32 set_en_id51:1;/**/
+	u32 set_en_id52:1;/**/
+	u32 set_en_id53:1;/**/
+	u32 set_en_id54:1;/**/
+	u32 set_en_id55:1;/**/
+	u32 set_en_id56:1;/**/
+	u32 set_en_id57:1;/**/
+	u32 set_en_id58:1;/**/
+	u32 set_en_id59:1;/**/
+	u32 set_en_id60:1;/**/
+	u32 set_en_id61:1;/**/
+	u32 set_en_id62:1;/**/
+	u32 set_en_id63:1;/**/
+	} bits;
+} reg_gicd_isenabler1_t;
+
+#define GICD_ISENABLER1_SET_EN_ID32_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID32_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID33_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID33_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID34_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID34_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID35_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID35_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID36_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID36_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID37_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID37_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID38_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID38_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID39_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID39_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID40_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID40_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID41_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID41_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID42_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID42_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID43_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID43_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID44_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID44_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID45_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID45_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID46_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID46_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID47_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID47_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID48_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID48_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID49_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID49_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID50_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID50_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID51_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID51_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID52_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID52_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID53_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID53_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID54_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID54_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID55_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID55_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID56_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID56_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID57_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID57_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID58_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID58_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID59_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID59_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID60_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID60_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID61_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID61_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID62_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID62_1   0x1
+#define GICD_ISENABLER1_SET_EN_ID63_0   0x0
+#define GICD_ISENABLER1_SET_EN_ID63_1   0x1
+
+/* Interrupt Set-Enable Register2It provides a Set-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id64:1;/**/
+	u32 set_en_id65:1;/**/
+	u32 set_en_id66:1;/**/
+	u32 set_en_id67:1;/**/
+	u32 set_en_id68:1;/**/
+	u32 set_en_id69:1;/**/
+	u32 set_en_id70:1;/**/
+	u32 set_en_id71:1;/**/
+	u32 set_en_id72:1;/**/
+	u32 set_en_id73:1;/**/
+	u32 set_en_id74:1;/**/
+	u32 set_en_id75:1;/**/
+	u32 set_en_id76:1;/**/
+	u32 set_en_id77:1;/**/
+	u32 set_en_id78:1;/**/
+	u32 set_en_id79:1;/**/
+	u32 set_en_id80:1;/**/
+	u32 set_en_id81:1;/**/
+	u32 set_en_id82:1;/**/
+	u32 set_en_id83:1;/**/
+	u32 set_en_id84:1;/**/
+	u32 set_en_id85:1;/**/
+	u32 set_en_id86:1;/**/
+	u32 set_en_id87:1;/**/
+	u32 set_en_id88:1;/**/
+	u32 set_en_id89:1;/**/
+	u32 set_en_id90:1;/**/
+	u32 set_en_id91:1;/**/
+	u32 set_en_id92:1;/**/
+	u32 set_en_id93:1;/**/
+	u32 set_en_id94:1;/**/
+	u32 set_en_id95:1;/**/
+	} bits;
+} reg_gicd_isenabler2_t;
+
+#define GICD_ISENABLER2_SET_EN_ID64_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID64_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID65_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID65_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID66_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID66_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID67_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID67_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID68_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID68_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID69_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID69_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID70_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID70_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID71_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID71_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID72_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID72_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID73_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID73_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID74_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID74_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID75_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID75_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID76_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID76_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID77_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID77_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID78_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID78_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID79_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID79_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID80_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID80_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID81_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID81_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID82_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID82_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID83_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID83_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID84_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID84_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID85_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID85_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID86_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID86_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID87_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID87_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID88_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID88_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID89_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID89_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID90_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID90_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID91_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID91_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID92_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID92_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID93_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID93_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID94_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID94_1   0x1
+#define GICD_ISENABLER2_SET_EN_ID95_0   0x0
+#define GICD_ISENABLER2_SET_EN_ID95_1   0x1
+
+/* Interrupt Set-Enable Register3It provides a Set-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id96:1;      /**/
+	u32 set_en_id97:1;      /**/
+	u32 set_en_id98:1;      /**/
+	u32 set_en_id99:1;      /**/
+	u32 set_en_id100:1;     /**/
+	u32 set_en_id101:1;     /**/
+	u32 set_en_id102:1;     /**/
+	u32 set_en_id103:1;     /**/
+	u32 set_en_id104:1;     /**/
+	u32 set_en_id105:1;     /**/
+	u32 set_en_id106:1;     /**/
+	u32 set_en_id107:1;     /**/
+	u32 set_en_id108:1;     /**/
+	u32 set_en_id109:1;     /**/
+	u32 set_en_id110:1;     /**/
+	u32 set_en_id111:1;     /**/
+	u32 set_en_id112:1;     /**/
+	u32 set_en_id113:1;     /**/
+	u32 set_en_id114:1;     /**/
+	u32 set_en_id115:1;     /**/
+	u32 set_en_id116:1;     /**/
+	u32 set_en_id117:1;     /**/
+	u32 set_en_id118:1;     /**/
+	u32 set_en_id119:1;     /**/
+	u32 set_en_id120:1;     /**/
+	u32 set_en_id121:1;     /**/
+	u32 set_en_id122:1;     /**/
+	u32 set_en_id123:1;     /**/
+	u32 set_en_id124:1;     /**/
+	u32 set_en_id125:1;     /**/
+	u32 set_en_id126:1;     /**/
+	u32 set_en_id127:1;     /**/
+	} bits;
+} reg_gicd_isenabler3_t;
+
+#define GICD_ISENABLER3_SET_EN_ID96_0   0x0
+#define GICD_ISENABLER3_SET_EN_ID96_1   0x1
+#define GICD_ISENABLER3_SET_EN_ID97_0   0x0
+#define GICD_ISENABLER3_SET_EN_ID97_1   0x1
+#define GICD_ISENABLER3_SET_EN_ID98_0   0x0
+#define GICD_ISENABLER3_SET_EN_ID98_1   0x1
+#define GICD_ISENABLER3_SET_EN_ID99_0   0x0
+#define GICD_ISENABLER3_SET_EN_ID99_1   0x1
+#define GICD_ISENABLER3_SET_EN_ID100_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID100_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID101_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID101_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID102_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID102_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID103_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID103_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID104_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID104_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID105_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID105_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID106_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID106_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID107_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID107_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID108_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID108_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID109_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID109_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID110_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID110_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID111_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID111_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID112_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID112_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID113_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID113_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID114_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID114_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID115_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID115_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID116_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID116_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID117_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID117_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID118_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID118_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID119_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID119_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID120_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID120_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID121_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID121_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID122_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID122_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID123_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID123_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID124_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID124_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID125_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID125_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID126_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID126_1  0x1
+#define GICD_ISENABLER3_SET_EN_ID127_0  0x0
+#define GICD_ISENABLER3_SET_EN_ID127_1  0x1
+
+/* Interrupt Set-Enable Register4It provides a Set-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id128:1;     /**/
+	u32 set_en_id129:1;     /**/
+	u32 set_en_id130:1;     /**/
+	u32 set_en_id131:1;     /**/
+	u32 set_en_id132:1;     /**/
+	u32 set_en_id133:1;     /**/
+	u32 set_en_id134:1;     /**/
+	u32 set_en_id135:1;     /**/
+	u32 set_en_id136:1;     /**/
+	u32 set_en_id137:1;     /**/
+	u32 set_en_id138:1;     /**/
+	u32 set_en_id139:1;     /**/
+	u32 set_en_id140:1;     /**/
+	u32 set_en_id141:1;     /**/
+	u32 set_en_id142:1;     /**/
+	u32 set_en_id143:1;     /**/
+	u32 set_en_id144:1;     /**/
+	u32 set_en_id145:1;     /**/
+	u32 set_en_id146:1;     /**/
+	u32 set_en_id147:1;     /**/
+	u32 set_en_id148:1;     /**/
+	u32 set_en_id149:1;     /**/
+	u32 set_en_id150:1;     /**/
+	u32 set_en_id151:1;     /**/
+	u32 set_en_id152:1;     /**/
+	u32 set_en_id153:1;     /**/
+	u32 set_en_id154:1;     /**/
+	u32 set_en_id155:1;     /**/
+	u32 set_en_id156:1;     /**/
+	u32 set_en_id157:1;     /**/
+	u32 set_en_id158:1;     /**/
+	u32 set_en_id159:1;     /**/
+	} bits;
+} reg_gicd_isenabler4_t;
+
+#define GICD_ISENABLER4_SET_EN_ID128_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID128_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID129_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID129_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID130_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID130_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID131_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID131_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID132_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID132_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID133_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID133_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID134_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID134_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID135_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID135_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID136_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID136_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID137_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID137_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID138_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID138_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID139_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID139_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID140_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID140_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID141_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID141_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID142_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID142_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID143_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID143_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID144_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID144_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID145_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID145_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID146_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID146_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID147_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID147_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID148_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID148_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID149_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID149_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID150_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID150_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID151_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID151_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID152_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID152_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID153_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID153_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID154_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID154_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID155_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID155_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID156_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID156_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID157_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID157_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID158_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID158_1  0x1
+#define GICD_ISENABLER4_SET_EN_ID159_0  0x0
+#define GICD_ISENABLER4_SET_EN_ID159_1  0x1
+
+/* Interrupt Set-Enable Register5It provides a Set-enable bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id160:1;     /**/
+	u32 set_en_id161:1;     /**/
+	u32 set_en_id162:1;     /**/
+	u32 set_en_id163:1;     /**/
+	u32 set_en_id164:1;     /**/
+	u32 set_en_id165:1;     /**/
+	u32 set_en_id166:1;     /**/
+	u32 set_en_id167:1;     /**/
+	u32 set_en_id168:1;     /**/
+	u32 set_en_id169:1;     /**/
+	u32 set_en_id170:1;     /**/
+	u32 set_en_id171:1;     /**/
+	u32 set_en_id172:1;     /**/
+	u32 set_en_id173:1;     /**/
+	u32 set_en_id174:1;     /**/
+	u32 set_en_id175:1;     /**/
+	u32 set_en_id176:1;     /**/
+	u32 set_en_id177:1;     /**/
+	u32 set_en_id178:1;     /**/
+	u32 set_en_id179:1;     /**/
+	u32 set_en_id180:1;     /**/
+	u32 set_en_id181:1;     /**/
+	u32 set_en_id182:1;     /**/
+	u32 set_en_id183:1;     /**/
+	u32 set_en_id184:1;     /**/
+	u32 set_en_id185:1;     /**/
+	u32 set_en_id186:1;     /**/
+	u32 set_en_id187:1;     /**/
+	u32 set_en_id188:1;     /**/
+	u32 set_en_id189:1;     /**/
+	u32 set_en_id190:1;     /**/
+	u32 set_en_id191:1;     /**/
+	} bits;
+} reg_gicd_isenabler5_t;
+
+#define GICD_ISENABLER5_SET_EN_ID160_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID160_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID161_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID161_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID162_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID162_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID163_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID163_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID164_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID164_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID165_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID165_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID166_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID166_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID167_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID167_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID168_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID168_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID169_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID169_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID170_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID170_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID171_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID171_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID172_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID172_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID173_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID173_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID174_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID174_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID175_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID175_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID176_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID176_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID177_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID177_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID178_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID178_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID179_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID179_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID180_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID180_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID181_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID181_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID182_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID182_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID183_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID183_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID184_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID184_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID185_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID185_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID186_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID186_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID187_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID187_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID188_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID188_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID189_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID189_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID190_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID190_1  0x1
+#define GICD_ISENABLER5_SET_EN_ID191_0  0x0
+#define GICD_ISENABLER5_SET_EN_ID191_1  0x1
+
+/* Interrupt Set-Enable Register6It provides a Set-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_en_id192:1;     /**/
+	u32 set_en_id193:1;     /**/
+	u32 set_en_id194:1;     /**/
+	u32 set_en_id195:1;     /**/
+	u32 set_en_id196:1;     /**/
+	u32 set_en_id197:1;     /**/
+	u32 set_en_id198:1;     /**/
+	u32 set_en_id199:1;     /**/
+	u32 set_en_id200:1;     /**/
+	u32 set_en_id201:1;     /**/
+	u32 set_en_id202:1;     /**/
+	u32 set_en_id203:1;     /**/
+	u32 set_en_id204:1;     /**/
+	u32 set_en_id205:1;     /**/
+	u32 set_en_id206:1;     /**/
+	u32 set_en_id207:1;     /**/
+	u32 set_en_id208:1;     /**/
+	u32 set_en_id209:1;     /**/
+	u32 set_en_id210:1;     /**/
+	u32 set_en_id211:1;     /**/
+	u32 set_en_id212:1;     /**/
+	u32 set_en_id213:1;     /**/
+	u32 set_en_id214:1;     /**/
+	u32 set_en_id215:1;     /**/
+	u32 set_en_id216:1;     /**/
+	u32 set_en_id217:1;     /**/
+	u32 set_en_id218:1;     /**/
+	u32 set_en_id219:1;     /**/
+	u32 set_en_id220:1;     /**/
+	u32 set_en_id221:1;     /**/
+	u32 set_en_id222:1;     /**/
+	u32 set_en_id223:1;     /**/
+	} bits;
+} reg_gicd_isenabler6_t;
+
+#define GICD_ISENABLER6_SET_EN_ID192_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID192_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID193_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID193_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID194_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID194_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID195_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID195_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID196_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID196_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID197_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID197_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID198_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID198_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID199_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID199_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID200_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID200_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID201_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID201_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID202_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID202_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID203_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID203_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID204_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID204_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID205_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID205_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID206_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID206_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID207_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID207_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID208_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID208_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID209_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID209_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID210_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID210_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID211_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID211_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID212_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID212_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID213_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID213_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID214_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID214_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID215_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID215_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID216_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID216_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID217_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID217_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID218_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID218_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID219_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID219_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID220_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID220_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID221_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID221_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID222_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID222_1  0x1
+#define GICD_ISENABLER6_SET_EN_ID223_0  0x0
+#define GICD_ISENABLER6_SET_EN_ID223_1  0x1
+
+/* Interrupt Clear-Enable Register0It provides a Clear-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id0:1;/**/
+	u32 clr_en_id1:1;/**/
+	u32 clr_en_id2:1;/**/
+	u32 clr_en_id3:1;/**/
+	u32 clr_en_id4:1;/**/
+	u32 clr_en_id5:1;/**/
+	u32 clr_en_id6:1;/**/
+	u32 clr_en_id7:1;/**/
+	u32 clr_en_id8:1;/**/
+	u32 clr_en_id9:1;/**/
+	u32 clr_en_id10:1;/**/
+	u32 clr_en_id11:1;/**/
+	u32 clr_en_id12:1;/**/
+	u32 clr_en_id13:1;/**/
+	u32 clr_en_id14:1;/**/
+	u32 clr_en_id15:1;/**/
+	u32 clr_en_id16:1;/**/
+	u32 clr_en_id17:1;/**/
+	u32 clr_en_id18:1;/**/
+	u32 clr_en_id19:1;/**/
+	u32 clr_en_id20:1;/**/
+	u32 clr_en_id21:1;/**/
+	u32 clr_en_id22:1;/**/
+	u32 clr_en_id23:1;/**/
+	u32 clr_en_id24:1;/**/
+	u32 clr_en_id25:1;/**/
+	u32 clr_en_id26:1;/**/
+	u32 clr_en_id27:1;/**/
+	u32 clr_en_id28:1;/**/
+	u32 clr_en_id29:1;/**/
+	u32 clr_en_id30:1;/**/
+	u32 clr_en_id31:1;/**/
+	} bits;
+} reg_gicd_icenabler0_t;
+
+#define GICD_ICENABLER0_CLR_EN_ID16_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID16_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID17_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID17_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID18_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID18_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID19_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID19_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID20_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID20_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID21_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID21_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID22_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID22_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID23_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID23_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID24_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID24_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID25_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID25_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID26_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID26_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID27_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID27_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID28_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID28_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID29_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID29_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID30_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID30_1   0x1
+#define GICD_ICENABLER0_CLR_EN_ID31_0   0x0
+#define GICD_ICENABLER0_CLR_EN_ID31_1   0x1
+
+/* Interrupt Clear-Enable Register1It provides a Clear-enable bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id32:1;/**/
+	u32 clr_en_id33:1;/**/
+	u32 clr_en_id34:1;/**/
+	u32 clr_en_id35:1;/**/
+	u32 clr_en_id36:1;/**/
+	u32 clr_en_id37:1;/**/
+	u32 clr_en_id38:1;/**/
+	u32 clr_en_id39:1;/**/
+	u32 clr_en_id40:1;/**/
+	u32 clr_en_id41:1;/**/
+	u32 clr_en_id42:1;/**/
+	u32 clr_en_id43:1;/**/
+	u32 clr_en_id44:1;/**/
+	u32 clr_en_id45:1;/**/
+	u32 clr_en_id46:1;/**/
+	u32 clr_en_id47:1;/**/
+	u32 clr_en_id48:1;/**/
+	u32 clr_en_id49:1;/**/
+	u32 clr_en_id50:1;/**/
+	u32 clr_en_id51:1;/**/
+	u32 clr_en_id52:1;/**/
+	u32 clr_en_id53:1;/**/
+	u32 clr_en_id54:1;/**/
+	u32 clr_en_id55:1;/**/
+	u32 clr_en_id56:1;/**/
+	u32 clr_en_id57:1;/**/
+	u32 clr_en_id58:1;/**/
+	u32 clr_en_id59:1;/**/
+	u32 clr_en_id60:1;/**/
+	u32 clr_en_id61:1;/**/
+	u32 clr_en_id62:1;/**/
+	u32 clr_en_id63:1;/**/
+	} bits;
+} reg_gicd_icenabler1_t;
+
+#define GICD_ICENABLER1_CLR_EN_ID32_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID32_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID33_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID33_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID34_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID34_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID35_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID35_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID36_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID36_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID37_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID37_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID38_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID38_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID39_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID39_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID40_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID40_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID41_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID41_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID42_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID42_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID43_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID43_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID44_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID44_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID45_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID45_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID46_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID46_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID47_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID47_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID48_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID48_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID49_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID49_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID50_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID50_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID51_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID51_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID52_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID52_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID53_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID53_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID54_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID54_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID55_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID55_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID56_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID56_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID57_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID57_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID58_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID58_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID59_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID59_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID60_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID60_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID61_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID61_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID62_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID62_1   0x1
+#define GICD_ICENABLER1_CLR_EN_ID63_0   0x0
+#define GICD_ICENABLER1_CLR_EN_ID63_1   0x1
+
+/* Interrupt Clear-Enable Register2It provides a Clear-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id64:1;/**/
+	u32 clr_en_id65:1;/**/
+	u32 clr_en_id66:1;/**/
+	u32 clr_en_id67:1;/**/
+	u32 clr_en_id68:1;/**/
+	u32 clr_en_id69:1;/**/
+	u32 clr_en_id70:1;/**/
+	u32 clr_en_id71:1;/**/
+	u32 clr_en_id72:1;/**/
+	u32 clr_en_id73:1;/**/
+	u32 clr_en_id74:1;/**/
+	u32 clr_en_id75:1;/**/
+	u32 clr_en_id76:1;/**/
+	u32 clr_en_id77:1;/**/
+	u32 clr_en_id78:1;/**/
+	u32 clr_en_id79:1;/**/
+	u32 clr_en_id80:1;/**/
+	u32 clr_en_id81:1;/**/
+	u32 clr_en_id82:1;/**/
+	u32 clr_en_id83:1;/**/
+	u32 clr_en_id84:1;/**/
+	u32 clr_en_id85:1;/**/
+	u32 clr_en_id86:1;/**/
+	u32 clr_en_id87:1;/**/
+	u32 clr_en_id88:1;/**/
+	u32 clr_en_id89:1;/**/
+	u32 clr_en_id90:1;/**/
+	u32 clr_en_id91:1;/**/
+	u32 clr_en_id92:1;/**/
+	u32 clr_en_id93:1;/**/
+	u32 clr_en_id94:1;/**/
+	u32 clr_en_id95:1;/**/
+	} bits;
+} reg_gicd_icenabler2_t;
+
+#define GICD_ICENABLER2_CLR_EN_ID64_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID64_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID65_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID65_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID66_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID66_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID67_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID67_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID68_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID68_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID69_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID69_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID70_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID70_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID71_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID71_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID72_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID72_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID73_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID73_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID74_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID74_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID75_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID75_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID76_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID76_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID77_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID77_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID78_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID78_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID79_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID79_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID80_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID80_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID81_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID81_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID82_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID82_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID83_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID83_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID84_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID84_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID85_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID85_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID86_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID86_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID87_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID87_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID88_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID88_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID89_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID89_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID90_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID90_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID91_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID91_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID92_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID92_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID93_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID93_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID94_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID94_1   0x1
+#define GICD_ICENABLER2_CLR_EN_ID95_0   0x0
+#define GICD_ICENABLER2_CLR_EN_ID95_1   0x1
+
+/* Interrupt Clear-Enable Register3It provides a Clear-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id96:1;      /**/
+	u32 clr_en_id97:1;      /**/
+	u32 clr_en_id98:1;      /**/
+	u32 clr_en_id99:1;      /**/
+	u32 clr_en_id100:1;     /**/
+	u32 clr_en_id101:1;     /**/
+	u32 clr_en_id102:1;     /**/
+	u32 clr_en_id103:1;     /**/
+	u32 clr_en_id104:1;     /**/
+	u32 clr_en_id105:1;     /**/
+	u32 clr_en_id106:1;     /**/
+	u32 clr_en_id107:1;     /**/
+	u32 clr_en_id108:1;     /**/
+	u32 clr_en_id109:1;     /**/
+	u32 clr_en_id110:1;     /**/
+	u32 clr_en_id111:1;     /**/
+	u32 clr_en_id112:1;     /**/
+	u32 clr_en_id113:1;     /**/
+	u32 clr_en_id114:1;     /**/
+	u32 clr_en_id115:1;     /**/
+	u32 clr_en_id116:1;     /**/
+	u32 clr_en_id117:1;     /**/
+	u32 clr_en_id118:1;     /**/
+	u32 clr_en_id119:1;     /**/
+	u32 clr_en_id120:1;     /**/
+	u32 clr_en_id121:1;     /**/
+	u32 clr_en_id122:1;     /**/
+	u32 clr_en_id123:1;     /**/
+	u32 clr_en_id124:1;     /**/
+	u32 clr_en_id125:1;     /**/
+	u32 clr_en_id126:1;     /**/
+	u32 clr_en_id127:1;     /**/
+	} bits;
+} reg_gicd_icenabler3_t;
+
+#define GICD_ICENABLER3_CLR_EN_ID96_0   0x0
+#define GICD_ICENABLER3_CLR_EN_ID96_1   0x1
+#define GICD_ICENABLER3_CLR_EN_ID97_0   0x0
+#define GICD_ICENABLER3_CLR_EN_ID97_1   0x1
+#define GICD_ICENABLER3_CLR_EN_ID98_0   0x0
+#define GICD_ICENABLER3_CLR_EN_ID98_1   0x1
+#define GICD_ICENABLER3_CLR_EN_ID99_0   0x0
+#define GICD_ICENABLER3_CLR_EN_ID99_1   0x1
+#define GICD_ICENABLER3_CLR_EN_ID100_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID100_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID101_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID101_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID102_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID102_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID103_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID103_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID104_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID104_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID105_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID105_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID106_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID106_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID107_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID107_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID108_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID108_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID109_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID109_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID110_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID110_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID111_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID111_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID112_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID112_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID113_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID113_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID114_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID114_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID115_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID115_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID116_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID116_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID117_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID117_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID118_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID118_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID119_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID119_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID120_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID120_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID121_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID121_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID122_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID122_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID123_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID123_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID124_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID124_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID125_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID125_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID126_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID126_1  0x1
+#define GICD_ICENABLER3_CLR_EN_ID127_0  0x0
+#define GICD_ICENABLER3_CLR_EN_ID127_1  0x1
+
+/* Interrupt Clear-Enable Register4It provides a Clear-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id128:1;     /**/
+	u32 clr_en_id129:1;     /**/
+	u32 clr_en_id130:1;     /**/
+	u32 clr_en_id131:1;     /**/
+	u32 clr_en_id132:1;     /**/
+	u32 clr_en_id133:1;     /**/
+	u32 clr_en_id134:1;     /**/
+	u32 clr_en_id135:1;     /**/
+	u32 clr_en_id136:1;     /**/
+	u32 clr_en_id137:1;     /**/
+	u32 clr_en_id138:1;     /**/
+	u32 clr_en_id139:1;     /**/
+	u32 clr_en_id140:1;     /**/
+	u32 clr_en_id141:1;     /**/
+	u32 clr_en_id142:1;     /**/
+	u32 clr_en_id143:1;     /**/
+	u32 clr_en_id144:1;     /**/
+	u32 clr_en_id145:1;     /**/
+	u32 clr_en_id146:1;     /**/
+	u32 clr_en_id147:1;     /**/
+	u32 clr_en_id148:1;     /**/
+	u32 clr_en_id149:1;     /**/
+	u32 clr_en_id150:1;     /**/
+	u32 clr_en_id151:1;     /**/
+	u32 clr_en_id152:1;     /**/
+	u32 clr_en_id153:1;     /**/
+	u32 clr_en_id154:1;     /**/
+	u32 clr_en_id155:1;     /**/
+	u32 clr_en_id156:1;     /**/
+	u32 clr_en_id157:1;     /**/
+	u32 clr_en_id158:1;     /**/
+	u32 clr_en_id159:1;     /**/
+	} bits;
+} reg_gicd_icenabler4_t;
+
+#define GICD_ICENABLER4_CLR_EN_ID128_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID128_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID129_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID129_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID130_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID130_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID131_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID131_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID132_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID132_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID133_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID133_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID134_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID134_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID135_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID135_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID136_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID136_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID137_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID137_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID138_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID138_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID139_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID139_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID140_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID140_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID141_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID141_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID142_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID142_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID143_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID143_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID144_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID144_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID145_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID145_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID146_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID146_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID147_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID147_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID148_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID148_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID149_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID149_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID150_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID150_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID151_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID151_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID152_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID152_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID153_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID153_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID154_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID154_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID155_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID155_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID156_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID156_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID157_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID157_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID158_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID158_1  0x1
+#define GICD_ICENABLER4_CLR_EN_ID159_0  0x0
+#define GICD_ICENABLER4_CLR_EN_ID159_1  0x1
+
+/* Interrupt Clear-Enable Register5It provides a Clear-enable bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id160:1;     /**/
+	u32 clr_en_id161:1;     /**/
+	u32 clr_en_id162:1;     /**/
+	u32 clr_en_id163:1;     /**/
+	u32 clr_en_id164:1;     /**/
+	u32 clr_en_id165:1;     /**/
+	u32 clr_en_id166:1;     /**/
+	u32 clr_en_id167:1;     /**/
+	u32 clr_en_id168:1;     /**/
+	u32 clr_en_id169:1;     /**/
+	u32 clr_en_id170:1;     /**/
+	u32 clr_en_id171:1;     /**/
+	u32 clr_en_id172:1;     /**/
+	u32 clr_en_id173:1;     /**/
+	u32 clr_en_id174:1;     /**/
+	u32 clr_en_id175:1;     /**/
+	u32 clr_en_id176:1;     /**/
+	u32 clr_en_id177:1;     /**/
+	u32 clr_en_id178:1;     /**/
+	u32 clr_en_id179:1;     /**/
+	u32 clr_en_id180:1;     /**/
+	u32 clr_en_id181:1;     /**/
+	u32 clr_en_id182:1;     /**/
+	u32 clr_en_id183:1;     /**/
+	u32 clr_en_id184:1;     /**/
+	u32 clr_en_id185:1;     /**/
+	u32 clr_en_id186:1;     /**/
+	u32 clr_en_id187:1;     /**/
+	u32 clr_en_id188:1;     /**/
+	u32 clr_en_id189:1;     /**/
+	u32 clr_en_id190:1;     /**/
+	u32 clr_en_id191:1;     /**/
+	} bits;
+} reg_gicd_icenabler5_t;
+
+#define GICD_ICENABLER5_CLR_EN_ID160_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID160_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID161_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID161_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID162_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID162_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID163_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID163_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID164_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID164_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID165_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID165_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID166_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID166_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID167_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID167_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID168_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID168_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID169_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID169_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID170_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID170_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID171_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID171_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID172_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID172_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID173_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID173_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID174_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID174_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID175_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID175_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID176_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID176_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID177_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID177_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID178_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID178_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID179_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID179_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID180_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID180_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID181_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID181_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID182_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID182_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID183_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID183_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID184_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID184_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID185_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID185_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID186_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID186_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID187_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID187_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID188_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID188_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID189_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID189_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID190_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID190_1  0x1
+#define GICD_ICENABLER5_CLR_EN_ID191_0  0x0
+#define GICD_ICENABLER5_CLR_EN_ID191_1  0x1
+
+/* Interrupt Clear-Enable Register6It provides a Clear-enable bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_en_id192:1;     /**/
+	u32 clr_en_id193:1;     /**/
+	u32 clr_en_id194:1;     /**/
+	u32 clr_en_id195:1;     /**/
+	u32 clr_en_id196:1;     /**/
+	u32 clr_en_id197:1;     /**/
+	u32 clr_en_id198:1;     /**/
+	u32 clr_en_id199:1;     /**/
+	u32 clr_en_id200:1;     /**/
+	u32 clr_en_id201:1;     /**/
+	u32 clr_en_id202:1;     /**/
+	u32 clr_en_id203:1;     /**/
+	u32 clr_en_id204:1;     /**/
+	u32 clr_en_id205:1;     /**/
+	u32 clr_en_id206:1;     /**/
+	u32 clr_en_id207:1;     /**/
+	u32 clr_en_id208:1;     /**/
+	u32 clr_en_id209:1;     /**/
+	u32 clr_en_id210:1;     /**/
+	u32 clr_en_id211:1;     /**/
+	u32 clr_en_id212:1;     /**/
+	u32 clr_en_id213:1;     /**/
+	u32 clr_en_id214:1;     /**/
+	u32 clr_en_id215:1;     /**/
+	u32 clr_en_id216:1;     /**/
+	u32 clr_en_id217:1;     /**/
+	u32 clr_en_id218:1;     /**/
+	u32 clr_en_id219:1;     /**/
+	u32 clr_en_id220:1;     /**/
+	u32 clr_en_id221:1;     /**/
+	u32 clr_en_id222:1;     /**/
+	u32 clr_en_id223:1;     /**/
+	} bits;
+} reg_gicd_icenabler6_t;
+
+#define GICD_ICENABLER6_CLR_EN_ID192_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID192_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID193_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID193_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID194_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID194_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID195_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID195_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID196_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID196_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID197_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID197_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID198_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID198_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID199_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID199_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID200_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID200_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID201_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID201_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID202_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID202_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID203_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID203_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID204_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID204_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID205_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID205_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID206_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID206_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID207_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID207_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID208_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID208_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID209_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID209_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID210_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID210_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID211_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID211_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID212_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID212_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID213_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID213_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID214_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID214_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID215_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID215_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID216_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID216_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID217_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID217_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID218_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID218_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID219_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID219_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID220_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID220_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID221_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID221_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID222_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID222_1  0x1
+#define GICD_ICENABLER6_CLR_EN_ID223_0  0x0
+#define GICD_ICENABLER6_CLR_EN_ID223_1  0x1
+
+/* Interrupt Set-Pending Register0It provides a Set-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id0:1;     /**/
+	u32 set_pend_id1:1;     /**/
+	u32 set_pend_id2:1;     /**/
+	u32 set_pend_id3:1;     /**/
+	u32 set_pend_id4:1;     /**/
+	u32 set_pend_id5:1;     /**/
+	u32 set_pend_id6:1;     /**/
+	u32 set_pend_id7:1;     /**/
+	u32 set_pend_id8:1;     /**/
+	u32 set_pend_id9:1;     /**/
+	u32 set_pend_id10:1;    /**/
+	u32 set_pend_id11:1;    /**/
+	u32 set_pend_id12:1;    /**/
+	u32 set_pend_id13:1;    /**/
+	u32 set_pend_id14:1;    /**/
+	u32 set_pend_id15:1;    /**/
+	u32 set_pend_id16:1;    /**/
+	u32 set_pend_id17:1;    /**/
+	u32 set_pend_id18:1;    /**/
+	u32 set_pend_id19:1;    /**/
+	u32 set_pend_id20:1;    /**/
+	u32 set_pend_id21:1;    /**/
+	u32 set_pend_id22:1;    /**/
+	u32 set_pend_id23:1;    /**/
+	u32 set_pend_id24:1;    /**/
+	u32 set_pend_id25:1;    /**/
+	u32 set_pend_id26:1;    /**/
+	u32 set_pend_id27:1;    /**/
+	u32 set_pend_id28:1;    /**/
+	u32 set_pend_id29:1;    /**/
+	u32 set_pend_id30:1;    /**/
+	u32 set_pend_id31:1;    /**/
+	} bits;
+} reg_gicd_ispendr0_t;
+
+#define GICD_ISPENDR0_SET_PEND_ID0_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID0_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID1_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID1_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID2_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID2_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID3_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID3_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID4_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID4_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID5_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID5_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID6_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID6_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID7_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID7_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID8_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID8_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID9_0    0x0
+#define GICD_ISPENDR0_SET_PEND_ID9_1    0x1
+#define GICD_ISPENDR0_SET_PEND_ID10_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID10_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID11_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID11_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID12_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID12_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID13_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID13_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID14_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID14_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID15_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID15_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID16_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID16_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID17_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID17_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID18_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID18_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID19_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID19_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID20_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID20_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID21_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID21_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID22_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID22_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID23_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID23_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID24_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID24_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID25_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID25_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID26_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID26_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID27_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID27_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID28_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID28_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID29_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID29_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID30_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID30_1   0x1
+#define GICD_ISPENDR0_SET_PEND_ID31_0   0x0
+#define GICD_ISPENDR0_SET_PEND_ID31_1   0x1
+
+/* Interrupt Set-Pending Register1It provides a Set-Pending bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id32:1;    /**/
+	u32 set_pend_id33:1;    /**/
+	u32 set_pend_id34:1;    /**/
+	u32 set_pend_id35:1;    /**/
+	u32 set_pend_id36:1;    /**/
+	u32 set_pend_id37:1;    /**/
+	u32 set_pend_id38:1;    /**/
+	u32 set_pend_id39:1;    /**/
+	u32 set_pend_id40:1;    /**/
+	u32 set_pend_id41:1;    /**/
+	u32 set_pend_id42:1;    /**/
+	u32 set_pend_id43:1;    /**/
+	u32 set_pend_id44:1;    /**/
+	u32 set_pend_id45:1;    /**/
+	u32 set_pend_id46:1;    /**/
+	u32 set_pend_id47:1;    /**/
+	u32 set_pend_id48:1;    /**/
+	u32 set_pend_id49:1;    /**/
+	u32 set_pend_id50:1;    /**/
+	u32 set_pend_id51:1;    /**/
+	u32 set_pend_id52:1;    /**/
+	u32 set_pend_id53:1;    /**/
+	u32 set_pend_id54:1;    /**/
+	u32 set_pend_id55:1;    /**/
+	u32 set_pend_id56:1;    /**/
+	u32 set_pend_id57:1;    /**/
+	u32 set_pend_id58:1;    /**/
+	u32 set_pend_id59:1;    /**/
+	u32 set_pend_id60:1;    /**/
+	u32 set_pend_id61:1;    /**/
+	u32 set_pend_id62:1;    /**/
+	u32 set_pend_id63:1;    /**/
+	} bits;
+} reg_gicd_ispendr1_t;
+
+#define GICD_ISPENDR1_SET_PEND_ID32_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID32_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID33_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID33_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID34_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID34_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID35_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID35_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID36_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID36_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID37_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID37_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID38_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID38_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID39_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID39_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID40_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID40_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID41_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID41_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID42_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID42_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID43_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID43_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID44_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID44_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID45_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID45_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID46_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID46_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID47_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID47_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID48_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID48_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID49_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID49_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID50_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID50_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID51_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID51_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID52_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID52_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID53_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID53_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID54_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID54_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID55_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID55_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID56_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID56_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID57_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID57_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID58_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID58_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID59_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID59_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID60_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID60_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID61_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID61_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID62_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID62_1   0x1
+#define GICD_ISPENDR1_SET_PEND_ID63_0   0x0
+#define GICD_ISPENDR1_SET_PEND_ID63_1   0x1
+
+/* Interrupt Set-Pending Register2It provides a Set-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id64:1;    /**/
+	u32 set_pend_id65:1;    /**/
+	u32 set_pend_id66:1;    /**/
+	u32 set_pend_id67:1;    /**/
+	u32 set_pend_id68:1;    /**/
+	u32 set_pend_id69:1;    /**/
+	u32 set_pend_id70:1;    /**/
+	u32 set_pend_id71:1;    /**/
+	u32 set_pend_id72:1;    /**/
+	u32 set_pend_id73:1;    /**/
+	u32 set_pend_id74:1;    /**/
+	u32 set_pend_id75:1;    /**/
+	u32 set_pend_id76:1;    /**/
+	u32 set_pend_id77:1;    /**/
+	u32 set_pend_id78:1;    /**/
+	u32 set_pend_id79:1;    /**/
+	u32 set_pend_id80:1;    /**/
+	u32 set_pend_id81:1;    /**/
+	u32 set_pend_id82:1;    /**/
+	u32 set_pend_id83:1;    /**/
+	u32 set_pend_id84:1;    /**/
+	u32 set_pend_id85:1;    /**/
+	u32 set_pend_id86:1;    /**/
+	u32 set_pend_id87:1;    /**/
+	u32 set_pend_id88:1;    /**/
+	u32 set_pend_id89:1;    /**/
+	u32 set_pend_id90:1;    /**/
+	u32 set_pend_id91:1;    /**/
+	u32 set_pend_id92:1;    /**/
+	u32 set_pend_id93:1;    /**/
+	u32 set_pend_id94:1;    /**/
+	u32 set_pend_id95:1;    /**/
+	} bits;
+} reg_gicd_ispendr2_t;
+
+#define GICD_ISPENDR2_SET_PEND_ID64_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID64_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID65_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID65_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID66_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID66_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID67_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID67_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID68_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID68_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID69_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID69_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID70_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID70_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID71_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID71_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID72_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID72_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID73_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID73_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID74_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID74_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID75_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID75_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID76_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID76_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID77_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID77_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID78_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID78_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID79_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID79_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID80_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID80_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID81_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID81_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID82_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID82_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID83_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID83_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID84_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID84_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID85_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID85_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID86_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID86_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID87_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID87_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID88_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID88_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID89_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID89_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID90_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID90_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID91_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID91_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID92_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID92_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID93_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID93_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID94_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID94_1   0x1
+#define GICD_ISPENDR2_SET_PEND_ID95_0   0x0
+#define GICD_ISPENDR2_SET_PEND_ID95_1   0x1
+
+/* Interrupt Set-Pending Register3It provides a Set-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id96:1;    /**/
+	u32 set_pend_id97:1;    /**/
+	u32 set_pend_id98:1;    /**/
+	u32 set_pend_id99:1;    /**/
+	u32 set_pend_id100:1;   /**/
+	u32 set_pend_id101:1;   /**/
+	u32 set_pend_id102:1;   /**/
+	u32 set_pend_id103:1;   /**/
+	u32 set_pend_id104:1;   /**/
+	u32 set_pend_id105:1;   /**/
+	u32 set_pend_id106:1;   /**/
+	u32 set_pend_id107:1;   /**/
+	u32 set_pend_id108:1;   /**/
+	u32 set_pend_id109:1;   /**/
+	u32 set_pend_id110:1;   /**/
+	u32 set_pend_id111:1;   /**/
+	u32 set_pend_id112:1;   /**/
+	u32 set_pend_id113:1;   /**/
+	u32 set_pend_id114:1;   /**/
+	u32 set_pend_id115:1;   /**/
+	u32 set_pend_id116:1;   /**/
+	u32 set_pend_id117:1;   /**/
+	u32 set_pend_id118:1;   /**/
+	u32 set_pend_id119:1;   /**/
+	u32 set_pend_id120:1;   /**/
+	u32 set_pend_id121:1;   /**/
+	u32 set_pend_id122:1;   /**/
+	u32 set_pend_id123:1;   /**/
+	u32 set_pend_id124:1;   /**/
+	u32 set_pend_id125:1;   /**/
+	u32 set_pend_id126:1;   /**/
+	u32 set_pend_id127:1;   /**/
+	} bits;
+} reg_gicd_ispendr3_t;
+
+#define GICD_ISPENDR3_SET_PEND_ID96_0   0x0
+#define GICD_ISPENDR3_SET_PEND_ID96_1   0x1
+#define GICD_ISPENDR3_SET_PEND_ID97_0   0x0
+#define GICD_ISPENDR3_SET_PEND_ID97_1   0x1
+#define GICD_ISPENDR3_SET_PEND_ID98_0   0x0
+#define GICD_ISPENDR3_SET_PEND_ID98_1   0x1
+#define GICD_ISPENDR3_SET_PEND_ID99_0   0x0
+#define GICD_ISPENDR3_SET_PEND_ID99_1   0x1
+#define GICD_ISPENDR3_SET_PEND_ID100_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID100_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID101_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID101_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID102_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID102_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID103_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID103_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID104_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID104_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID105_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID105_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID106_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID106_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID107_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID107_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID108_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID108_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID109_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID109_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID110_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID110_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID111_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID111_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID112_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID112_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID113_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID113_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID114_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID114_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID115_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID115_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID116_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID116_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID117_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID117_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID118_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID118_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID119_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID119_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID120_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID120_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID121_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID121_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID122_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID122_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID123_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID123_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID124_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID124_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID125_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID125_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID126_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID126_1  0x1
+#define GICD_ISPENDR3_SET_PEND_ID127_0  0x0
+#define GICD_ISPENDR3_SET_PEND_ID127_1  0x1
+
+/* Interrupt Set-Pending Register4It provides a Set-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id128:1;   /**/
+	u32 set_pend_id129:1;   /**/
+	u32 set_pend_id130:1;   /**/
+	u32 set_pend_id131:1;   /**/
+	u32 set_pend_id132:1;   /**/
+	u32 set_pend_id133:1;   /**/
+	u32 set_pend_id134:1;   /**/
+	u32 set_pend_id135:1;   /**/
+	u32 set_pend_id136:1;   /**/
+	u32 set_pend_id137:1;   /**/
+	u32 set_pend_id138:1;   /**/
+	u32 set_pend_id139:1;   /**/
+	u32 set_pend_id140:1;   /**/
+	u32 set_pend_id141:1;   /**/
+	u32 set_pend_id142:1;   /**/
+	u32 set_pend_id143:1;   /**/
+	u32 set_pend_id144:1;   /**/
+	u32 set_pend_id145:1;   /**/
+	u32 set_pend_id146:1;   /**/
+	u32 set_pend_id147:1;   /**/
+	u32 set_pend_id148:1;   /**/
+	u32 set_pend_id149:1;   /**/
+	u32 set_pend_id150:1;   /**/
+	u32 set_pend_id151:1;   /**/
+	u32 set_pend_id152:1;   /**/
+	u32 set_pend_id153:1;   /**/
+	u32 set_pend_id154:1;   /**/
+	u32 set_pend_id155:1;   /**/
+	u32 set_pend_id156:1;   /**/
+	u32 set_pend_id157:1;   /**/
+	u32 set_pend_id158:1;   /**/
+	u32 set_pend_id159:1;   /**/
+	} bits;
+} reg_gicd_ispendr4_t;
+
+#define GICD_ISPENDR4_SET_PEND_ID128_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID128_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID129_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID129_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID130_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID130_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID131_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID131_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID132_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID132_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID133_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID133_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID134_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID134_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID135_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID135_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID136_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID136_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID137_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID137_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID138_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID138_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID139_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID139_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID140_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID140_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID141_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID141_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID142_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID142_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID143_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID143_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID144_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID144_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID145_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID145_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID146_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID146_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID147_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID147_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID148_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID148_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID149_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID149_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID150_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID150_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID151_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID151_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID152_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID152_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID153_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID153_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID154_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID154_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID155_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID155_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID156_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID156_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID157_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID157_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID158_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID158_1  0x1
+#define GICD_ISPENDR4_SET_PEND_ID159_0  0x0
+#define GICD_ISPENDR4_SET_PEND_ID159_1  0x1
+
+/* Interrupt Set-Pending Register5It provides a Set-Pending bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id160:1;   /**/
+	u32 set_pend_id161:1;   /**/
+	u32 set_pend_id162:1;   /**/
+	u32 set_pend_id163:1;   /**/
+	u32 set_pend_id164:1;   /**/
+	u32 set_pend_id165:1;   /**/
+	u32 set_pend_id166:1;   /**/
+	u32 set_pend_id167:1;   /**/
+	u32 set_pend_id168:1;   /**/
+	u32 set_pend_id169:1;   /**/
+	u32 set_pend_id170:1;   /**/
+	u32 set_pend_id171:1;   /**/
+	u32 set_pend_id172:1;   /**/
+	u32 set_pend_id173:1;   /**/
+	u32 set_pend_id174:1;   /**/
+	u32 set_pend_id175:1;   /**/
+	u32 set_pend_id176:1;   /**/
+	u32 set_pend_id177:1;   /**/
+	u32 set_pend_id178:1;   /**/
+	u32 set_pend_id179:1;   /**/
+	u32 set_pend_id180:1;   /**/
+	u32 set_pend_id181:1;   /**/
+	u32 set_pend_id182:1;   /**/
+	u32 set_pend_id183:1;   /**/
+	u32 set_pend_id184:1;   /**/
+	u32 set_pend_id185:1;   /**/
+	u32 set_pend_id186:1;   /**/
+	u32 set_pend_id187:1;   /**/
+	u32 set_pend_id188:1;   /**/
+	u32 set_pend_id189:1;   /**/
+	u32 set_pend_id190:1;   /**/
+	u32 set_pend_id191:1;   /**/
+	} bits;
+} reg_gicd_ispendr5_t;
+
+#define GICD_ISPENDR5_SET_PEND_ID160_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID160_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID161_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID161_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID162_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID162_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID163_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID163_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID164_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID164_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID165_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID165_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID166_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID166_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID167_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID167_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID168_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID168_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID169_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID169_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID170_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID170_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID171_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID171_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID172_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID172_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID173_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID173_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID174_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID174_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID175_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID175_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID176_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID176_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID177_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID177_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID178_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID178_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID179_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID179_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID180_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID180_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID181_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID181_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID182_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID182_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID183_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID183_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID184_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID184_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID185_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID185_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID186_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID186_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID187_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID187_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID188_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID188_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID189_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID189_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID190_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID190_1  0x1
+#define GICD_ISPENDR5_SET_PEND_ID191_0  0x0
+#define GICD_ISPENDR5_SET_PEND_ID191_1  0x1
+
+/* Interrupt Set-Pending Register6It provides a Set-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id192:1;   /**/
+	u32 set_pend_id193:1;   /**/
+	u32 set_pend_id194:1;   /**/
+	u32 set_pend_id195:1;   /**/
+	u32 set_pend_id196:1;   /**/
+	u32 set_pend_id197:1;   /**/
+	u32 set_pend_id198:1;   /**/
+	u32 set_pend_id199:1;   /**/
+	u32 set_pend_id200:1;   /**/
+	u32 set_pend_id201:1;   /**/
+	u32 set_pend_id202:1;   /**/
+	u32 set_pend_id203:1;   /**/
+	u32 set_pend_id204:1;   /**/
+	u32 set_pend_id205:1;   /**/
+	u32 set_pend_id206:1;   /**/
+	u32 set_pend_id207:1;   /**/
+	u32 set_pend_id208:1;   /**/
+	u32 set_pend_id209:1;   /**/
+	u32 set_pend_id210:1;   /**/
+	u32 set_pend_id211:1;   /**/
+	u32 set_pend_id212:1;   /**/
+	u32 set_pend_id213:1;   /**/
+	u32 set_pend_id214:1;   /**/
+	u32 set_pend_id215:1;   /**/
+	u32 set_pend_id216:1;   /**/
+	u32 set_pend_id217:1;   /**/
+	u32 set_pend_id218:1;   /**/
+	u32 set_pend_id219:1;   /**/
+	u32 set_pend_id220:1;   /**/
+	u32 set_pend_id221:1;   /**/
+	u32 set_pend_id222:1;   /**/
+	u32 set_pend_id223:1;   /**/
+	} bits;
+} reg_gicd_ispendr6_t;
+
+#define GICD_ISPENDR6_SET_PEND_ID192_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID192_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID193_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID193_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID194_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID194_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID195_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID195_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID196_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID196_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID197_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID197_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID198_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID198_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID199_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID199_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID200_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID200_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID201_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID201_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID202_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID202_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID203_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID203_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID204_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID204_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID205_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID205_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID206_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID206_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID207_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID207_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID208_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID208_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID209_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID209_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID210_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID210_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID211_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID211_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID212_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID212_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID213_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID213_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID214_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID214_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID215_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID215_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID216_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID216_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID217_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID217_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID218_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID218_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID219_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID219_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID220_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID220_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID221_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID221_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID222_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID222_1  0x1
+#define GICD_ISPENDR6_SET_PEND_ID223_0  0x0
+#define GICD_ISPENDR6_SET_PEND_ID223_1  0x1
+
+/* Interrupt Clear-Pending Register0It provides a Clear-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id0:1;     /**/
+	u32 clr_pend_id1:1;     /**/
+	u32 clr_pend_id2:1;     /**/
+	u32 clr_pend_id3:1;     /**/
+	u32 clr_pend_id4:1;     /**/
+	u32 clr_pend_id5:1;     /**/
+	u32 clr_pend_id6:1;     /**/
+	u32 clr_pend_id7:1;     /**/
+	u32 clr_pend_id8:1;     /**/
+	u32 clr_pend_id9:1;     /**/
+	u32 clr_pend_id10:1;    /**/
+	u32 clr_pend_id11:1;    /**/
+	u32 clr_pend_id12:1;    /**/
+	u32 clr_pend_id13:1;    /**/
+	u32 clr_pend_id14:1;    /**/
+	u32 clr_pend_id15:1;    /**/
+	u32 clr_pend_id16:1;    /**/
+	u32 clr_pend_id17:1;    /**/
+	u32 clr_pend_id18:1;    /**/
+	u32 clr_pend_id19:1;    /**/
+	u32 clr_pend_id20:1;    /**/
+	u32 clr_pend_id21:1;    /**/
+	u32 clr_pend_id22:1;    /**/
+	u32 clr_pend_id23:1;    /**/
+	u32 clr_pend_id24:1;    /**/
+	u32 clr_pend_id25:1;    /**/
+	u32 clr_pend_id26:1;    /**/
+	u32 clr_pend_id27:1;    /**/
+	u32 clr_pend_id28:1;    /**/
+	u32 clr_pend_id29:1;    /**/
+	u32 clr_pend_id30:1;    /**/
+	u32 clr_pend_id31:1;    /**/
+	} bits;
+} reg_gicd_icpendr0_t;
+
+#define GICD_ICPENDR0_CLR_PEND_ID0_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID0_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID1_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID1_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID2_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID2_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID3_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID3_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID4_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID4_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID5_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID5_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID6_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID6_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID7_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID7_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID8_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID8_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID9_0    0x0
+#define GICD_ICPENDR0_CLR_PEND_ID9_1    0x1
+#define GICD_ICPENDR0_CLR_PEND_ID10_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID10_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID11_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID11_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID12_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID12_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID13_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID13_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID14_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID14_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID15_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID15_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID16_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID16_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID17_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID17_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID18_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID18_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID19_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID19_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID20_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID20_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID21_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID21_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID22_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID22_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID23_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID23_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID24_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID24_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID25_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID25_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID26_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID26_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID27_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID27_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID28_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID28_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID29_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID29_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID30_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID30_1   0x1
+#define GICD_ICPENDR0_CLR_PEND_ID31_0   0x0
+#define GICD_ICPENDR0_CLR_PEND_ID31_1   0x1
+
+/* Interrupt Clear-Pending Register1It provides a Clear-Pending bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id32:1;    /**/
+	u32 clr_pend_id33:1;    /**/
+	u32 clr_pend_id34:1;    /**/
+	u32 clr_pend_id35:1;    /**/
+	u32 clr_pend_id36:1;    /**/
+	u32 clr_pend_id37:1;    /**/
+	u32 clr_pend_id38:1;    /**/
+	u32 clr_pend_id39:1;    /**/
+	u32 clr_pend_id40:1;    /**/
+	u32 clr_pend_id41:1;    /**/
+	u32 clr_pend_id42:1;    /**/
+	u32 clr_pend_id43:1;    /**/
+	u32 clr_pend_id44:1;    /**/
+	u32 clr_pend_id45:1;    /**/
+	u32 clr_pend_id46:1;    /**/
+	u32 clr_pend_id47:1;    /**/
+	u32 clr_pend_id48:1;    /**/
+	u32 clr_pend_id49:1;    /**/
+	u32 clr_pend_id50:1;    /**/
+	u32 clr_pend_id51:1;    /**/
+	u32 clr_pend_id52:1;    /**/
+	u32 clr_pend_id53:1;    /**/
+	u32 clr_pend_id54:1;    /**/
+	u32 clr_pend_id55:1;    /**/
+	u32 clr_pend_id56:1;    /**/
+	u32 clr_pend_id57:1;    /**/
+	u32 clr_pend_id58:1;    /**/
+	u32 clr_pend_id59:1;    /**/
+	u32 clr_pend_id60:1;    /**/
+	u32 clr_pend_id61:1;    /**/
+	u32 clr_pend_id62:1;    /**/
+	u32 clr_pend_id63:1;    /**/
+	} bits;
+} reg_gicd_icpendr1_t;
+
+#define GICD_ICPENDR1_CLR_PEND_ID32_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID32_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID33_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID33_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID34_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID34_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID35_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID35_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID36_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID36_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID37_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID37_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID38_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID38_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID39_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID39_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID40_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID40_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID41_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID41_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID42_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID42_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID43_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID43_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID44_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID44_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID45_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID45_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID46_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID46_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID47_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID47_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID48_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID48_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID49_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID49_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID50_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID50_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID51_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID51_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID52_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID52_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID53_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID53_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID54_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID54_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID55_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID55_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID56_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID56_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID57_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID57_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID58_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID58_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID59_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID59_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID60_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID60_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID61_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID61_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID62_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID62_1   0x1
+#define GICD_ICPENDR1_CLR_PEND_ID63_0   0x0
+#define GICD_ICPENDR1_CLR_PEND_ID63_1   0x1
+
+/* Interrupt Clear-Pending Register2It provides a Clear-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id64:1;    /**/
+	u32 clr_pend_id65:1;    /**/
+	u32 clr_pend_id66:1;    /**/
+	u32 clr_pend_id67:1;    /**/
+	u32 clr_pend_id68:1;    /**/
+	u32 clr_pend_id69:1;    /**/
+	u32 clr_pend_id70:1;    /**/
+	u32 clr_pend_id71:1;    /**/
+	u32 clr_pend_id72:1;    /**/
+	u32 clr_pend_id73:1;    /**/
+	u32 clr_pend_id74:1;    /**/
+	u32 clr_pend_id75:1;    /**/
+	u32 clr_pend_id76:1;    /**/
+	u32 clr_pend_id77:1;    /**/
+	u32 clr_pend_id78:1;    /**/
+	u32 clr_pend_id79:1;    /**/
+	u32 clr_pend_id80:1;    /**/
+	u32 clr_pend_id81:1;    /**/
+	u32 clr_pend_id82:1;    /**/
+	u32 clr_pend_id83:1;    /**/
+	u32 clr_pend_id84:1;    /**/
+	u32 clr_pend_id85:1;    /**/
+	u32 clr_pend_id86:1;    /**/
+	u32 clr_pend_id87:1;    /**/
+	u32 clr_pend_id88:1;    /**/
+	u32 clr_pend_id89:1;    /**/
+	u32 clr_pend_id90:1;    /**/
+	u32 clr_pend_id91:1;    /**/
+	u32 clr_pend_id92:1;    /**/
+	u32 clr_pend_id93:1;    /**/
+	u32 clr_pend_id94:1;    /**/
+	u32 clr_pend_id95:1;    /**/
+	} bits;
+} reg_gicd_icpendr2_t;
+
+#define GICD_ICPENDR2_CLR_PEND_ID64_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID64_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID65_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID65_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID66_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID66_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID67_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID67_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID68_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID68_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID69_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID69_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID70_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID70_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID71_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID71_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID72_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID72_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID73_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID73_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID74_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID74_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID75_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID75_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID76_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID76_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID77_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID77_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID78_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID78_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID79_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID79_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID80_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID80_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID81_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID81_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID82_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID82_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID83_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID83_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID84_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID84_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID85_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID85_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID86_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID86_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID87_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID87_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID88_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID88_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID89_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID89_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID90_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID90_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID91_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID91_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID92_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID92_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID93_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID93_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID94_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID94_1   0x1
+#define GICD_ICPENDR2_CLR_PEND_ID95_0   0x0
+#define GICD_ICPENDR2_CLR_PEND_ID95_1   0x1
+
+/* Interrupt Clear-Pending Register3It provides a Clear-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id96:1;    /**/
+	u32 clr_pend_id97:1;    /**/
+	u32 clr_pend_id98:1;    /**/
+	u32 clr_pend_id99:1;    /**/
+	u32 clr_pend_id100:1;   /**/
+	u32 clr_pend_id101:1;   /**/
+	u32 clr_pend_id102:1;   /**/
+	u32 clr_pend_id103:1;   /**/
+	u32 clr_pend_id104:1;   /**/
+	u32 clr_pend_id105:1;   /**/
+	u32 clr_pend_id106:1;   /**/
+	u32 clr_pend_id107:1;   /**/
+	u32 clr_pend_id108:1;   /**/
+	u32 clr_pend_id109:1;   /**/
+	u32 clr_pend_id110:1;   /**/
+	u32 clr_pend_id111:1;   /**/
+	u32 clr_pend_id112:1;   /**/
+	u32 clr_pend_id113:1;   /**/
+	u32 clr_pend_id114:1;   /**/
+	u32 clr_pend_id115:1;   /**/
+	u32 clr_pend_id116:1;   /**/
+	u32 clr_pend_id117:1;   /**/
+	u32 clr_pend_id118:1;   /**/
+	u32 clr_pend_id119:1;   /**/
+	u32 clr_pend_id120:1;   /**/
+	u32 clr_pend_id121:1;   /**/
+	u32 clr_pend_id122:1;   /**/
+	u32 clr_pend_id123:1;   /**/
+	u32 clr_pend_id124:1;   /**/
+	u32 clr_pend_id125:1;   /**/
+	u32 clr_pend_id126:1;   /**/
+	u32 clr_pend_id127:1;   /**/
+	} bits;
+} reg_gicd_icpendr3_t;
+
+#define GICD_ICPENDR3_CLR_PEND_ID96_0   0x0
+#define GICD_ICPENDR3_CLR_PEND_ID96_1   0x1
+#define GICD_ICPENDR3_CLR_PEND_ID97_0   0x0
+#define GICD_ICPENDR3_CLR_PEND_ID97_1   0x1
+#define GICD_ICPENDR3_CLR_PEND_ID98_0   0x0
+#define GICD_ICPENDR3_CLR_PEND_ID98_1   0x1
+#define GICD_ICPENDR3_CLR_PEND_ID99_0   0x0
+#define GICD_ICPENDR3_CLR_PEND_ID99_1   0x1
+#define GICD_ICPENDR3_CLR_PEND_ID100_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID100_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID101_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID101_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID102_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID102_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID103_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID103_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID104_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID104_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID105_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID105_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID106_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID106_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID107_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID107_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID108_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID108_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID109_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID109_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID110_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID110_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID111_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID111_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID112_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID112_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID113_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID113_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID114_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID114_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID115_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID115_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID116_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID116_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID117_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID117_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID118_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID118_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID119_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID119_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID120_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID120_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID121_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID121_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID122_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID122_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID123_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID123_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID124_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID124_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID125_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID125_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID126_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID126_1  0x1
+#define GICD_ICPENDR3_CLR_PEND_ID127_0  0x0
+#define GICD_ICPENDR3_CLR_PEND_ID127_1  0x1
+
+/* Interrupt Clear-Pending Register4It provides a Clear-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id128:1;   /**/
+	u32 clr_pend_id129:1;   /**/
+	u32 clr_pend_id130:1;   /**/
+	u32 clr_pend_id131:1;   /**/
+	u32 clr_pend_id132:1;   /**/
+	u32 clr_pend_id133:1;   /**/
+	u32 clr_pend_id134:1;   /**/
+	u32 clr_pend_id135:1;   /**/
+	u32 clr_pend_id136:1;   /**/
+	u32 clr_pend_id137:1;   /**/
+	u32 clr_pend_id138:1;   /**/
+	u32 clr_pend_id139:1;   /**/
+	u32 clr_pend_id140:1;   /**/
+	u32 clr_pend_id141:1;   /**/
+	u32 clr_pend_id142:1;   /**/
+	u32 clr_pend_id143:1;   /**/
+	u32 clr_pend_id144:1;   /**/
+	u32 clr_pend_id145:1;   /**/
+	u32 clr_pend_id146:1;   /**/
+	u32 clr_pend_id147:1;   /**/
+	u32 clr_pend_id148:1;   /**/
+	u32 clr_pend_id149:1;   /**/
+	u32 clr_pend_id150:1;   /**/
+	u32 clr_pend_id151:1;   /**/
+	u32 clr_pend_id152:1;   /**/
+	u32 clr_pend_id153:1;   /**/
+	u32 clr_pend_id154:1;   /**/
+	u32 clr_pend_id155:1;   /**/
+	u32 clr_pend_id156:1;   /**/
+	u32 clr_pend_id157:1;   /**/
+	u32 clr_pend_id158:1;   /**/
+	u32 clr_pend_id159:1;   /**/
+	} bits;
+} reg_gicd_icpendr4_t;
+
+#define GICD_ICPENDR4_CLR_PEND_ID128_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID128_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID129_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID129_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID130_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID130_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID131_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID131_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID132_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID132_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID133_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID133_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID134_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID134_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID135_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID135_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID136_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID136_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID137_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID137_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID138_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID138_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID139_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID139_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID140_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID140_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID141_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID141_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID142_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID142_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID143_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID143_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID144_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID144_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID145_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID145_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID146_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID146_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID147_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID147_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID148_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID148_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID149_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID149_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID150_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID150_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID151_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID151_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID152_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID152_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID153_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID153_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID154_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID154_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID155_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID155_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID156_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID156_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID157_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID157_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID158_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID158_1  0x1
+#define GICD_ICPENDR4_CLR_PEND_ID159_0  0x0
+#define GICD_ICPENDR4_CLR_PEND_ID159_1  0x1
+
+/* Interrupt Clear-Pending Register5It provides a Clear-Pending bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id160:1;   /**/
+	u32 clr_pend_id161:1;   /**/
+	u32 clr_pend_id162:1;   /**/
+	u32 clr_pend_id163:1;   /**/
+	u32 clr_pend_id164:1;   /**/
+	u32 clr_pend_id165:1;   /**/
+	u32 clr_pend_id166:1;   /**/
+	u32 clr_pend_id167:1;   /**/
+	u32 clr_pend_id168:1;   /**/
+	u32 clr_pend_id169:1;   /**/
+	u32 clr_pend_id170:1;   /**/
+	u32 clr_pend_id171:1;   /**/
+	u32 clr_pend_id172:1;   /**/
+	u32 clr_pend_id173:1;   /**/
+	u32 clr_pend_id174:1;   /**/
+	u32 clr_pend_id175:1;   /**/
+	u32 clr_pend_id176:1;   /**/
+	u32 clr_pend_id177:1;   /**/
+	u32 clr_pend_id178:1;   /**/
+	u32 clr_pend_id179:1;   /**/
+	u32 clr_pend_id180:1;   /**/
+	u32 clr_pend_id181:1;   /**/
+	u32 clr_pend_id182:1;   /**/
+	u32 clr_pend_id183:1;   /**/
+	u32 clr_pend_id184:1;   /**/
+	u32 clr_pend_id185:1;   /**/
+	u32 clr_pend_id186:1;   /**/
+	u32 clr_pend_id187:1;   /**/
+	u32 clr_pend_id188:1;   /**/
+	u32 clr_pend_id189:1;   /**/
+	u32 clr_pend_id190:1;   /**/
+	u32 clr_pend_id191:1;   /**/
+	} bits;
+} reg_gicd_icpendr5_t;
+
+#define GICD_ICPENDR5_CLR_PEND_ID160_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID160_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID161_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID161_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID162_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID162_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID163_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID163_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID164_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID164_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID165_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID165_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID166_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID166_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID167_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID167_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID168_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID168_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID169_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID169_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID170_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID170_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID171_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID171_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID172_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID172_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID173_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID173_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID174_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID174_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID175_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID175_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID176_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID176_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID177_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID177_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID178_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID178_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID179_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID179_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID180_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID180_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID181_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID181_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID182_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID182_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID183_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID183_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID184_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID184_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID185_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID185_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID186_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID186_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID187_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID187_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID188_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID188_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID189_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID189_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID190_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID190_1  0x1
+#define GICD_ICPENDR5_CLR_PEND_ID191_0  0x0
+#define GICD_ICPENDR5_CLR_PEND_ID191_1  0x1
+
+/* Interrupt Clear-Pending Register6It provides a Clear-Pending bit for each corresponding interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id192:1;   /**/
+	u32 clr_pend_id193:1;   /**/
+	u32 clr_pend_id194:1;   /**/
+	u32 clr_pend_id195:1;   /**/
+	u32 clr_pend_id196:1;   /**/
+	u32 clr_pend_id197:1;   /**/
+	u32 clr_pend_id198:1;   /**/
+	u32 clr_pend_id199:1;   /**/
+	u32 clr_pend_id200:1;   /**/
+	u32 clr_pend_id201:1;   /**/
+	u32 clr_pend_id202:1;   /**/
+	u32 clr_pend_id203:1;   /**/
+	u32 clr_pend_id204:1;   /**/
+	u32 clr_pend_id205:1;   /**/
+	u32 clr_pend_id206:1;   /**/
+	u32 clr_pend_id207:1;   /**/
+	u32 clr_pend_id208:1;   /**/
+	u32 clr_pend_id209:1;   /**/
+	u32 clr_pend_id210:1;   /**/
+	u32 clr_pend_id211:1;   /**/
+	u32 clr_pend_id212:1;   /**/
+	u32 clr_pend_id213:1;   /**/
+	u32 clr_pend_id214:1;   /**/
+	u32 clr_pend_id215:1;   /**/
+	u32 clr_pend_id216:1;   /**/
+	u32 clr_pend_id217:1;   /**/
+	u32 clr_pend_id218:1;   /**/
+	u32 clr_pend_id219:1;   /**/
+	u32 clr_pend_id220:1;   /**/
+	u32 clr_pend_id221:1;   /**/
+	u32 clr_pend_id222:1;   /**/
+	u32 clr_pend_id223:1;   /**/
+	} bits;
+} reg_gicd_icpendr6_t;
+
+#define GICD_ICPENDR6_CLR_PEND_ID192_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID192_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID193_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID193_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID194_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID194_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID195_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID195_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID196_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID196_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID197_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID197_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID198_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID198_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID199_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID199_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID200_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID200_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID201_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID201_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID202_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID202_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID203_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID203_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID204_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID204_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID205_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID205_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID206_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID206_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID207_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID207_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID208_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID208_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID209_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID209_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID210_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID210_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID211_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID211_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID212_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID212_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID213_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID213_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID214_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID214_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID215_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID215_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID216_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID216_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID217_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID217_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID218_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID218_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID219_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID219_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID220_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID220_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID221_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID221_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID222_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID222_1  0x1
+#define GICD_ICPENDR6_CLR_PEND_ID223_0  0x0
+#define GICD_ICPENDR6_CLR_PEND_ID223_1  0x1
+
+/* Interrupt Set-Active Register0It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id0:1;   /**/
+	u32 set_active_id1:1;   /**/
+	u32 set_active_id2:1;   /**/
+	u32 set_active_id3:1;   /**/
+	u32 set_active_id4:1;   /**/
+	u32 set_active_id5:1;   /**/
+	u32 set_active_id6:1;   /**/
+	u32 set_active_id7:1;   /**/
+	u32 set_active_id8:1;   /**/
+	u32 set_active_id9:1;   /**/
+	u32 set_active_id10:1;  /**/
+	u32 set_active_id11:1;  /**/
+	u32 set_active_id12:1;  /**/
+	u32 set_active_id13:1;  /**/
+	u32 set_active_id14:1;  /**/
+	u32 set_active_id15:1;  /**/
+	u32 set_active_id16:1;  /**/
+	u32 set_active_id17:1;  /**/
+	u32 set_active_id18:1;  /**/
+	u32 set_active_id19:1;  /**/
+	u32 set_active_id20:1;  /**/
+	u32 set_active_id21:1;  /**/
+	u32 set_active_id22:1;  /**/
+	u32 set_active_id23:1;  /**/
+	u32 set_active_id24:1;  /**/
+	u32 set_active_id25:1;  /**/
+	u32 set_active_id26:1;  /**/
+	u32 set_active_id27:1;  /**/
+	u32 set_active_id28:1;  /**/
+	u32 set_active_id29:1;  /**/
+	u32 set_active_id30:1;  /**/
+	u32 set_active_id31:1;  /**/
+	} bits;
+} reg_gicd_isactiver0_t;
+
+#define GICD_ISACTIVER0_SET_ACTIVE_ID0_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID0_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID1_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID1_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID2_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID2_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID3_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID3_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID4_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID5_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID5_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID6_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID7_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID7_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID8_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID8_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID9_0        0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID9_1        0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID10_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID10_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID11_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID11_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID12_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID13_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID13_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID14_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID15_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID15_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID16_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID16_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID17_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID17_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID18_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID18_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID19_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID19_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID20_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID21_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID21_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID22_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID23_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID23_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID24_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID24_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID25_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID25_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID26_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID26_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID27_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID27_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID28_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID29_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID29_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID30_1       0x1
+#define GICD_ISACTIVER0_SET_ACTIVE_ID31_0       0x0
+#define GICD_ISACTIVER0_SET_ACTIVE_ID31_1       0x1
+
+/* Interrupt Set-Active Register1It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id32:1;  /**/
+	u32 set_active_id33:1;  /**/
+	u32 set_active_id34:1;  /**/
+	u32 set_active_id35:1;  /**/
+	u32 set_active_id36:1;  /**/
+	u32 set_active_id37:1;  /**/
+	u32 set_active_id38:1;  /**/
+	u32 set_active_id39:1;  /**/
+	u32 set_active_id40:1;  /**/
+	u32 set_active_id41:1;  /**/
+	u32 set_active_id42:1;  /**/
+	u32 set_active_id43:1;  /**/
+	u32 set_active_id44:1;  /**/
+	u32 set_active_id45:1;  /**/
+	u32 set_active_id46:1;  /**/
+	u32 set_active_id47:1;  /**/
+	u32 set_active_id48:1;  /**/
+	u32 set_active_id49:1;  /**/
+	u32 set_active_id50:1;  /**/
+	u32 set_active_id51:1;  /**/
+	u32 set_active_id52:1;  /**/
+	u32 set_active_id53:1;  /**/
+	u32 set_active_id54:1;  /**/
+	u32 set_active_id55:1;  /**/
+	u32 set_active_id56:1;  /**/
+	u32 set_active_id57:1;  /**/
+	u32 set_active_id58:1;  /**/
+	u32 set_active_id59:1;  /**/
+	u32 set_active_id60:1;  /**/
+	u32 set_active_id61:1;  /**/
+	u32 set_active_id62:1;  /**/
+	u32 set_active_id63:1;  /**/
+	} bits;
+} reg_gicd_isactiver1_t;
+
+#define GICD_ISACTIVER1_SET_ACTIVE_ID32_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID32_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID33_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID33_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID34_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID34_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID35_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID35_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID36_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID36_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID37_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID37_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID38_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID38_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID39_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID39_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID40_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID40_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID41_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID41_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID42_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID42_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID43_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID43_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID44_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID44_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID45_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID45_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID46_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID46_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID47_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID47_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID48_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID48_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID49_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID49_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID50_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID50_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID51_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID51_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID52_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID52_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID53_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID53_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID54_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID54_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID55_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID55_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID56_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID56_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID57_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID57_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID58_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID58_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID59_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID59_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID60_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID60_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID61_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID61_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID62_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID62_1       0x1
+#define GICD_ISACTIVER1_SET_ACTIVE_ID63_0       0x0
+#define GICD_ISACTIVER1_SET_ACTIVE_ID63_1       0x1
+
+/* Interrupt Set-Active Register2It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id64:1;  /**/
+	u32 set_active_id65:1;  /**/
+	u32 set_active_id66:1;  /**/
+	u32 set_active_id67:1;  /**/
+	u32 set_active_id68:1;  /**/
+	u32 set_active_id69:1;  /**/
+	u32 set_active_id70:1;  /**/
+	u32 set_active_id71:1;  /**/
+	u32 set_active_id72:1;  /**/
+	u32 set_active_id73:1;  /**/
+	u32 set_active_id74:1;  /**/
+	u32 set_active_id75:1;  /**/
+	u32 set_active_id76:1;  /**/
+	u32 set_active_id77:1;  /**/
+	u32 set_active_id78:1;  /**/
+	u32 set_active_id79:1;  /**/
+	u32 set_active_id80:1;  /**/
+	u32 set_active_id81:1;  /**/
+	u32 set_active_id82:1;  /**/
+	u32 set_active_id83:1;  /**/
+	u32 set_active_id84:1;  /**/
+	u32 set_active_id85:1;  /**/
+	u32 set_active_id86:1;  /**/
+	u32 set_active_id87:1;  /**/
+	u32 set_active_id88:1;  /**/
+	u32 set_active_id89:1;  /**/
+	u32 set_active_id90:1;  /**/
+	u32 set_active_id91:1;  /**/
+	u32 set_active_id92:1;  /**/
+	u32 set_active_id93:1;  /**/
+	u32 set_active_id94:1;  /**/
+	u32 set_active_id95:1;  /**/
+	} bits;
+} reg_gicd_isactiver2_t;
+
+#define GICD_ISACTIVER2_SET_ACTIVE_ID64_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID64_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID65_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID65_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID66_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID66_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID67_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID67_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID68_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID68_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID69_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID69_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID70_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID70_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID71_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID71_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID72_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID72_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID73_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID73_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID74_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID74_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID75_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID75_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID76_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID76_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID77_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID77_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID78_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID78_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID79_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID79_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID80_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID80_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID81_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID81_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID82_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID82_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID83_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID83_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID84_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID84_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID85_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID85_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID86_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID86_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID87_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID87_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID88_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID88_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID89_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID89_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID90_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID90_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID91_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID91_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID92_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID92_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID93_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID93_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID94_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID94_1       0x1
+#define GICD_ISACTIVER2_SET_ACTIVE_ID95_0       0x0
+#define GICD_ISACTIVER2_SET_ACTIVE_ID95_1       0x1
+
+/* Interrupt Set-Active Register3It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id96:1;  /**/
+	u32 set_active_id97:1;  /**/
+	u32 set_active_id98:1;  /**/
+	u32 set_active_id99:1;  /**/
+	u32 set_active_id100:1; /**/
+	u32 set_active_id101:1; /**/
+	u32 set_active_id102:1; /**/
+	u32 set_active_id103:1; /**/
+	u32 set_active_id104:1; /**/
+	u32 set_active_id105:1; /**/
+	u32 set_active_id106:1; /**/
+	u32 set_active_id107:1; /**/
+	u32 set_active_id108:1; /**/
+	u32 set_active_id109:1; /**/
+	u32 set_active_id110:1; /**/
+	u32 set_active_id111:1; /**/
+	u32 set_active_id112:1; /**/
+	u32 set_active_id113:1; /**/
+	u32 set_active_id114:1; /**/
+	u32 set_active_id115:1; /**/
+	u32 set_active_id116:1; /**/
+	u32 set_active_id117:1; /**/
+	u32 set_active_id118:1; /**/
+	u32 set_active_id119:1; /**/
+	u32 set_active_id120:1; /**/
+	u32 set_active_id121:1; /**/
+	u32 set_active_id122:1; /**/
+	u32 set_active_id123:1; /**/
+	u32 set_active_id124:1; /**/
+	u32 set_active_id125:1; /**/
+	u32 set_active_id126:1; /**/
+	u32 set_active_id127:1; /**/
+	} bits;
+} reg_gicd_isactiver3_t;
+
+#define GICD_ISACTIVER3_SET_ACTIVE_ID96_0       0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID96_1       0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID97_0       0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID97_1       0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID98_0       0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID98_1       0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID99_0       0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID99_1       0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID100_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID100_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID101_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID101_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID102_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID102_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID103_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID103_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID104_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID104_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID105_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID105_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID106_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID106_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID107_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID107_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID108_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID108_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID109_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID109_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID110_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID110_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID111_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID111_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID112_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID112_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID113_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID113_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID114_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID114_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID115_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID115_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID116_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID116_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID117_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID117_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID118_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID118_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID119_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID119_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID120_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID120_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID121_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID121_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID122_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID122_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID123_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID123_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID124_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID124_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID125_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID125_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID126_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID126_1      0x1
+#define GICD_ISACTIVER3_SET_ACTIVE_ID127_0      0x0
+#define GICD_ISACTIVER3_SET_ACTIVE_ID127_1      0x1
+
+/* Interrupt Set-Active Register4It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id128:1; /**/
+	u32 set_active_id129:1; /**/
+	u32 set_active_id130:1; /**/
+	u32 set_active_id131:1; /**/
+	u32 set_active_id132:1; /**/
+	u32 set_active_id133:1; /**/
+	u32 set_active_id134:1; /**/
+	u32 set_active_id135:1; /**/
+	u32 set_active_id136:1; /**/
+	u32 set_active_id137:1; /**/
+	u32 set_active_id138:1; /**/
+	u32 set_active_id139:1; /**/
+	u32 set_active_id140:1; /**/
+	u32 set_active_id141:1; /**/
+	u32 set_active_id142:1; /**/
+	u32 set_active_id143:1; /**/
+	u32 set_active_id144:1; /**/
+	u32 set_active_id145:1; /**/
+	u32 set_active_id146:1; /**/
+	u32 set_active_id147:1; /**/
+	u32 set_active_id148:1; /**/
+	u32 set_active_id149:1; /**/
+	u32 set_active_id150:1; /**/
+	u32 set_active_id151:1; /**/
+	u32 set_active_id152:1; /**/
+	u32 set_active_id153:1; /**/
+	u32 set_active_id154:1; /**/
+	u32 set_active_id155:1; /**/
+	u32 set_active_id156:1; /**/
+	u32 set_active_id157:1; /**/
+	u32 set_active_id158:1; /**/
+	u32 set_active_id159:1; /**/
+	} bits;
+} reg_gicd_isactiver4_t;
+
+#define GICD_ISACTIVER4_SET_ACTIVE_ID128_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID128_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID129_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID129_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID130_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID130_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID131_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID131_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID132_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID132_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID133_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID133_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID134_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID134_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID135_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID135_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID136_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID136_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID137_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID137_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID138_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID138_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID139_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID139_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID140_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID140_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID141_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID141_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID142_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID142_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID143_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID143_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID144_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID144_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID145_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID145_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID146_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID146_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID147_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID147_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID148_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID148_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID149_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID149_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID150_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID150_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID151_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID151_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID152_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID152_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID153_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID153_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID154_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID154_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID155_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID155_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID156_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID156_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID157_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID157_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID158_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID158_1      0x1
+#define GICD_ISACTIVER4_SET_ACTIVE_ID159_0      0x0
+#define GICD_ISACTIVER4_SET_ACTIVE_ID159_1      0x1
+
+/* Interrupt Set-Active Register5It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id160:1; /**/
+	u32 set_active_id161:1; /**/
+	u32 set_active_id162:1; /**/
+	u32 set_active_id163:1; /**/
+	u32 set_active_id164:1; /**/
+	u32 set_active_id165:1; /**/
+	u32 set_active_id166:1; /**/
+	u32 set_active_id167:1; /**/
+	u32 set_active_id168:1; /**/
+	u32 set_active_id169:1; /**/
+	u32 set_active_id170:1; /**/
+	u32 set_active_id171:1; /**/
+	u32 set_active_id172:1; /**/
+	u32 set_active_id173:1; /**/
+	u32 set_active_id174:1; /**/
+	u32 set_active_id175:1; /**/
+	u32 set_active_id176:1; /**/
+	u32 set_active_id177:1; /**/
+	u32 set_active_id178:1; /**/
+	u32 set_active_id179:1; /**/
+	u32 set_active_id180:1; /**/
+	u32 set_active_id181:1; /**/
+	u32 set_active_id182:1; /**/
+	u32 set_active_id183:1; /**/
+	u32 set_active_id184:1; /**/
+	u32 set_active_id185:1; /**/
+	u32 set_active_id186:1; /**/
+	u32 set_active_id187:1; /**/
+	u32 set_active_id188:1; /**/
+	u32 set_active_id189:1; /**/
+	u32 set_active_id190:1; /**/
+	u32 set_active_id191:1; /**/
+	} bits;
+} reg_gicd_isactiver5_t;
+
+#define GICD_ISACTIVER5_SET_ACTIVE_ID160_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID160_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID161_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID161_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID162_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID162_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID163_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID163_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID164_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID164_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID165_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID165_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID166_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID166_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID167_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID167_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID168_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID168_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID169_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID169_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID170_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID170_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID171_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID171_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID172_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID172_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID173_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID173_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID174_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID174_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID175_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID175_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID176_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID176_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID177_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID177_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID178_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID178_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID179_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID179_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID180_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID180_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID181_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID181_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID182_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID182_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID183_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID183_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID184_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID184_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID185_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID185_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID186_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID186_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID187_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID187_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID188_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID188_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID189_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID189_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID190_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID190_1      0x1
+#define GICD_ISACTIVER5_SET_ACTIVE_ID191_0      0x0
+#define GICD_ISACTIVER5_SET_ACTIVE_ID191_1      0x1
+
+/* Interrupt Set-Active Register6It provides a Set-active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_active_id192:1; /**/
+	u32 set_active_id193:1; /**/
+	u32 set_active_id194:1; /**/
+	u32 set_active_id195:1; /**/
+	u32 set_active_id196:1; /**/
+	u32 set_active_id197:1; /**/
+	u32 set_active_id198:1; /**/
+	u32 set_active_id199:1; /**/
+	u32 set_active_id200:1; /**/
+	u32 set_active_id201:1; /**/
+	u32 set_active_id202:1; /**/
+	u32 set_active_id203:1; /**/
+	u32 set_active_id204:1; /**/
+	u32 set_active_id205:1; /**/
+	u32 set_active_id206:1; /**/
+	u32 set_active_id207:1; /**/
+	u32 set_active_id208:1; /**/
+	u32 set_active_id209:1; /**/
+	u32 set_active_id210:1; /**/
+	u32 set_active_id211:1; /**/
+	u32 set_active_id212:1; /**/
+	u32 set_active_id213:1; /**/
+	u32 set_active_id214:1; /**/
+	u32 set_active_id215:1; /**/
+	u32 set_active_id216:1; /**/
+	u32 set_active_id217:1; /**/
+	u32 set_active_id218:1; /**/
+	u32 set_active_id219:1; /**/
+	u32 set_active_id220:1; /**/
+	u32 set_active_id221:1; /**/
+	u32 set_active_id222:1; /**/
+	u32 set_active_id223:1; /**/
+	} bits;
+} reg_gicd_isactiver6_t;
+
+#define GICD_ISACTIVER6_SET_ACTIVE_ID192_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID192_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID193_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID193_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID194_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID194_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID195_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID195_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID196_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID196_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID197_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID197_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID198_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID198_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID199_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID199_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID200_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID200_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID201_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID201_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID202_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID202_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID203_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID203_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID204_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID204_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID205_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID205_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID206_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID206_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID207_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID207_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID208_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID208_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID209_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID209_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID210_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID210_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID211_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID211_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID212_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID212_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID213_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID213_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID214_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID214_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID215_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID215_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID216_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID216_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID217_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID217_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID218_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID218_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID219_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID219_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID220_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID220_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID221_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID221_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID222_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID222_1      0x1
+#define GICD_ISACTIVER6_SET_ACTIVE_ID223_0      0x0
+#define GICD_ISACTIVER6_SET_ACTIVE_ID223_1      0x1
+
+/* Interrupt Clear-Active Register0It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id0:1; /**/
+	u32 clear_active_id1:1; /**/
+	u32 clear_active_id2:1; /**/
+	u32 clear_active_id3:1; /**/
+	u32 clear_active_id4:1; /**/
+	u32 clear_active_id5:1; /**/
+	u32 clear_active_id6:1; /**/
+	u32 clear_active_id7:1; /**/
+	u32 clear_active_id8:1; /**/
+	u32 clear_active_id9:1; /**/
+	u32 clear_active_id10:1;/**/
+	u32 clear_active_id11:1;/**/
+	u32 clear_active_id12:1;/**/
+	u32 clear_active_id13:1;/**/
+	u32 clear_active_id14:1;/**/
+	u32 clear_active_id15:1;/**/
+	u32 clear_active_id16:1;/**/
+	u32 clear_active_id17:1;/**/
+	u32 clear_active_id18:1;/**/
+	u32 clear_active_id19:1;/**/
+	u32 clear_active_id20:1;/**/
+	u32 clear_active_id21:1;/**/
+	u32 clear_active_id22:1;/**/
+	u32 clear_active_id23:1;/**/
+	u32 clear_active_id24:1;/**/
+	u32 clear_active_id25:1;/**/
+	u32 clear_active_id26:1;/**/
+	u32 clear_active_id27:1;/**/
+	u32 clear_active_id28:1;/**/
+	u32 clear_active_id29:1;/**/
+	u32 clear_active_id30:1;/**/
+	u32 clear_active_id31:1;/**/
+	} bits;
+} reg_gicd_icactiver0_t;
+
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID0_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID0_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID1_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID1_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID2_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID2_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID3_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID3_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID4_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID4_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID5_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID5_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID6_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID6_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID7_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID7_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID8_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID8_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID9_0      0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID9_1      0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID10_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID10_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID11_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID11_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID12_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID12_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID13_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID13_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID14_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID14_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID15_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID15_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID16_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID16_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID17_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID17_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID18_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID18_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID19_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID19_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID20_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID20_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID21_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID21_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID22_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID22_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID23_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID23_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID24_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID24_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID25_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID25_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID26_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID26_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID27_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID27_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID28_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID28_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID29_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID29_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID30_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID30_1     0x1
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID31_0     0x0
+#define GICD_ICACTIVER0_CLEAR_ACTIVE_ID31_1     0x1
+
+/* Interrupt Clear-Active Register1It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id32:1;/**/
+	u32 clear_active_id33:1;/**/
+	u32 clear_active_id34:1;/**/
+	u32 clear_active_id35:1;/**/
+	u32 clear_active_id36:1;/**/
+	u32 clear_active_id37:1;/**/
+	u32 clear_active_id38:1;/**/
+	u32 clear_active_id39:1;/**/
+	u32 clear_active_id40:1;/**/
+	u32 clear_active_id41:1;/**/
+	u32 clear_active_id42:1;/**/
+	u32 clear_active_id43:1;/**/
+	u32 clear_active_id44:1;/**/
+	u32 clear_active_id45:1;/**/
+	u32 clear_active_id46:1;/**/
+	u32 clear_active_id47:1;/**/
+	u32 clear_active_id48:1;/**/
+	u32 clear_active_id49:1;/**/
+	u32 clear_active_id50:1;/**/
+	u32 clear_active_id51:1;/**/
+	u32 clear_active_id52:1;/**/
+	u32 clear_active_id53:1;/**/
+	u32 clear_active_id54:1;/**/
+	u32 clear_active_id55:1;/**/
+	u32 clear_active_id56:1;/**/
+	u32 clear_active_id57:1;/**/
+	u32 clear_active_id58:1;/**/
+	u32 clear_active_id59:1;/**/
+	u32 clear_active_id60:1;/**/
+	u32 clear_active_id61:1;/**/
+	u32 clear_active_id62:1;/**/
+	u32 clear_active_id63:1;/**/
+	} bits;
+} reg_gicd_icactiver1_t;
+
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID32_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID32_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID33_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID33_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID34_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID34_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID35_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID35_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID36_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID36_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID37_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID37_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID38_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID38_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID39_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID39_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID40_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID40_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID41_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID41_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID42_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID42_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID43_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID43_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID44_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID44_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID45_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID45_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID46_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID46_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID47_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID47_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID48_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID48_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID49_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID49_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID50_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID50_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID51_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID51_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID52_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID52_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID53_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID53_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID54_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID54_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID55_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID55_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID56_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID56_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID57_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID57_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID58_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID58_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID59_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID59_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID60_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID60_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID61_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID61_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID62_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID62_1     0x1
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID63_0     0x0
+#define GICD_ICACTIVER1_CLEAR_ACTIVE_ID63_1     0x1
+
+/* Interrupt Clear-Active Register2It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id64:1;/**/
+	u32 clear_active_id65:1;/**/
+	u32 clear_active_id66:1;/**/
+	u32 clear_active_id67:1;/**/
+	u32 clear_active_id68:1;/**/
+	u32 clear_active_id69:1;/**/
+	u32 clear_active_id70:1;/**/
+	u32 clear_active_id71:1;/**/
+	u32 clear_active_id72:1;/**/
+	u32 clear_active_id73:1;/**/
+	u32 clear_active_id74:1;/**/
+	u32 clear_active_id75:1;/**/
+	u32 clear_active_id76:1;/**/
+	u32 clear_active_id77:1;/**/
+	u32 clear_active_id78:1;/**/
+	u32 clear_active_id79:1;/**/
+	u32 clear_active_id80:1;/**/
+	u32 clear_active_id81:1;/**/
+	u32 clear_active_id82:1;/**/
+	u32 clear_active_id83:1;/**/
+	u32 clear_active_id84:1;/**/
+	u32 clear_active_id85:1;/**/
+	u32 clear_active_id86:1;/**/
+	u32 clear_active_id87:1;/**/
+	u32 clear_active_id88:1;/**/
+	u32 clear_active_id89:1;/**/
+	u32 clear_active_id90:1;/**/
+	u32 clear_active_id91:1;/**/
+	u32 clear_active_id92:1;/**/
+	u32 clear_active_id93:1;/**/
+	u32 clear_active_id94:1;/**/
+	u32 clear_active_id95:1;/**/
+	} bits;
+} reg_gicd_icactiver2_t;
+
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID64_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID64_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID65_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID65_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID66_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID66_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID67_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID67_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID68_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID68_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID69_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID69_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID70_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID70_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID71_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID71_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID72_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID72_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID73_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID73_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID74_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID74_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID75_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID75_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID76_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID76_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID77_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID77_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID78_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID78_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID79_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID79_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID80_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID80_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID81_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID81_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID82_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID82_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID83_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID83_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID84_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID84_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID85_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID85_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID86_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID86_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID87_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID87_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID88_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID88_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID89_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID89_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID90_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID90_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID91_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID91_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID92_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID92_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID93_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID93_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID94_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID94_1     0x1
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID95_0     0x0
+#define GICD_ICACTIVER2_CLEAR_ACTIVE_ID95_1     0x1
+
+/* Interrupt Clear-Active Register3It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id96:1;/**/
+	u32 clear_active_id97:1;/**/
+	u32 clear_active_id98:1;/**/
+	u32 clear_active_id99:1;/**/
+	u32 clear_active_id100:1;/**/
+	u32 clear_active_id101:1;/**/
+	u32 clear_active_id102:1;/**/
+	u32 clear_active_id103:1;/**/
+	u32 clear_active_id104:1;/**/
+	u32 clear_active_id105:1;/**/
+	u32 clear_active_id106:1;/**/
+	u32 clear_active_id107:1;/**/
+	u32 clear_active_id108:1;/**/
+	u32 clear_active_id109:1;/**/
+	u32 clear_active_id110:1;/**/
+	u32 clear_active_id111:1;/**/
+	u32 clear_active_id112:1;/**/
+	u32 clear_active_id113:1;/**/
+	u32 clear_active_id114:1;/**/
+	u32 clear_active_id115:1;/**/
+	u32 clear_active_id116:1;/**/
+	u32 clear_active_id117:1;/**/
+	u32 clear_active_id118:1;/**/
+	u32 clear_active_id119:1;/**/
+	u32 clear_active_id120:1;/**/
+	u32 clear_active_id121:1;/**/
+	u32 clear_active_id122:1;/**/
+	u32 clear_active_id123:1;/**/
+	u32 clear_active_id124:1;/**/
+	u32 clear_active_id125:1;/**/
+	u32 clear_active_id126:1;/**/
+	u32 clear_active_id127:1;/**/
+	} bits;
+} reg_gicd_icactiver3_t;
+
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID96_0     0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID96_1     0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID97_0     0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID97_1     0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID98_0     0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID98_1     0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID99_0     0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID99_1     0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID100_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID100_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID101_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID101_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID102_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID102_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID103_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID103_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID104_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID104_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID105_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID105_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID106_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID106_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID107_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID107_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID108_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID108_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID109_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID109_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID110_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID110_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID111_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID111_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID112_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID112_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID113_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID113_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID114_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID114_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID115_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID115_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID116_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID116_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID117_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID117_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID118_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID118_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID119_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID119_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID120_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID120_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID121_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID121_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID122_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID122_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID123_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID123_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID124_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID124_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID125_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID125_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID126_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID126_1    0x1
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID127_0    0x0
+#define GICD_ICACTIVER3_CLEAR_ACTIVE_ID127_1    0x1
+
+/* Interrupt Clear-Active Register4It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id128:1;/**/
+	u32 clear_active_id129:1;/**/
+	u32 clear_active_id130:1;/**/
+	u32 clear_active_id131:1;/**/
+	u32 clear_active_id132:1;/**/
+	u32 clear_active_id133:1;/**/
+	u32 clear_active_id134:1;/**/
+	u32 clear_active_id135:1;/**/
+	u32 clear_active_id136:1;/**/
+	u32 clear_active_id137:1;/**/
+	u32 clear_active_id138:1;/**/
+	u32 clear_active_id139:1;/**/
+	u32 clear_active_id140:1;/**/
+	u32 clear_active_id141:1;/**/
+	u32 clear_active_id142:1;/**/
+	u32 clear_active_id143:1;/**/
+	u32 clear_active_id144:1;/**/
+	u32 clear_active_id145:1;/**/
+	u32 clear_active_id146:1;/**/
+	u32 clear_active_id147:1;/**/
+	u32 clear_active_id148:1;/**/
+	u32 clear_active_id149:1;/**/
+	u32 clear_active_id150:1;/**/
+	u32 clear_active_id151:1;/**/
+	u32 clear_active_id152:1;/**/
+	u32 clear_active_id153:1;/**/
+	u32 clear_active_id154:1;/**/
+	u32 clear_active_id155:1;/**/
+	u32 clear_active_id156:1;/**/
+	u32 clear_active_id157:1;/**/
+	u32 clear_active_id158:1;/**/
+	u32 clear_active_id159:1;/**/
+	} bits;
+} reg_gicd_icactiver4_t;
+
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID128_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID128_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID129_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID129_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID130_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID130_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID131_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID131_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID132_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID132_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID133_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID133_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID134_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID134_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID135_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID135_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID136_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID136_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID137_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID137_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID138_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID138_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID139_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID139_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID140_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID140_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID141_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID141_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID142_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID142_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID143_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID143_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID144_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID144_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID145_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID145_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID146_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID146_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID147_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID147_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID148_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID148_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID149_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID149_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID150_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID150_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID151_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID151_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID152_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID152_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID153_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID153_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID154_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID154_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID155_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID155_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID156_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID156_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID157_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID157_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID158_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID158_1    0x1
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID159_0    0x0
+#define GICD_ICACTIVER4_CLEAR_ACTIVE_ID159_1    0x1
+
+/* Interrupt Clear-Active Register5It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id160:1;/**/
+	u32 clear_active_id161:1;/**/
+	u32 clear_active_id162:1;/**/
+	u32 clear_active_id163:1;/**/
+	u32 clear_active_id164:1;/**/
+	u32 clear_active_id165:1;/**/
+	u32 clear_active_id166:1;/**/
+	u32 clear_active_id167:1;/**/
+	u32 clear_active_id168:1;/**/
+	u32 clear_active_id169:1;/**/
+	u32 clear_active_id170:1;/**/
+	u32 clear_active_id171:1;/**/
+	u32 clear_active_id172:1;/**/
+	u32 clear_active_id173:1;/**/
+	u32 clear_active_id174:1;/**/
+	u32 clear_active_id175:1;/**/
+	u32 clear_active_id176:1;/**/
+	u32 clear_active_id177:1;/**/
+	u32 clear_active_id178:1;/**/
+	u32 clear_active_id179:1;/**/
+	u32 clear_active_id180:1;/**/
+	u32 clear_active_id181:1;/**/
+	u32 clear_active_id182:1;/**/
+	u32 clear_active_id183:1;/**/
+	u32 clear_active_id184:1;/**/
+	u32 clear_active_id185:1;/**/
+	u32 clear_active_id186:1;/**/
+	u32 clear_active_id187:1;/**/
+	u32 clear_active_id188:1;/**/
+	u32 clear_active_id189:1;/**/
+	u32 clear_active_id190:1;/**/
+	u32 clear_active_id191:1;/**/
+	} bits;
+} reg_gicd_icactiver5_t;
+
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID160_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID160_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID161_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID161_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID162_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID162_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID163_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID163_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID164_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID164_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID165_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID165_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID166_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID166_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID167_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID167_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID168_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID168_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID169_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID169_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID170_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID170_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID171_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID171_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID172_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID172_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID173_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID173_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID174_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID174_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID175_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID175_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID176_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID176_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID177_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID177_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID178_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID178_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID179_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID179_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID180_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID180_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID181_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID181_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID182_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID182_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID183_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID183_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID184_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID184_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID185_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID185_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID186_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID186_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID187_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID187_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID188_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID188_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID189_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID189_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID190_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID190_1    0x1
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID191_0    0x0
+#define GICD_ICACTIVER5_CLEAR_ACTIVE_ID191_1    0x1
+
+/* Interrupt Clear-Active Register6It provides a Clear-Active bit for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clear_active_id192:1;/**/
+	u32 clear_active_id193:1;/**/
+	u32 clear_active_id194:1;/**/
+	u32 clear_active_id195:1;/**/
+	u32 clear_active_id196:1;/**/
+	u32 clear_active_id197:1;/**/
+	u32 clear_active_id198:1;/**/
+	u32 clear_active_id199:1;/**/
+	u32 clear_active_id200:1;/**/
+	u32 clear_active_id201:1;/**/
+	u32 clear_active_id202:1;/**/
+	u32 clear_active_id203:1;/**/
+	u32 clear_active_id204:1;/**/
+	u32 clear_active_id205:1;/**/
+	u32 clear_active_id206:1;/**/
+	u32 clear_active_id207:1;/**/
+	u32 clear_active_id208:1;/**/
+	u32 clear_active_id209:1;/**/
+	u32 clear_active_id210:1;/**/
+	u32 clear_active_id211:1;/**/
+	u32 clear_active_id212:1;/**/
+	u32 clear_active_id213:1;/**/
+	u32 clear_active_id214:1;/**/
+	u32 clear_active_id215:1;/**/
+	u32 clear_active_id216:1;/**/
+	u32 clear_active_id217:1;/**/
+	u32 clear_active_id218:1;/**/
+	u32 clear_active_id219:1;/**/
+	u32 clear_active_id220:1;/**/
+	u32 clear_active_id221:1;/**/
+	u32 clear_active_id222:1;/**/
+	u32 clear_active_id223:1;/**/
+	} bits;
+} reg_gicd_icactiver6_t;
+
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID192_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID192_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID193_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID193_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID194_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID194_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID195_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID195_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID196_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID196_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID197_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID197_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID198_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID198_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID199_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID199_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID200_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID200_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID201_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID201_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID202_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID202_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID203_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID203_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID204_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID204_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID205_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID205_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID206_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID206_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID207_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID207_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID208_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID208_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID209_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID209_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID210_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID210_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID211_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID211_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID212_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID212_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID213_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID213_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID214_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID214_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID215_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID215_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID216_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID216_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID217_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID217_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID218_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID218_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID219_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID219_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID220_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID220_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID221_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID221_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID222_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID222_1    0x1
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID223_0    0x0
+#define GICD_ICACTIVER6_CLEAR_ACTIVE_ID223_1    0x1
+
+/* Interrupt Priority Register0It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id0:8;    /**/
+	u32 ipriority_id1:8;    /**/
+	u32 ipriority_id2:8;    /**/
+	u32 ipriority_id3:8;    /**/
+	} bits;
+} reg_gicd_ipriorityr0_t;
+
+/* Interrupt Priority Register1It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id4:8;    /**/
+	u32 ipriority_id5:8;    /**/
+	u32 ipriority_id6:8;    /**/
+	u32 ipriority_id7:8;    /**/
+	} bits;
+} reg_gicd_ipriorityr1_t;
+
+/* Interrupt Priority Register2It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id8:8;    /**/
+	u32 ipriority_id9:8;    /**/
+	u32 ipriority_id10:8;   /**/
+	u32 ipriority_id11:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr2_t;
+
+/* Interrupt Priority Register3It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id12:8;   /**/
+	u32 ipriority_id13:8;   /**/
+	u32 ipriority_id14:8;   /**/
+	u32 ipriority_id15:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr3_t;
+
+/* Interrupt Priority Register4It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id16:8;   /**/
+	u32 ipriority_id17:8;   /**/
+	u32 ipriority_id18:8;   /**/
+	u32 ipriority_id19:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr4_t;
+
+/* Interrupt Priority Register5It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id20:8;   /**/
+	u32 ipriority_id21:8;   /**/
+	u32 ipriority_id22:8;   /**/
+	u32 ipriority_id23:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr5_t;
+
+/* Interrupt Priority Register6It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id24:8;   /**/
+	u32 ipriority_id25:8;   /**/
+	u32 ipriority_id26:8;   /**/
+	u32 ipriority_id27:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr6_t;
+
+/* Interrupt Priority Register7It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id28:8;   /**/
+	u32 ipriority_id29:8;   /**/
+	u32 ipriority_id30:8;   /**/
+	u32 ipriority_id31:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr7_t;
+
+/* Interrupt Priority Register8It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id32:8;   /**/
+	u32 ipriority_id33:8;   /**/
+	u32 ipriority_id34:8;   /**/
+	u32 ipriority_id35:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr8_t;
+
+/* Interrupt Priority Register9It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id36:8;   /**/
+	u32 ipriority_id37:8;   /**/
+	u32 ipriority_id38:8;   /**/
+	u32 ipriority_id39:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr9_t;
+
+/* Interrupt Priority Register10It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id40:8;   /**/
+	u32 ipriority_id41:8;   /**/
+	u32 ipriority_id42:8;   /**/
+	u32 ipriority_id43:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr10_t;
+
+/* Interrupt Priority Register11It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id44:8;   /**/
+	u32 ipriority_id45:8;   /**/
+	u32 ipriority_id46:8;   /**/
+	u32 ipriority_id47:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr11_t;
+
+/* Interrupt Priority Register12It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id48:8;   /**/
+	u32 ipriority_id49:8;   /**/
+	u32 ipriority_id50:8;   /**/
+	u32 ipriority_id51:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr12_t;
+
+/* Interrupt Priority Register13It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id52:8;   /**/
+	u32 ipriority_id53:8;   /**/
+	u32 ipriority_id54:8;   /**/
+	u32 ipriority_id55:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr13_t;
+
+/* Interrupt Priority Register14It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id56:8;   /**/
+	u32 ipriority_id57:8;   /**/
+	u32 ipriority_id58:8;   /**/
+	u32 ipriority_id59:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr14_t;
+
+/* Interrupt Priority Register15It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id60:8;   /**/
+	u32 ipriority_id61:8;   /**/
+	u32 ipriority_id62:8;   /**/
+	u32 ipriority_id63:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr15_t;
+
+/* Interrupt Priority Register16It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id64:8;   /**/
+	u32 ipriority_id65:8;   /**/
+	u32 ipriority_id66:8;   /**/
+	u32 ipriority_id67:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr16_t;
+
+/* Interrupt Priority Register17It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id68:8;   /**/
+	u32 ipriority_id69:8;   /**/
+	u32 ipriority_id70:8;   /**/
+	u32 ipriority_id71:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr17_t;
+
+/* Interrupt Priority Register18It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id72:8;   /**/
+	u32 ipriority_id73:8;   /**/
+	u32 ipriority_id74:8;   /**/
+	u32 ipriority_id75:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr18_t;
+
+/* Interrupt Priority Register19It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id76:8;   /**/
+	u32 ipriority_id77:8;   /**/
+	u32 ipriority_id78:8;   /**/
+	u32 ipriority_id79:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr19_t;
+
+/* Interrupt Priority Register20It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id80:8;   /**/
+	u32 ipriority_id81:8;   /**/
+	u32 ipriority_id82:8;   /**/
+	u32 ipriority_id83:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr20_t;
+
+/* Interrupt Priority Register21It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id84:8;   /**/
+	u32 ipriority_id85:8;   /**/
+	u32 ipriority_id86:8;   /**/
+	u32 ipriority_id87:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr21_t;
+
+/* Interrupt Priority Register22It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id88:8;   /**/
+	u32 ipriority_id89:8;   /**/
+	u32 ipriority_id90:8;   /**/
+	u32 ipriority_id91:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr22_t;
+
+/* Interrupt Priority Register23It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id92:8;   /**/
+	u32 ipriority_id93:8;   /**/
+	u32 ipriority_id94:8;   /**/
+	u32 ipriority_id95:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr23_t;
+
+/* Interrupt Priority Register24It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id96:8;   /**/
+	u32 ipriority_id97:8;   /**/
+	u32 ipriority_id98:8;   /**/
+	u32 ipriority_id99:8;   /**/
+	} bits;
+} reg_gicd_ipriorityr24_t;
+
+/* Interrupt Priority Register25It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id100:8;  /**/
+	u32 ipriority_id101:8;  /**/
+	u32 ipriority_id102:8;  /**/
+	u32 ipriority_id103:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr25_t;
+
+/* Interrupt Priority Register26It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id104:8;  /**/
+	u32 ipriority_id105:8;  /**/
+	u32 ipriority_id106:8;  /**/
+	u32 ipriority_id107:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr26_t;
+
+/* Interrupt Priority Register27It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id108:8;  /**/
+	u32 ipriority_id109:8;  /**/
+	u32 ipriority_id110:8;  /**/
+	u32 ipriority_id111:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr27_t;
+
+/* Interrupt Priority Register28It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id112:8;  /**/
+	u32 ipriority_id113:8;  /**/
+	u32 ipriority_id114:8;  /**/
+	u32 ipriority_id115:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr28_t;
+
+/* Interrupt Priority Register29It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id116:8;  /**/
+	u32 ipriority_id117:8;  /**/
+	u32 ipriority_id118:8;  /**/
+	u32 ipriority_id119:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr29_t;
+
+/* Interrupt Priority Register30It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id120:8;  /**/
+	u32 ipriority_id121:8;  /**/
+	u32 ipriority_id122:8;  /**/
+	u32 ipriority_id123:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr30_t;
+
+/* Interrupt Priority Register31It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id124:8;  /**/
+	u32 ipriority_id125:8;  /**/
+	u32 ipriority_id126:8;  /**/
+	u32 ipriority_id127:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr31_t;
+
+/* Interrupt Priority Register32It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id128:8;  /**/
+	u32 ipriority_id129:8;  /**/
+	u32 ipriority_id130:8;  /**/
+	u32 ipriority_id131:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr32_t;
+
+/* Interrupt Priority Register33It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id132:8;  /**/
+	u32 ipriority_id133:8;  /**/
+	u32 ipriority_id134:8;  /**/
+	u32 ipriority_id135:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr33_t;
+
+/* Interrupt Priority Register34It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id136:8;  /**/
+	u32 ipriority_id137:8;  /**/
+	u32 ipriority_id138:8;  /**/
+	u32 ipriority_id139:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr34_t;
+
+/* Interrupt Priority Register35It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id140:8;  /**/
+	u32 ipriority_id141:8;  /**/
+	u32 ipriority_id142:8;  /**/
+	u32 ipriority_id143:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr35_t;
+
+/* Interrupt Priority Register36It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id144:8;  /**/
+	u32 ipriority_id145:8;  /**/
+	u32 ipriority_id146:8;  /**/
+	u32 ipriority_id147:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr36_t;
+
+/* Interrupt Priority Register37It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id148:8;  /**/
+	u32 ipriority_id149:8;  /**/
+	u32 ipriority_id150:8;  /**/
+	u32 ipriority_id151:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr37_t;
+
+/* Interrupt Priority Register38It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id152:8;  /**/
+	u32 ipriority_id153:8;  /**/
+	u32 ipriority_id154:8;  /**/
+	u32 ipriority_id155:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr38_t;
+
+/* Interrupt Priority Register39It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id156:8;  /**/
+	u32 ipriority_id157:8;  /**/
+	u32 ipriority_id158:8;  /**/
+	u32 ipriority_id159:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr39_t;
+
+/* Interrupt Priority Register40It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id160:8;  /**/
+	u32 ipriority_id161:8;  /**/
+	u32 ipriority_id162:8;  /**/
+	u32 ipriority_id163:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr40_t;
+
+/* Interrupt Priority Register41It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id164:8;  /**/
+	u32 ipriority_id165:8;  /**/
+	u32 ipriority_id166:8;  /**/
+	u32 ipriority_id167:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr41_t;
+
+/* Interrupt Priority Register42It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id168:8;  /**/
+	u32 ipriority_id169:8;  /**/
+	u32 ipriority_id170:8;  /**/
+	u32 ipriority_id171:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr42_t;
+
+/* Interrupt Priority Register43It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id172:8;  /**/
+	u32 ipriority_id173:8;  /**/
+	u32 ipriority_id174:8;  /**/
+	u32 ipriority_id175:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr43_t;
+
+/* Interrupt Priority Register44It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id176:8;  /**/
+	u32 ipriority_id177:8;  /**/
+	u32 ipriority_id178:8;  /**/
+	u32 ipriority_id179:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr44_t;
+
+/* Interrupt Priority Register45It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id180:8;  /**/
+	u32 ipriority_id181:8;  /**/
+	u32 ipriority_id182:8;  /**/
+	u32 ipriority_id183:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr45_t;
+
+/* Interrupt Priority Register46It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id184:8;  /**/
+	u32 ipriority_id185:8;  /**/
+	u32 ipriority_id186:8;  /**/
+	u32 ipriority_id187:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr46_t;
+
+/* Interrupt Priority Register47It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id188:8;  /**/
+	u32 ipriority_id189:8;  /**/
+	u32 ipriority_id190:8;  /**/
+	u32 ipriority_id191:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr47_t;
+
+/* Interrupt Priority Register48It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id192:8;  /**/
+	u32 ipriority_id193:8;  /**/
+	u32 ipriority_id194:8;  /**/
+	u32 ipriority_id195:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr48_t;
+
+/* Interrupt Priority Register49It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id196:8;  /**/
+	u32 ipriority_id197:8;  /**/
+	u32 ipriority_id198:8;  /**/
+	u32 ipriority_id199:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr49_t;
+
+/* Interrupt Priority Register50It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id200:8;  /**/
+	u32 ipriority_id201:8;  /**/
+	u32 ipriority_id202:8;  /**/
+	u32 ipriority_id203:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr50_t;
+
+/* Interrupt Priority Register51It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id204:8;  /**/
+	u32 ipriority_id205:8;  /**/
+	u32 ipriority_id206:8;  /**/
+	u32 ipriority_id207:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr51_t;
+
+/* Interrupt Priority Register52It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id208:8;  /**/
+	u32 ipriority_id209:8;  /**/
+	u32 ipriority_id210:8;  /**/
+	u32 ipriority_id211:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr52_t;
+
+/* Interrupt Priority Register53It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id212:8;  /**/
+	u32 ipriority_id213:8;  /**/
+	u32 ipriority_id214:8;  /**/
+	u32 ipriority_id215:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr53_t;
+
+/* Interrupt Priority Register54It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id216:8;  /**/
+	u32 ipriority_id217:8;  /**/
+	u32 ipriority_id218:8;  /**/
+	u32 ipriority_id219:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr54_t;
+
+/* Interrupt Priority Register55It provides an 8-bit priority field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id220:8;  /**/
+	u32 ipriority_id221:8;  /**/
+	u32 ipriority_id222:8;  /**/
+	u32 ipriority_id223:8;  /**/
+	} bits;
+} reg_gicd_ipriorityr55_t;
+
+/* Interrupt Processor Targets Register0It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id0:8;    /**/
+	u32 ipriority_id1:8;    /**/
+	u32 ipriority_id2:8;    /**/
+	u32 ipriority_id3:8;    /**/
+	} bits;
+} reg_gicd_itargetsr0_t;
+
+/* Interrupt Processor Targets Register1It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id4:8;    /**/
+	u32 ipriority_id5:8;    /**/
+	u32 ipriority_id6:8;    /**/
+	u32 ipriority_id7:8;    /**/
+	} bits;
+} reg_gicd_itargetsr1_t;
+
+/* Interrupt Processor Targets Register2It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id8:8;    /**/
+	u32 ipriority_id9:8;    /**/
+	u32 ipriority_id10:8;   /**/
+	u32 ipriority_id11:8;   /**/
+	} bits;
+} reg_gicd_itargetsr2_t;
+
+/* Interrupt Processor Targets Register3It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id12:8;   /**/
+	u32 ipriority_id13:8;   /**/
+	u32 ipriority_id14:8;   /**/
+	u32 ipriority_id15:8;   /**/
+	} bits;
+} reg_gicd_itargetsr3_t;
+
+/* Interrupt Processor Targets Register4It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id16:8;   /**/
+	u32 ipriority_id17:8;   /**/
+	u32 ipriority_id18:8;   /**/
+	u32 ipriority_id19:8;   /**/
+	} bits;
+} reg_gicd_itargetsr4_t;
+
+/* Interrupt Processor Targets Register5It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id20:8;   /**/
+	u32 ipriority_id21:8;   /**/
+	u32 ipriority_id22:8;   /**/
+	u32 ipriority_id23:8;   /**/
+	} bits;
+} reg_gicd_itargetsr5_t;
+
+/* Interrupt Processor Targets Register6It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id24:8;   /**/
+	u32 ipriority_id25:8;   /**/
+	u32 ipriority_id26:8;   /**/
+	u32 ipriority_id27:8;   /**/
+	} bits;
+} reg_gicd_itargetsr6_t;
+
+/* Interrupt Processor Targets Register7It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id28:8;   /**/
+	u32 ipriority_id29:8;   /**/
+	u32 ipriority_id30:8;   /**/
+	u32 ipriority_id31:8;   /**/
+	} bits;
+} reg_gicd_itargetsr7_t;
+
+/* Interrupt Processor Targets Register8It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id32:8;   /**/
+	u32 ipriority_id33:8;   /**/
+	u32 ipriority_id34:8;   /**/
+	u32 ipriority_id35:8;   /**/
+	} bits;
+} reg_gicd_itargetsr8_t;
+
+/* Interrupt Processor Targets Register9It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id36:8;   /**/
+	u32 ipriority_id37:8;   /**/
+	u32 ipriority_id38:8;   /**/
+	u32 ipriority_id39:8;   /**/
+	} bits;
+} reg_gicd_itargetsr9_t;
+
+/* Interrupt Processor Targets Register10It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id40:8;   /**/
+	u32 ipriority_id41:8;   /**/
+	u32 ipriority_id42:8;   /**/
+	u32 ipriority_id43:8;   /**/
+	} bits;
+} reg_gicd_itargetsr10_t;
+
+/* Interrupt Processor Targets Register11It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id44:8;   /**/
+	u32 ipriority_id45:8;   /**/
+	u32 ipriority_id46:8;   /**/
+	u32 ipriority_id47:8;   /**/
+	} bits;
+} reg_gicd_itargetsr11_t;
+
+/* Interrupt Processor Targets Register12It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id48:8;   /**/
+	u32 ipriority_id49:8;   /**/
+	u32 ipriority_id50:8;   /**/
+	u32 ipriority_id51:8;   /**/
+	} bits;
+} reg_gicd_itargetsr12_t;
+
+/* Interrupt Processor Targets Register13It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id52:8;   /**/
+	u32 ipriority_id53:8;   /**/
+	u32 ipriority_id54:8;   /**/
+	u32 ipriority_id55:8;   /**/
+	} bits;
+} reg_gicd_itargetsr13_t;
+
+/* Interrupt Processor Targets Register14It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id56:8;   /**/
+	u32 ipriority_id57:8;   /**/
+	u32 ipriority_id58:8;   /**/
+	u32 ipriority_id59:8;   /**/
+	} bits;
+} reg_gicd_itargetsr14_t;
+
+/* Interrupt Processor Targets Register15It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id60:8;   /**/
+	u32 ipriority_id61:8;   /**/
+	u32 ipriority_id62:8;   /**/
+	u32 ipriority_id63:8;   /**/
+	} bits;
+} reg_gicd_itargetsr15_t;
+
+/* Interrupt Processor Targets Register16It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id64:8;   /**/
+	u32 ipriority_id65:8;   /**/
+	u32 ipriority_id66:8;   /**/
+	u32 ipriority_id67:8;   /**/
+	} bits;
+} reg_gicd_itargetsr16_t;
+
+/* Interrupt Processor Targets Register17It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id68:8;   /**/
+	u32 ipriority_id69:8;   /**/
+	u32 ipriority_id70:8;   /**/
+	u32 ipriority_id71:8;   /**/
+	} bits;
+} reg_gicd_itargetsr17_t;
+
+/* Interrupt Processor Targets Register18It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id72:8;   /**/
+	u32 ipriority_id73:8;   /**/
+	u32 ipriority_id74:8;   /**/
+	u32 ipriority_id75:8;   /**/
+	} bits;
+} reg_gicd_itargetsr18_t;
+
+/* Interrupt Processor Targets Register19It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id76:8;   /**/
+	u32 ipriority_id77:8;   /**/
+	u32 ipriority_id78:8;   /**/
+	u32 ipriority_id79:8;   /**/
+	} bits;
+} reg_gicd_itargetsr19_t;
+
+/* Interrupt Processor Targets Register20It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id80:8;   /**/
+	u32 ipriority_id81:8;   /**/
+	u32 ipriority_id82:8;   /**/
+	u32 ipriority_id83:8;   /**/
+	} bits;
+} reg_gicd_itargetsr20_t;
+
+/* Interrupt Processor Targets Register21It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id84:8;   /**/
+	u32 ipriority_id85:8;   /**/
+	u32 ipriority_id86:8;   /**/
+	u32 ipriority_id87:8;   /**/
+	} bits;
+} reg_gicd_itargetsr21_t;
+
+/* Interrupt Processor Targets Register22It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id88:8;   /**/
+	u32 ipriority_id89:8;   /**/
+	u32 ipriority_id90:8;   /**/
+	u32 ipriority_id91:8;   /**/
+	} bits;
+} reg_gicd_itargetsr22_t;
+
+/* Interrupt Processor Targets Register23It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id92:8;   /**/
+	u32 ipriority_id93:8;   /**/
+	u32 ipriority_id94:8;   /**/
+	u32 ipriority_id95:8;   /**/
+	} bits;
+} reg_gicd_itargetsr23_t;
+
+/* Interrupt Processor Targets Register24It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id96:8;   /**/
+	u32 ipriority_id97:8;   /**/
+	u32 ipriority_id98:8;   /**/
+	u32 ipriority_id99:8;   /**/
+	} bits;
+} reg_gicd_itargetsr24_t;
+
+/* Interrupt Processor Targets Register25It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id100:8;  /**/
+	u32 ipriority_id101:8;  /**/
+	u32 ipriority_id102:8;  /**/
+	u32 ipriority_id103:8;  /**/
+	} bits;
+} reg_gicd_itargetsr25_t;
+
+/* Interrupt Processor Targets Register26It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id104:8;  /**/
+	u32 ipriority_id105:8;  /**/
+	u32 ipriority_id106:8;  /**/
+	u32 ipriority_id107:8;  /**/
+	} bits;
+} reg_gicd_itargetsr26_t;
+
+/* Interrupt Processor Targets Register27It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id108:8;  /**/
+	u32 ipriority_id109:8;  /**/
+	u32 ipriority_id110:8;  /**/
+	u32 ipriority_id111:8;  /**/
+	} bits;
+} reg_gicd_itargetsr27_t;
+
+/* Interrupt Processor Targets Register28It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id112:8;  /**/
+	u32 ipriority_id113:8;  /**/
+	u32 ipriority_id114:8;  /**/
+	u32 ipriority_id115:8;  /**/
+	} bits;
+} reg_gicd_itargetsr28_t;
+
+/* Interrupt Processor Targets Register29It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id116:8;  /**/
+	u32 ipriority_id117:8;  /**/
+	u32 ipriority_id118:8;  /**/
+	u32 ipriority_id119:8;  /**/
+	} bits;
+} reg_gicd_itargetsr29_t;
+
+/* Interrupt Processor Targets Register30It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id120:8;  /**/
+	u32 ipriority_id121:8;  /**/
+	u32 ipriority_id122:8;  /**/
+	u32 ipriority_id123:8;  /**/
+	} bits;
+} reg_gicd_itargetsr30_t;
+
+/* Interrupt Processor Targets Register31It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id124:8;  /**/
+	u32 ipriority_id125:8;  /**/
+	u32 ipriority_id126:8;  /**/
+	u32 ipriority_id127:8;  /**/
+	} bits;
+} reg_gicd_itargetsr31_t;
+
+/* Interrupt Processor Targets Register32It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id128:8;  /**/
+	u32 ipriority_id129:8;  /**/
+	u32 ipriority_id130:8;  /**/
+	u32 ipriority_id131:8;  /**/
+	} bits;
+} reg_gicd_itargetsr32_t;
+
+/* Interrupt Processor Targets Register33It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id132:8;  /**/
+	u32 ipriority_id133:8;  /**/
+	u32 ipriority_id134:8;  /**/
+	u32 ipriority_id135:8;  /**/
+	} bits;
+} reg_gicd_itargetsr33_t;
+
+/* Interrupt Processor Targets Register34It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id136:8;  /**/
+	u32 ipriority_id137:8;  /**/
+	u32 ipriority_id138:8;  /**/
+	u32 ipriority_id139:8;  /**/
+	} bits;
+} reg_gicd_itargetsr34_t;
+
+/* Interrupt Processor Targets Register35It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id140:8;  /**/
+	u32 ipriority_id141:8;  /**/
+	u32 ipriority_id142:8;  /**/
+	u32 ipriority_id143:8;  /**/
+	} bits;
+} reg_gicd_itargetsr35_t;
+
+/* Interrupt Processor Targets Register36It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id144:8;  /**/
+	u32 ipriority_id145:8;  /**/
+	u32 ipriority_id146:8;  /**/
+	u32 ipriority_id147:8;  /**/
+	} bits;
+} reg_gicd_itargetsr36_t;
+
+/* Interrupt Processor Targets Register37It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id148:8;  /**/
+	u32 ipriority_id149:8;  /**/
+	u32 ipriority_id150:8;  /**/
+	u32 ipriority_id151:8;  /**/
+	} bits;
+} reg_gicd_itargetsr37_t;
+
+/* Interrupt Processor Targets Register38It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id152:8;  /**/
+	u32 ipriority_id153:8;  /**/
+	u32 ipriority_id154:8;  /**/
+	u32 ipriority_id155:8;  /**/
+	} bits;
+} reg_gicd_itargetsr38_t;
+
+/* Interrupt Processor Targets Register39It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id156:8;  /**/
+	u32 ipriority_id157:8;  /**/
+	u32 ipriority_id158:8;  /**/
+	u32 ipriority_id159:8;  /**/
+	} bits;
+} reg_gicd_itargetsr39_t;
+
+/* Interrupt Processor Targets Register40It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id160:8;  /**/
+	u32 ipriority_id161:8;  /**/
+	u32 ipriority_id162:8;  /**/
+	u32 ipriority_id163:8;  /**/
+	} bits;
+} reg_gicd_itargetsr40_t;
+
+/* Interrupt Processor Targets Register41It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id164:8;  /**/
+	u32 ipriority_id165:8;  /**/
+	u32 ipriority_id166:8;  /**/
+	u32 ipriority_id167:8;  /**/
+	} bits;
+} reg_gicd_itargetsr41_t;
+
+/* Interrupt Processor Targets Register42It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id168:8;  /**/
+	u32 ipriority_id169:8;  /**/
+	u32 ipriority_id170:8;  /**/
+	u32 ipriority_id171:8;  /**/
+	} bits;
+} reg_gicd_itargetsr42_t;
+
+/* Interrupt Processor Targets Register43It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id172:8;  /**/
+	u32 ipriority_id173:8;  /**/
+	u32 ipriority_id174:8;  /**/
+	u32 ipriority_id175:8;  /**/
+	} bits;
+} reg_gicd_itargetsr43_t;
+
+/* Interrupt Processor Targets Register44It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id176:8;  /**/
+	u32 ipriority_id177:8;  /**/
+	u32 ipriority_id178:8;  /**/
+	u32 ipriority_id179:8;  /**/
+	} bits;
+} reg_gicd_itargetsr44_t;
+
+/* Interrupt Processor Targets Register45It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id180:8;  /**/
+	u32 ipriority_id181:8;  /**/
+	u32 ipriority_id182:8;  /**/
+	u32 ipriority_id183:8;  /**/
+	} bits;
+} reg_gicd_itargetsr45_t;
+
+/* Interrupt Processor Targets Register46It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id184:8;  /**/
+	u32 ipriority_id185:8;  /**/
+	u32 ipriority_id186:8;  /**/
+	u32 ipriority_id187:8;  /**/
+	} bits;
+} reg_gicd_itargetsr46_t;
+
+/* Interrupt Processor Targets Register47It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id188:8;  /**/
+	u32 ipriority_id189:8;  /**/
+	u32 ipriority_id190:8;  /**/
+	u32 ipriority_id191:8;  /**/
+	} bits;
+} reg_gicd_itargetsr47_t;
+
+/* Interrupt Processor Targets Register48It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id192:8;  /**/
+	u32 ipriority_id193:8;  /**/
+	u32 ipriority_id194:8;  /**/
+	u32 ipriority_id195:8;  /**/
+	} bits;
+} reg_gicd_itargetsr48_t;
+
+/* Interrupt Processor Targets Register49It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id196:8;  /**/
+	u32 ipriority_id197:8;  /**/
+	u32 ipriority_id198:8;  /**/
+	u32 ipriority_id199:8;  /**/
+	} bits;
+} reg_gicd_itargetsr49_t;
+
+/* Interrupt Processor Targets Register50It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id200:8;  /**/
+	u32 ipriority_id201:8;  /**/
+	u32 ipriority_id202:8;  /**/
+	u32 ipriority_id203:8;  /**/
+	} bits;
+} reg_gicd_itargetsr50_t;
+
+/* Interrupt Processor Targets Register51It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id204:8;  /**/
+	u32 ipriority_id205:8;  /**/
+	u32 ipriority_id206:8;  /**/
+	u32 ipriority_id207:8;  /**/
+	} bits;
+} reg_gicd_itargetsr51_t;
+
+/* Interrupt Processor Targets Register52It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id208:8;  /**/
+	u32 ipriority_id209:8;  /**/
+	u32 ipriority_id210:8;  /**/
+	u32 ipriority_id211:8;  /**/
+	} bits;
+} reg_gicd_itargetsr52_t;
+
+/* Interrupt Processor Targets Register53It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id212:8;  /**/
+	u32 ipriority_id213:8;  /**/
+	u32 ipriority_id214:8;  /**/
+	u32 ipriority_id215:8;  /**/
+	} bits;
+} reg_gicd_itargetsr53_t;
+
+/* Interrupt Processor Targets Register54It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id216:8;  /**/
+	u32 ipriority_id217:8;  /**/
+	u32 ipriority_id218:8;  /**/
+	u32 ipriority_id219:8;  /**/
+	} bits;
+} reg_gicd_itargetsr54_t;
+
+/* Interrupt Processor Targets Register55It provides an 8-bit CPU target field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 ipriority_id220:8;  /**/
+	u32 ipriority_id221:8;  /**/
+	u32 ipriority_id222:8;  /**/
+	u32 ipriority_id223:8;  /**/
+	} bits;
+} reg_gicd_itargetsr55_t;
+
+/* Interrupt Configuration Register0It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id0:2;  /**/
+	u32 cfg_id1:2;  /**/
+	u32 cfg_id2:2;  /**/
+	u32 cfg_id3:2;  /**/
+	u32 cfg_id4:2;  /**/
+	u32 cfg_id5:2;  /**/
+	u32 cfg_id6:2;  /**/
+	u32 cfg_id7:2;  /**/
+	u32 cfg_id8:2;  /**/
+	u32 cfg_id9:2;  /**/
+	u32 cfg_id10:2; /**/
+	u32 cfg_id11:2; /**/
+	u32 cfg_id12:2; /**/
+	u32 cfg_id13:2; /**/
+	u32 cfg_id14:2; /**/
+	u32 cfg_id15:2; /**/
+	} bits;
+} reg_gicd_icfgr0_t;
+
+/* Interrupt Configuration Register1It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id16:2; /**/
+	u32 cfg_id17:2; /**/
+	u32 cfg_id18:2; /**/
+	u32 cfg_id19:2; /**/
+	u32 cfg_id20:2; /**/
+	u32 cfg_id21:2; /**/
+	u32 cfg_id22:2; /**/
+	u32 cfg_id23:2; /**/
+	u32 cfg_id24:2; /**/
+	u32 cfg_id25:2; /**/
+	u32 cfg_id26:2; /**/
+	u32 cfg_id27:2; /**/
+	u32 cfg_id28:2; /**/
+	u32 cfg_id29:2; /**/
+	u32 cfg_id30:2; /**/
+	u32 cfg_id31:2; /**/
+	} bits;
+} reg_gicd_icfgr1_t;
+
+#define GICD_ICFGR1_CFG_ID16_0  0x0
+#define GICD_ICFGR1_CFG_ID16_1  0x1
+#define GICD_ICFGR1_CFG_ID17_0  0x0
+#define GICD_ICFGR1_CFG_ID17_1  0x1
+#define GICD_ICFGR1_CFG_ID18_0  0x0
+#define GICD_ICFGR1_CFG_ID18_1  0x1
+#define GICD_ICFGR1_CFG_ID19_0  0x0
+#define GICD_ICFGR1_CFG_ID19_1  0x1
+#define GICD_ICFGR1_CFG_ID20_0  0x0
+#define GICD_ICFGR1_CFG_ID20_1  0x1
+#define GICD_ICFGR1_CFG_ID21_0  0x0
+#define GICD_ICFGR1_CFG_ID21_1  0x1
+#define GICD_ICFGR1_CFG_ID22_0  0x0
+#define GICD_ICFGR1_CFG_ID22_1  0x1
+#define GICD_ICFGR1_CFG_ID23_0  0x0
+#define GICD_ICFGR1_CFG_ID23_1  0x1
+#define GICD_ICFGR1_CFG_ID24_0  0x0
+#define GICD_ICFGR1_CFG_ID24_1  0x1
+#define GICD_ICFGR1_CFG_ID25_0  0x0
+#define GICD_ICFGR1_CFG_ID25_1  0x1
+#define GICD_ICFGR1_CFG_ID26_0  0x0
+#define GICD_ICFGR1_CFG_ID26_1  0x1
+#define GICD_ICFGR1_CFG_ID27_0  0x0
+#define GICD_ICFGR1_CFG_ID27_1  0x1
+#define GICD_ICFGR1_CFG_ID28_0  0x0
+#define GICD_ICFGR1_CFG_ID28_1  0x1
+#define GICD_ICFGR1_CFG_ID29_0  0x0
+#define GICD_ICFGR1_CFG_ID29_1  0x1
+#define GICD_ICFGR1_CFG_ID30_0  0x0
+#define GICD_ICFGR1_CFG_ID30_1  0x1
+#define GICD_ICFGR1_CFG_ID31_0  0x0
+#define GICD_ICFGR1_CFG_ID31_1  0x1
+
+/* Interrupt Configuration Register2It provides a 2-bit Int_config(edge-triggered or level-sensitive) field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id32:2; /**/
+	u32 cfg_id33:2; /**/
+	u32 cfg_id34:2; /**/
+	u32 cfg_id35:2; /**/
+	u32 cfg_id36:2; /**/
+	u32 cfg_id37:2; /**/
+	u32 cfg_id38:2; /**/
+	u32 cfg_id39:2; /**/
+	u32 cfg_id40:2; /**/
+	u32 cfg_id41:2; /**/
+	u32 cfg_id42:2; /**/
+	u32 cfg_id43:2; /**/
+	u32 cfg_id44:2; /**/
+	u32 cfg_id45:2; /**/
+	u32 cfg_id46:2; /**/
+	u32 cfg_id47:2; /**/
+	} bits;
+} reg_gicd_icfgr2_t;
+
+#define GICD_ICFGR2_CFG_ID32_0  0x0
+#define GICD_ICFGR2_CFG_ID32_1  0x1
+#define GICD_ICFGR2_CFG_ID33_0  0x0
+#define GICD_ICFGR2_CFG_ID33_1  0x1
+#define GICD_ICFGR2_CFG_ID34_0  0x0
+#define GICD_ICFGR2_CFG_ID34_1  0x1
+#define GICD_ICFGR2_CFG_ID35_0  0x0
+#define GICD_ICFGR2_CFG_ID35_1  0x1
+#define GICD_ICFGR2_CFG_ID36_0  0x0
+#define GICD_ICFGR2_CFG_ID36_1  0x1
+#define GICD_ICFGR2_CFG_ID37_0  0x0
+#define GICD_ICFGR2_CFG_ID37_1  0x1
+#define GICD_ICFGR2_CFG_ID38_0  0x0
+#define GICD_ICFGR2_CFG_ID38_1  0x1
+#define GICD_ICFGR2_CFG_ID39_0  0x0
+#define GICD_ICFGR2_CFG_ID39_1  0x1
+#define GICD_ICFGR2_CFG_ID40_0  0x0
+#define GICD_ICFGR2_CFG_ID40_1  0x1
+#define GICD_ICFGR2_CFG_ID41_0  0x0
+#define GICD_ICFGR2_CFG_ID41_1  0x1
+#define GICD_ICFGR2_CFG_ID42_0  0x0
+#define GICD_ICFGR2_CFG_ID42_1  0x1
+#define GICD_ICFGR2_CFG_ID43_0  0x0
+#define GICD_ICFGR2_CFG_ID43_1  0x1
+#define GICD_ICFGR2_CFG_ID44_0  0x0
+#define GICD_ICFGR2_CFG_ID44_1  0x1
+#define GICD_ICFGR2_CFG_ID45_0  0x0
+#define GICD_ICFGR2_CFG_ID45_1  0x1
+#define GICD_ICFGR2_CFG_ID46_0  0x0
+#define GICD_ICFGR2_CFG_ID46_1  0x1
+#define GICD_ICFGR2_CFG_ID47_0  0x0
+#define GICD_ICFGR2_CFG_ID47_1  0x1
+
+/* Interrupt Configuration Register3It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id48:2; /**/
+	u32 cfg_id49:2; /**/
+	u32 cfg_id50:2; /**/
+	u32 cfg_id51:2; /**/
+	u32 cfg_id52:2; /**/
+	u32 cfg_id53:2; /**/
+	u32 cfg_id54:2; /**/
+	u32 cfg_id55:2; /**/
+	u32 cfg_id56:2; /**/
+	u32 cfg_id57:2; /**/
+	u32 cfg_id58:2; /**/
+	u32 cfg_id59:2; /**/
+	u32 cfg_id60:2; /**/
+	u32 cfg_id61:2; /**/
+	u32 cfg_id62:2; /**/
+	u32 cfg_id63:2; /**/
+	} bits;
+} reg_gicd_icfgr3_t;
+
+#define GICD_ICFGR3_CFG_ID48_0  0x0
+#define GICD_ICFGR3_CFG_ID48_1  0x1
+#define GICD_ICFGR3_CFG_ID49_0  0x0
+#define GICD_ICFGR3_CFG_ID49_1  0x1
+#define GICD_ICFGR3_CFG_ID50_0  0x0
+#define GICD_ICFGR3_CFG_ID50_1  0x1
+#define GICD_ICFGR3_CFG_ID51_0  0x0
+#define GICD_ICFGR3_CFG_ID51_1  0x1
+#define GICD_ICFGR3_CFG_ID52_0  0x0
+#define GICD_ICFGR3_CFG_ID52_1  0x1
+#define GICD_ICFGR3_CFG_ID53_0  0x0
+#define GICD_ICFGR3_CFG_ID53_1  0x1
+#define GICD_ICFGR3_CFG_ID54_0  0x0
+#define GICD_ICFGR3_CFG_ID54_1  0x1
+#define GICD_ICFGR3_CFG_ID55_0  0x0
+#define GICD_ICFGR3_CFG_ID55_1  0x1
+#define GICD_ICFGR3_CFG_ID56_0  0x0
+#define GICD_ICFGR3_CFG_ID56_1  0x1
+#define GICD_ICFGR3_CFG_ID57_0  0x0
+#define GICD_ICFGR3_CFG_ID57_1  0x1
+#define GICD_ICFGR3_CFG_ID58_0  0x0
+#define GICD_ICFGR3_CFG_ID58_1  0x1
+#define GICD_ICFGR3_CFG_ID59_0  0x0
+#define GICD_ICFGR3_CFG_ID59_1  0x1
+#define GICD_ICFGR3_CFG_ID60_0  0x0
+#define GICD_ICFGR3_CFG_ID60_1  0x1
+#define GICD_ICFGR3_CFG_ID61_0  0x0
+#define GICD_ICFGR3_CFG_ID61_1  0x1
+#define GICD_ICFGR3_CFG_ID62_0  0x0
+#define GICD_ICFGR3_CFG_ID62_1  0x1
+#define GICD_ICFGR3_CFG_ID63_0  0x0
+#define GICD_ICFGR3_CFG_ID63_1  0x1
+
+/* Interrupt Configuration Register4It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id64:2; /**/
+	u32 cfg_id65:2; /**/
+	u32 cfg_id66:2; /**/
+	u32 cfg_id67:2; /**/
+	u32 cfg_id68:2; /**/
+	u32 cfg_id69:2; /**/
+	u32 cfg_id70:2; /**/
+	u32 cfg_id71:2; /**/
+	u32 cfg_id72:2; /**/
+	u32 cfg_id73:2; /**/
+	u32 cfg_id74:2; /**/
+	u32 cfg_id75:2; /**/
+	u32 cfg_id76:2; /**/
+	u32 cfg_id77:2; /**/
+	u32 cfg_id78:2; /**/
+	u32 cfg_id79:2; /**/
+	} bits;
+} reg_gicd_icfgr4_t;
+
+#define GICD_ICFGR4_CFG_ID64_0  0x0
+#define GICD_ICFGR4_CFG_ID64_1  0x1
+#define GICD_ICFGR4_CFG_ID65_0  0x0
+#define GICD_ICFGR4_CFG_ID65_1  0x1
+#define GICD_ICFGR4_CFG_ID66_0  0x0
+#define GICD_ICFGR4_CFG_ID66_1  0x1
+#define GICD_ICFGR4_CFG_ID67_0  0x0
+#define GICD_ICFGR4_CFG_ID67_1  0x1
+#define GICD_ICFGR4_CFG_ID68_0  0x0
+#define GICD_ICFGR4_CFG_ID68_1  0x1
+#define GICD_ICFGR4_CFG_ID69_0  0x0
+#define GICD_ICFGR4_CFG_ID69_1  0x1
+#define GICD_ICFGR4_CFG_ID70_0  0x0
+#define GICD_ICFGR4_CFG_ID70_1  0x1
+#define GICD_ICFGR4_CFG_ID71_0  0x0
+#define GICD_ICFGR4_CFG_ID71_1  0x1
+#define GICD_ICFGR4_CFG_ID72_0  0x0
+#define GICD_ICFGR4_CFG_ID72_1  0x1
+#define GICD_ICFGR4_CFG_ID73_0  0x0
+#define GICD_ICFGR4_CFG_ID73_1  0x1
+#define GICD_ICFGR4_CFG_ID74_0  0x0
+#define GICD_ICFGR4_CFG_ID74_1  0x1
+#define GICD_ICFGR4_CFG_ID75_0  0x0
+#define GICD_ICFGR4_CFG_ID75_1  0x1
+#define GICD_ICFGR4_CFG_ID76_0  0x0
+#define GICD_ICFGR4_CFG_ID76_1  0x1
+#define GICD_ICFGR4_CFG_ID77_0  0x0
+#define GICD_ICFGR4_CFG_ID77_1  0x1
+#define GICD_ICFGR4_CFG_ID78_0  0x0
+#define GICD_ICFGR4_CFG_ID78_1  0x1
+#define GICD_ICFGR4_CFG_ID79_0  0x0
+#define GICD_ICFGR4_CFG_ID79_1  0x1
+
+/* Interrupt Configuration Register5It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id80:2; /**/
+	u32 cfg_id81:2; /**/
+	u32 cfg_id82:2; /**/
+	u32 cfg_id83:2; /**/
+	u32 cfg_id84:2; /**/
+	u32 cfg_id85:2; /**/
+	u32 cfg_id86:2; /**/
+	u32 cfg_id87:2; /**/
+	u32 cfg_id88:2; /**/
+	u32 cfg_id89:2; /**/
+	u32 cfg_id90:2; /**/
+	u32 cfg_id91:2; /**/
+	u32 cfg_id92:2; /**/
+	u32 cfg_id93:2; /**/
+	u32 cfg_id94:2; /**/
+	u32 cfg_id95:2; /**/
+	} bits;
+} reg_gicd_icfgr5_t;
+
+#define GICD_ICFGR5_CFG_ID80_0  0x0
+#define GICD_ICFGR5_CFG_ID80_1  0x1
+#define GICD_ICFGR5_CFG_ID81_0  0x0
+#define GICD_ICFGR5_CFG_ID81_1  0x1
+#define GICD_ICFGR5_CFG_ID82_0  0x0
+#define GICD_ICFGR5_CFG_ID82_1  0x1
+#define GICD_ICFGR5_CFG_ID83_0  0x0
+#define GICD_ICFGR5_CFG_ID83_1  0x1
+#define GICD_ICFGR5_CFG_ID84_0  0x0
+#define GICD_ICFGR5_CFG_ID84_1  0x1
+#define GICD_ICFGR5_CFG_ID85_0  0x0
+#define GICD_ICFGR5_CFG_ID85_1  0x1
+#define GICD_ICFGR5_CFG_ID86_0  0x0
+#define GICD_ICFGR5_CFG_ID86_1  0x1
+#define GICD_ICFGR5_CFG_ID87_0  0x0
+#define GICD_ICFGR5_CFG_ID87_1  0x1
+#define GICD_ICFGR5_CFG_ID88_0  0x0
+#define GICD_ICFGR5_CFG_ID88_1  0x1
+#define GICD_ICFGR5_CFG_ID89_0  0x0
+#define GICD_ICFGR5_CFG_ID89_1  0x1
+#define GICD_ICFGR5_CFG_ID90_0  0x0
+#define GICD_ICFGR5_CFG_ID90_1  0x1
+#define GICD_ICFGR5_CFG_ID91_0  0x0
+#define GICD_ICFGR5_CFG_ID91_1  0x1
+#define GICD_ICFGR5_CFG_ID92_0  0x0
+#define GICD_ICFGR5_CFG_ID92_1  0x1
+#define GICD_ICFGR5_CFG_ID93_0  0x0
+#define GICD_ICFGR5_CFG_ID93_1  0x1
+#define GICD_ICFGR5_CFG_ID94_0  0x0
+#define GICD_ICFGR5_CFG_ID94_1  0x1
+#define GICD_ICFGR5_CFG_ID95_0  0x0
+#define GICD_ICFGR5_CFG_ID95_1  0x1
+
+/* Interrupt Configuration Register6It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id96:2; /**/
+	u32 cfg_id97:2; /**/
+	u32 cfg_id98:2; /**/
+	u32 cfg_id99:2; /**/
+	u32 cfg_id100:2;/**/
+	u32 cfg_id101:2;/**/
+	u32 cfg_id102:2;/**/
+	u32 cfg_id103:2;/**/
+	u32 cfg_id104:2;/**/
+	u32 cfg_id105:2;/**/
+	u32 cfg_id106:2;/**/
+	u32 cfg_id107:2;/**/
+	u32 cfg_id108:2;/**/
+	u32 cfg_id109:2;/**/
+	u32 cfg_id110:2;/**/
+	u32 cfg_id111:2;/**/
+	} bits;
+} reg_gicd_icfgr6_t;
+
+#define GICD_ICFGR6_CFG_ID96_0  0x0
+#define GICD_ICFGR6_CFG_ID96_1  0x1
+#define GICD_ICFGR6_CFG_ID97_0  0x0
+#define GICD_ICFGR6_CFG_ID97_1  0x1
+#define GICD_ICFGR6_CFG_ID98_0  0x0
+#define GICD_ICFGR6_CFG_ID98_1  0x1
+#define GICD_ICFGR6_CFG_ID99_0  0x0
+#define GICD_ICFGR6_CFG_ID99_1  0x1
+#define GICD_ICFGR6_CFG_ID100_0 0x0
+#define GICD_ICFGR6_CFG_ID100_1 0x1
+#define GICD_ICFGR6_CFG_ID101_0 0x0
+#define GICD_ICFGR6_CFG_ID101_1 0x1
+#define GICD_ICFGR6_CFG_ID102_0 0x0
+#define GICD_ICFGR6_CFG_ID102_1 0x1
+#define GICD_ICFGR6_CFG_ID103_0 0x0
+#define GICD_ICFGR6_CFG_ID103_1 0x1
+#define GICD_ICFGR6_CFG_ID104_0 0x0
+#define GICD_ICFGR6_CFG_ID104_1 0x1
+#define GICD_ICFGR6_CFG_ID105_0 0x0
+#define GICD_ICFGR6_CFG_ID105_1 0x1
+#define GICD_ICFGR6_CFG_ID106_0 0x0
+#define GICD_ICFGR6_CFG_ID106_1 0x1
+#define GICD_ICFGR6_CFG_ID107_0 0x0
+#define GICD_ICFGR6_CFG_ID107_1 0x1
+#define GICD_ICFGR6_CFG_ID108_0 0x0
+#define GICD_ICFGR6_CFG_ID108_1 0x1
+#define GICD_ICFGR6_CFG_ID109_0 0x0
+#define GICD_ICFGR6_CFG_ID109_1 0x1
+#define GICD_ICFGR6_CFG_ID110_0 0x0
+#define GICD_ICFGR6_CFG_ID110_1 0x1
+#define GICD_ICFGR6_CFG_ID111_0 0x0
+#define GICD_ICFGR6_CFG_ID111_1 0x1
+
+/* Interrupt Configuration Register7It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id112:2;/**/
+	u32 cfg_id113:2;/**/
+	u32 cfg_id114:2;/**/
+	u32 cfg_id115:2;/**/
+	u32 cfg_id116:2;/**/
+	u32 cfg_id117:2;/**/
+	u32 cfg_id118:2;/**/
+	u32 cfg_id119:2;/**/
+	u32 cfg_id120:2;/**/
+	u32 cfg_id121:2;/**/
+	u32 cfg_id122:2;/**/
+	u32 cfg_id123:2;/**/
+	u32 cfg_id124:2;/**/
+	u32 cfg_id125:2;/**/
+	u32 cfg_id126:2;/**/
+	u32 cfg_id127:2;/**/
+	} bits;
+} reg_gicd_icfgr7_t;
+
+#define GICD_ICFGR7_CFG_ID112_0 0x0
+#define GICD_ICFGR7_CFG_ID112_1 0x1
+#define GICD_ICFGR7_CFG_ID113_0 0x0
+#define GICD_ICFGR7_CFG_ID113_1 0x1
+#define GICD_ICFGR7_CFG_ID114_0 0x0
+#define GICD_ICFGR7_CFG_ID114_1 0x1
+#define GICD_ICFGR7_CFG_ID115_0 0x0
+#define GICD_ICFGR7_CFG_ID115_1 0x1
+#define GICD_ICFGR7_CFG_ID116_0 0x0
+#define GICD_ICFGR7_CFG_ID116_1 0x1
+#define GICD_ICFGR7_CFG_ID117_0 0x0
+#define GICD_ICFGR7_CFG_ID117_1 0x1
+#define GICD_ICFGR7_CFG_ID118_0 0x0
+#define GICD_ICFGR7_CFG_ID118_1 0x1
+#define GICD_ICFGR7_CFG_ID119_0 0x0
+#define GICD_ICFGR7_CFG_ID119_1 0x1
+#define GICD_ICFGR7_CFG_ID120_0 0x0
+#define GICD_ICFGR7_CFG_ID120_1 0x1
+#define GICD_ICFGR7_CFG_ID121_0 0x0
+#define GICD_ICFGR7_CFG_ID121_1 0x1
+#define GICD_ICFGR7_CFG_ID122_0 0x0
+#define GICD_ICFGR7_CFG_ID122_1 0x1
+#define GICD_ICFGR7_CFG_ID123_0 0x0
+#define GICD_ICFGR7_CFG_ID123_1 0x1
+#define GICD_ICFGR7_CFG_ID124_0 0x0
+#define GICD_ICFGR7_CFG_ID124_1 0x1
+#define GICD_ICFGR7_CFG_ID125_0 0x0
+#define GICD_ICFGR7_CFG_ID125_1 0x1
+#define GICD_ICFGR7_CFG_ID126_0 0x0
+#define GICD_ICFGR7_CFG_ID126_1 0x1
+#define GICD_ICFGR7_CFG_ID127_0 0x0
+#define GICD_ICFGR7_CFG_ID127_1 0x1
+
+/* Interrupt Configuration Register8It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id128:2;/**/
+	u32 cfg_id129:2;/**/
+	u32 cfg_id130:2;/**/
+	u32 cfg_id131:2;/**/
+	u32 cfg_id132:2;/**/
+	u32 cfg_id133:2;/**/
+	u32 cfg_id134:2;/**/
+	u32 cfg_id135:2;/**/
+	u32 cfg_id136:2;/**/
+	u32 cfg_id137:2;/**/
+	u32 cfg_id138:2;/**/
+	u32 cfg_id139:2;/**/
+	u32 cfg_id140:2;/**/
+	u32 cfg_id141:2;/**/
+	u32 cfg_id142:2;/**/
+	u32 cfg_id143:2;/**/
+	} bits;
+} reg_gicd_icfgr8_t;
+
+#define GICD_ICFGR8_CFG_ID128_0 0x0
+#define GICD_ICFGR8_CFG_ID128_1 0x1
+#define GICD_ICFGR8_CFG_ID129_0 0x0
+#define GICD_ICFGR8_CFG_ID129_1 0x1
+#define GICD_ICFGR8_CFG_ID130_0 0x0
+#define GICD_ICFGR8_CFG_ID130_1 0x1
+#define GICD_ICFGR8_CFG_ID131_0 0x0
+#define GICD_ICFGR8_CFG_ID131_1 0x1
+#define GICD_ICFGR8_CFG_ID132_0 0x0
+#define GICD_ICFGR8_CFG_ID132_1 0x1
+#define GICD_ICFGR8_CFG_ID133_0 0x0
+#define GICD_ICFGR8_CFG_ID133_1 0x1
+#define GICD_ICFGR8_CFG_ID134_0 0x0
+#define GICD_ICFGR8_CFG_ID134_1 0x1
+#define GICD_ICFGR8_CFG_ID135_0 0x0
+#define GICD_ICFGR8_CFG_ID135_1 0x1
+#define GICD_ICFGR8_CFG_ID136_0 0x0
+#define GICD_ICFGR8_CFG_ID136_1 0x1
+#define GICD_ICFGR8_CFG_ID137_0 0x0
+#define GICD_ICFGR8_CFG_ID137_1 0x1
+#define GICD_ICFGR8_CFG_ID138_0 0x0
+#define GICD_ICFGR8_CFG_ID138_1 0x1
+#define GICD_ICFGR8_CFG_ID139_0 0x0
+#define GICD_ICFGR8_CFG_ID139_1 0x1
+#define GICD_ICFGR8_CFG_ID140_0 0x0
+#define GICD_ICFGR8_CFG_ID140_1 0x1
+#define GICD_ICFGR8_CFG_ID141_0 0x0
+#define GICD_ICFGR8_CFG_ID141_1 0x1
+#define GICD_ICFGR8_CFG_ID142_0 0x0
+#define GICD_ICFGR8_CFG_ID142_1 0x1
+#define GICD_ICFGR8_CFG_ID143_0 0x0
+#define GICD_ICFGR8_CFG_ID143_1 0x1
+
+/* Interrupt Configuration Register9It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id144:2;/**/
+	u32 cfg_id145:2;/**/
+	u32 cfg_id146:2;/**/
+	u32 cfg_id147:2;/**/
+	u32 cfg_id148:2;/**/
+	u32 cfg_id149:2;/**/
+	u32 cfg_id150:2;/**/
+	u32 cfg_id151:2;/**/
+	u32 cfg_id152:2;/**/
+	u32 cfg_id153:2;/**/
+	u32 cfg_id154:2;/**/
+	u32 cfg_id155:2;/**/
+	u32 cfg_id156:2;/**/
+	u32 cfg_id157:2;/**/
+	u32 cfg_id158:2;/**/
+	u32 cfg_id159:2;/**/
+	} bits;
+} reg_gicd_icfgr9_t;
+
+#define GICD_ICFGR9_CFG_ID144_0 0x0
+#define GICD_ICFGR9_CFG_ID144_1 0x1
+#define GICD_ICFGR9_CFG_ID145_0 0x0
+#define GICD_ICFGR9_CFG_ID145_1 0x1
+#define GICD_ICFGR9_CFG_ID146_0 0x0
+#define GICD_ICFGR9_CFG_ID146_1 0x1
+#define GICD_ICFGR9_CFG_ID147_0 0x0
+#define GICD_ICFGR9_CFG_ID147_1 0x1
+#define GICD_ICFGR9_CFG_ID148_0 0x0
+#define GICD_ICFGR9_CFG_ID148_1 0x1
+#define GICD_ICFGR9_CFG_ID149_0 0x0
+#define GICD_ICFGR9_CFG_ID149_1 0x1
+#define GICD_ICFGR9_CFG_ID150_0 0x0
+#define GICD_ICFGR9_CFG_ID150_1 0x1
+#define GICD_ICFGR9_CFG_ID151_0 0x0
+#define GICD_ICFGR9_CFG_ID151_1 0x1
+#define GICD_ICFGR9_CFG_ID152_0 0x0
+#define GICD_ICFGR9_CFG_ID152_1 0x1
+#define GICD_ICFGR9_CFG_ID153_0 0x0
+#define GICD_ICFGR9_CFG_ID153_1 0x1
+#define GICD_ICFGR9_CFG_ID154_0 0x0
+#define GICD_ICFGR9_CFG_ID154_1 0x1
+#define GICD_ICFGR9_CFG_ID155_0 0x0
+#define GICD_ICFGR9_CFG_ID155_1 0x1
+#define GICD_ICFGR9_CFG_ID156_0 0x0
+#define GICD_ICFGR9_CFG_ID156_1 0x1
+#define GICD_ICFGR9_CFG_ID157_0 0x0
+#define GICD_ICFGR9_CFG_ID157_1 0x1
+#define GICD_ICFGR9_CFG_ID158_0 0x0
+#define GICD_ICFGR9_CFG_ID158_1 0x1
+#define GICD_ICFGR9_CFG_ID159_0 0x0
+#define GICD_ICFGR9_CFG_ID159_1 0x1
+
+/* Interrupt Configuration Register10It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id160:2;/**/
+	u32 cfg_id161:2;/**/
+	u32 cfg_id162:2;/**/
+	u32 cfg_id163:2;/**/
+	u32 cfg_id164:2;/**/
+	u32 cfg_id165:2;/**/
+	u32 cfg_id166:2;/**/
+	u32 cfg_id167:2;/**/
+	u32 cfg_id168:2;/**/
+	u32 cfg_id169:2;/**/
+	u32 cfg_id170:2;/**/
+	u32 cfg_id171:2;/**/
+	u32 cfg_id172:2;/**/
+	u32 cfg_id173:2;/**/
+	u32 cfg_id174:2;/**/
+	u32 cfg_id175:2;/**/
+	} bits;
+} reg_gicd_icfgr10_t;
+
+#define GICD_ICFGR10_CFG_ID160_0        0x0
+#define GICD_ICFGR10_CFG_ID160_1        0x1
+#define GICD_ICFGR10_CFG_ID161_0        0x0
+#define GICD_ICFGR10_CFG_ID161_1        0x1
+#define GICD_ICFGR10_CFG_ID162_0        0x0
+#define GICD_ICFGR10_CFG_ID162_1        0x1
+#define GICD_ICFGR10_CFG_ID163_0        0x0
+#define GICD_ICFGR10_CFG_ID163_1        0x1
+#define GICD_ICFGR10_CFG_ID164_0        0x0
+#define GICD_ICFGR10_CFG_ID164_1        0x1
+#define GICD_ICFGR10_CFG_ID165_0        0x0
+#define GICD_ICFGR10_CFG_ID165_1        0x1
+#define GICD_ICFGR10_CFG_ID166_0        0x0
+#define GICD_ICFGR10_CFG_ID166_1        0x1
+#define GICD_ICFGR10_CFG_ID167_0        0x0
+#define GICD_ICFGR10_CFG_ID167_1        0x1
+#define GICD_ICFGR10_CFG_ID168_0        0x0
+#define GICD_ICFGR10_CFG_ID168_1        0x1
+#define GICD_ICFGR10_CFG_ID169_0        0x0
+#define GICD_ICFGR10_CFG_ID169_1        0x1
+#define GICD_ICFGR10_CFG_ID170_0        0x0
+#define GICD_ICFGR10_CFG_ID170_1        0x1
+#define GICD_ICFGR10_CFG_ID171_0        0x0
+#define GICD_ICFGR10_CFG_ID171_1        0x1
+#define GICD_ICFGR10_CFG_ID172_0        0x0
+#define GICD_ICFGR10_CFG_ID172_1        0x1
+#define GICD_ICFGR10_CFG_ID173_0        0x0
+#define GICD_ICFGR10_CFG_ID173_1        0x1
+#define GICD_ICFGR10_CFG_ID174_0        0x0
+#define GICD_ICFGR10_CFG_ID174_1        0x1
+#define GICD_ICFGR10_CFG_ID175_0        0x0
+#define GICD_ICFGR10_CFG_ID175_1        0x1
+
+/* Interrupt Configuration Register11It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id176:2;/**/
+	u32 cfg_id177:2;/**/
+	u32 cfg_id178:2;/**/
+	u32 cfg_id179:2;/**/
+	u32 cfg_id180:2;/**/
+	u32 cfg_id181:2;/**/
+	u32 cfg_id182:2;/**/
+	u32 cfg_id183:2;/**/
+	u32 cfg_id184:2;/**/
+	u32 cfg_id185:2;/**/
+	u32 cfg_id186:2;/**/
+	u32 cfg_id187:2;/**/
+	u32 cfg_id188:2;/**/
+	u32 cfg_id189:2;/**/
+	u32 cfg_id190:2;/**/
+	u32 cfg_id191:2;/**/
+	} bits;
+} reg_gicd_icfgr11_t;
+
+#define GICD_ICFGR11_CFG_ID176_0        0x0
+#define GICD_ICFGR11_CFG_ID176_1        0x1
+#define GICD_ICFGR11_CFG_ID177_0        0x0
+#define GICD_ICFGR11_CFG_ID177_1        0x1
+#define GICD_ICFGR11_CFG_ID178_0        0x0
+#define GICD_ICFGR11_CFG_ID178_1        0x1
+#define GICD_ICFGR11_CFG_ID179_0        0x0
+#define GICD_ICFGR11_CFG_ID179_1        0x1
+#define GICD_ICFGR11_CFG_ID180_0        0x0
+#define GICD_ICFGR11_CFG_ID180_1        0x1
+#define GICD_ICFGR11_CFG_ID181_0        0x0
+#define GICD_ICFGR11_CFG_ID181_1        0x1
+#define GICD_ICFGR11_CFG_ID182_0        0x0
+#define GICD_ICFGR11_CFG_ID182_1        0x1
+#define GICD_ICFGR11_CFG_ID183_0        0x0
+#define GICD_ICFGR11_CFG_ID183_1        0x1
+#define GICD_ICFGR11_CFG_ID184_0        0x0
+#define GICD_ICFGR11_CFG_ID184_1        0x1
+#define GICD_ICFGR11_CFG_ID185_0        0x0
+#define GICD_ICFGR11_CFG_ID185_1        0x1
+#define GICD_ICFGR11_CFG_ID186_0        0x0
+#define GICD_ICFGR11_CFG_ID186_1        0x1
+#define GICD_ICFGR11_CFG_ID187_0        0x0
+#define GICD_ICFGR11_CFG_ID187_1        0x1
+#define GICD_ICFGR11_CFG_ID188_0        0x0
+#define GICD_ICFGR11_CFG_ID188_1        0x1
+#define GICD_ICFGR11_CFG_ID189_0        0x0
+#define GICD_ICFGR11_CFG_ID189_1        0x1
+#define GICD_ICFGR11_CFG_ID190_0        0x0
+#define GICD_ICFGR11_CFG_ID190_1        0x1
+#define GICD_ICFGR11_CFG_ID191_0        0x0
+#define GICD_ICFGR11_CFG_ID191_1        0x1
+
+/* Interrupt Configuration Register12It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id192:2;/**/
+	u32 cfg_id193:2;/**/
+	u32 cfg_id194:2;/**/
+	u32 cfg_id195:2;/**/
+	u32 cfg_id196:2;/**/
+	u32 cfg_id197:2;/**/
+	u32 cfg_id198:2;/**/
+	u32 cfg_id199:2;/**/
+	u32 cfg_id200:2;/**/
+	u32 cfg_id201:2;/**/
+	u32 cfg_id202:2;/**/
+	u32 cfg_id203:2;/**/
+	u32 cfg_id204:2;/**/
+	u32 cfg_id205:2;/**/
+	u32 cfg_id206:2;/**/
+	u32 cfg_id207:2;/**/
+	} bits;
+} reg_gicd_icfgr12_t;
+
+#define GICD_ICFGR12_CFG_ID192_0        0x0
+#define GICD_ICFGR12_CFG_ID192_1        0x1
+#define GICD_ICFGR12_CFG_ID193_0        0x0
+#define GICD_ICFGR12_CFG_ID193_1        0x1
+#define GICD_ICFGR12_CFG_ID194_0        0x0
+#define GICD_ICFGR12_CFG_ID194_1        0x1
+#define GICD_ICFGR12_CFG_ID195_0        0x0
+#define GICD_ICFGR12_CFG_ID195_1        0x1
+#define GICD_ICFGR12_CFG_ID196_0        0x0
+#define GICD_ICFGR12_CFG_ID196_1        0x1
+#define GICD_ICFGR12_CFG_ID197_0        0x0
+#define GICD_ICFGR12_CFG_ID197_1        0x1
+#define GICD_ICFGR12_CFG_ID198_0        0x0
+#define GICD_ICFGR12_CFG_ID198_1        0x1
+#define GICD_ICFGR12_CFG_ID199_0        0x0
+#define GICD_ICFGR12_CFG_ID199_1        0x1
+#define GICD_ICFGR12_CFG_ID200_0        0x0
+#define GICD_ICFGR12_CFG_ID200_1        0x1
+#define GICD_ICFGR12_CFG_ID201_0        0x0
+#define GICD_ICFGR12_CFG_ID201_1        0x1
+#define GICD_ICFGR12_CFG_ID202_0        0x0
+#define GICD_ICFGR12_CFG_ID202_1        0x1
+#define GICD_ICFGR12_CFG_ID203_0        0x0
+#define GICD_ICFGR12_CFG_ID203_1        0x1
+#define GICD_ICFGR12_CFG_ID204_0        0x0
+#define GICD_ICFGR12_CFG_ID204_1        0x1
+#define GICD_ICFGR12_CFG_ID205_0        0x0
+#define GICD_ICFGR12_CFG_ID205_1        0x1
+#define GICD_ICFGR12_CFG_ID206_0        0x0
+#define GICD_ICFGR12_CFG_ID206_1        0x1
+#define GICD_ICFGR12_CFG_ID207_0        0x0
+#define GICD_ICFGR12_CFG_ID207_1        0x1
+
+/* Interrupt Configuration Register13It provides a 2-bit Int_config field for each interrupt. */
+typedef union {
+	u32 val;
+	struct {
+	u32 cfg_id208:2;/**/
+	u32 cfg_id209:2;/**/
+	u32 cfg_id210:2;/**/
+	u32 cfg_id211:2;/**/
+	u32 cfg_id212:2;/**/
+	u32 cfg_id213:2;/**/
+	u32 cfg_id214:2;/**/
+	u32 cfg_id215:2;/**/
+	u32 cfg_id216:2;/**/
+	u32 cfg_id217:2;/**/
+	u32 cfg_id218:2;/**/
+	u32 cfg_id219:2;/**/
+	u32 cfg_id220:2;/**/
+	u32 cfg_id221:2;/**/
+	u32 cfg_id222:2;/**/
+	u32 cfg_id223:2;/**/
+	} bits;
+} reg_gicd_icfgr13_t;
+
+#define GICD_ICFGR13_CFG_ID208_0        0x0
+#define GICD_ICFGR13_CFG_ID208_1        0x1
+#define GICD_ICFGR13_CFG_ID209_0        0x0
+#define GICD_ICFGR13_CFG_ID209_1        0x1
+#define GICD_ICFGR13_CFG_ID210_0        0x0
+#define GICD_ICFGR13_CFG_ID210_1        0x1
+#define GICD_ICFGR13_CFG_ID211_0        0x0
+#define GICD_ICFGR13_CFG_ID211_1        0x1
+#define GICD_ICFGR13_CFG_ID212_0        0x0
+#define GICD_ICFGR13_CFG_ID212_1        0x1
+#define GICD_ICFGR13_CFG_ID213_0        0x0
+#define GICD_ICFGR13_CFG_ID213_1        0x1
+#define GICD_ICFGR13_CFG_ID214_0        0x0
+#define GICD_ICFGR13_CFG_ID214_1        0x1
+#define GICD_ICFGR13_CFG_ID215_0        0x0
+#define GICD_ICFGR13_CFG_ID215_1        0x1
+#define GICD_ICFGR13_CFG_ID216_0        0x0
+#define GICD_ICFGR13_CFG_ID216_1        0x1
+#define GICD_ICFGR13_CFG_ID217_0        0x0
+#define GICD_ICFGR13_CFG_ID217_1        0x1
+#define GICD_ICFGR13_CFG_ID218_0        0x0
+#define GICD_ICFGR13_CFG_ID218_1        0x1
+#define GICD_ICFGR13_CFG_ID219_0        0x0
+#define GICD_ICFGR13_CFG_ID219_1        0x1
+#define GICD_ICFGR13_CFG_ID220_0        0x0
+#define GICD_ICFGR13_CFG_ID220_1        0x1
+#define GICD_ICFGR13_CFG_ID221_0        0x0
+#define GICD_ICFGR13_CFG_ID221_1        0x1
+#define GICD_ICFGR13_CFG_ID222_0        0x0
+#define GICD_ICFGR13_CFG_ID222_1        0x1
+#define GICD_ICFGR13_CFG_ID223_0        0x0
+#define GICD_ICFGR13_CFG_ID223_1        0x1
+
+/* Software Generated Interrupt RegisterIt controls the generation of SGIs. */
+typedef union {
+	u32 val;
+	struct {
+	u32 sgiintid:4;         /**/
+	u32 rsvd0:11;           /**/
+	u32 nsatt:1;            /**/
+	u32 cputargetlist:8;    /**/
+	u32 targetlistfilter:2; /**/
+	u32 rsvd1:6;            /**/
+	} bits;
+} reg_gicd_sgir_t;
+
+#define GICD_SGIR_NSATT_0               0x0
+#define GICD_SGIR_NSATT_1               0x1
+#define GICD_SGIR_CPUTARGETLIST_0       0x0
+#define GICD_SGIR_CPUTARGETLIST_1       0x1
+
+/* SGI Clear-Pending Register0It provides a clear-pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id0:8;     /**/
+	u32 clr_pend_id1:8;     /**/
+	u32 clr_pend_id2:8;     /**/
+	u32 clr_pend_id3:8;     /**/
+	} bits;
+} reg_gicd_cpendsgir0_t;
+
+#define GICD_CPENDSGIR0_CLR_PEND_ID0_1  0x1
+#define GICD_CPENDSGIR0_CLR_PEND_ID1_0  0x0
+#define GICD_CPENDSGIR0_CLR_PEND_ID1_1  0x1
+#define GICD_CPENDSGIR0_CLR_PEND_ID2_0  0x0
+#define GICD_CPENDSGIR0_CLR_PEND_ID2_1  0x1
+#define GICD_CPENDSGIR0_CLR_PEND_ID3_0  0x0
+#define GICD_CPENDSGIR0_CLR_PEND_ID3_1  0x1
+
+/* SGI Clear-Pending Register1It provides a clear-pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id4:8;     /**/
+	u32 clr_pend_id5:8;     /**/
+	u32 clr_pend_id6:8;     /**/
+	u32 clr_pend_id7:8;     /**/
+	} bits;
+} reg_gicd_cpendsgir1_t;
+
+#define GICD_CPENDSGIR1_CLR_PEND_ID4_0  0x0
+#define GICD_CPENDSGIR1_CLR_PEND_ID4_1  0x1
+#define GICD_CPENDSGIR1_CLR_PEND_ID5_0  0x0
+#define GICD_CPENDSGIR1_CLR_PEND_ID5_1  0x1
+#define GICD_CPENDSGIR1_CLR_PEND_ID6_0  0x0
+#define GICD_CPENDSGIR1_CLR_PEND_ID6_1  0x1
+#define GICD_CPENDSGIR1_CLR_PEND_ID7_0  0x0
+#define GICD_CPENDSGIR1_CLR_PEND_ID7_1  0x1
+
+/* SGI Clear-Pending Register2It provides a clear-pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id8:8;     /**/
+	u32 clr_pend_id9:8;     /**/
+	u32 clr_pend_id10:8;    /**/
+	u32 clr_pend_id11:8;    /**/
+	} bits;
+} reg_gicd_cpendsgir2_t;
+
+#define GICD_CPENDSGIR2_CLR_PEND_ID8_0  0x0
+#define GICD_CPENDSGIR2_CLR_PEND_ID8_1  0x1
+#define GICD_CPENDSGIR2_CLR_PEND_ID9_0  0x0
+#define GICD_CPENDSGIR2_CLR_PEND_ID9_1  0x1
+#define GICD_CPENDSGIR2_CLR_PEND_ID10_0 0x0
+#define GICD_CPENDSGIR2_CLR_PEND_ID10_1 0x1
+#define GICD_CPENDSGIR2_CLR_PEND_ID11_0 0x0
+#define GICD_CPENDSGIR2_CLR_PEND_ID11_1 0x1
+
+/* SGI Clear-Pending Register3It provides a clear-Pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 clr_pend_id12:8;    /**/
+	u32 clr_pend_id13:8;    /**/
+	u32 clr_pend_id14:8;    /**/
+	u32 clr_pend_id15:8;    /**/
+	} bits;
+} reg_gicd_cpendsgir3_t;
+
+#define GICD_CPENDSGIR3_CLR_PEND_ID12_0 0x0
+#define GICD_CPENDSGIR3_CLR_PEND_ID12_1 0x1
+#define GICD_CPENDSGIR3_CLR_PEND_ID13_0 0x0
+#define GICD_CPENDSGIR3_CLR_PEND_ID13_1 0x1
+#define GICD_CPENDSGIR3_CLR_PEND_ID14_0 0x0
+#define GICD_CPENDSGIR3_CLR_PEND_ID14_1 0x1
+#define GICD_CPENDSGIR3_CLR_PEND_ID15_0 0x0
+#define GICD_CPENDSGIR3_CLR_PEND_ID15_1 0x1
+
+/* SGI Set-Pending Register0It provides a Set-Pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id0:8;     /**/
+	u32 set_pend_id1:8;     /**/
+	u32 set_pend_id2:8;     /**/
+	u32 set_pend_id3:8;     /**/
+	} bits;
+} reg_gicd_spendsgir0_t;
+
+#define GICD_SPENDSGIR0_SET_PEND_ID0_0  0x0
+#define GICD_SPENDSGIR0_SET_PEND_ID0_1  0x1
+#define GICD_SPENDSGIR0_SET_PEND_ID1_0  0x0
+#define GICD_SPENDSGIR0_SET_PEND_ID1_1  0x1
+#define GICD_SPENDSGIR0_SET_PEND_ID2_0  0x0
+#define GICD_SPENDSGIR0_SET_PEND_ID2_1  0x1
+#define GICD_SPENDSGIR0_SET_PEND_ID3_0  0x0
+#define GICD_SPENDSGIR0_SET_PEND_ID3_1  0x1
+
+/* SGI Set-Pending Register1It provides a Set-Pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id4:8;     /**/
+	u32 set_pend_id5:8;     /**/
+	u32 set_pend_id6:8;     /**/
+	u32 set_pend_id7:8;     /**/
+	} bits;
+} reg_gicd_spendsgir1_t;
+
+#define GICD_SPENDSGIR1_SET_PEND_ID4_0  0x0
+#define GICD_SPENDSGIR1_SET_PEND_ID4_1  0x1
+#define GICD_SPENDSGIR1_SET_PEND_ID5_0  0x0
+#define GICD_SPENDSGIR1_SET_PEND_ID5_1  0x1
+#define GICD_SPENDSGIR1_SET_PEND_ID6_0  0x0
+#define GICD_SPENDSGIR1_SET_PEND_ID6_1  0x1
+#define GICD_SPENDSGIR1_SET_PEND_ID7_0  0x0
+#define GICD_SPENDSGIR1_SET_PEND_ID7_1  0x1
+
+/* SGI Set-Pending Register2It provides a Set-Pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id8:8;     /**/
+	u32 set_pend_id9:8;     /**/
+	u32 set_pend_id10:8;    /**/
+	u32 set_pend_id11:8;    /**/
+	} bits;
+} reg_gicd_spendsgir2_t;
+
+#define GICD_SPENDSGIR2_SET_PEND_ID8_0  0x0
+#define GICD_SPENDSGIR2_SET_PEND_ID8_1  0x1
+#define GICD_SPENDSGIR2_SET_PEND_ID9_0  0x0
+#define GICD_SPENDSGIR2_SET_PEND_ID9_1  0x1
+#define GICD_SPENDSGIR2_SET_PEND_ID10_0 0x0
+#define GICD_SPENDSGIR2_SET_PEND_ID10_1 0x1
+#define GICD_SPENDSGIR2_SET_PEND_ID11_0 0x0
+#define GICD_SPENDSGIR2_SET_PEND_ID11_1 0x1
+
+/* SGI Set-Pending Register3It provides a Set-Pending bit for each supported SGI and source processor combination. */
+typedef union {
+	u32 val;
+	struct {
+	u32 set_pend_id12:8;    /**/
+	u32 set_pend_id13:8;    /**/
+	u32 set_pend_id14:8;    /**/
+	u32 set_pend_id15:8;    /**/
+	} bits;
+} reg_gicd_spendsgir3_t;
+
+#define GICD_SPENDSGIR3_SET_PEND_ID12_0 0x0
+#define GICD_SPENDSGIR3_SET_PEND_ID12_1 0x1
+#define GICD_SPENDSGIR3_SET_PEND_ID13_0 0x0
+#define GICD_SPENDSGIR3_SET_PEND_ID13_1 0x1
+#define GICD_SPENDSGIR3_SET_PEND_ID14_0 0x0
+#define GICD_SPENDSGIR3_SET_PEND_ID14_1 0x1
+#define GICD_SPENDSGIR3_SET_PEND_ID15_0 0x0
+#define GICD_SPENDSGIR3_SET_PEND_ID15_1 0x1
+
+/* reg_gicd_t bank */
+typedef struct tag_gicd {
+	reg_gicd_ctlr_t            ctlr;           /* 0000 */
+	reg_gicd_typer_t           typer;          /* 0004 */
+	reg_gicd_iidr_t            iidr;           /* 0008 */
+	u32                        res0[29];
+	reg_gicd_igroupr0_t        igroupr0;       /* 0080 */
+	reg_gicd_igroupr1_t        igroupr1;       /* 0084 */
+	reg_gicd_igroupr2_t        igroupr2;       /* 0088 */
+	reg_gicd_igroupr3_t        igroupr3;       /* 008C */
+	reg_gicd_igroupr4_t        igroupr4;       /* 0090 */
+	reg_gicd_igroupr5_t        igroupr5;       /* 0094 */
+	reg_gicd_igroupr6_t        igroupr6;       /* 0098 */
+	u32                        res1[25];
+	reg_gicd_isenabler0_t      isenabler0;     /* 0100 */
+	reg_gicd_isenabler1_t      isenabler1;     /* 0104 */
+	reg_gicd_isenabler2_t      isenabler2;     /* 0108 */
+	reg_gicd_isenabler3_t      isenabler3;     /* 010C */
+	reg_gicd_isenabler4_t      isenabler4;     /* 0110 */
+	reg_gicd_isenabler5_t      isenabler5;     /* 0114 */
+	reg_gicd_isenabler6_t      isenabler6;     /* 0118 */
+	u32                        res2[25];
+	reg_gicd_icenabler0_t      icenabler0;     /* 0180 */
+	reg_gicd_icenabler1_t      icenabler1;     /* 0184 */
+	reg_gicd_icenabler2_t      icenabler2;     /* 0188 */
+	reg_gicd_icenabler3_t      icenabler3;     /* 018C */
+	reg_gicd_icenabler4_t      icenabler4;     /* 0190 */
+	reg_gicd_icenabler5_t      icenabler5;     /* 0194 */
+	reg_gicd_icenabler6_t      icenabler6;     /* 0198 */
+	u32                        res3[25];
+	reg_gicd_ispendr0_t        ispendr0;       /* 0200 */
+	reg_gicd_ispendr1_t        ispendr1;       /* 0204 */
+	reg_gicd_ispendr2_t        ispendr2;       /* 0208 */
+	reg_gicd_ispendr3_t        ispendr3;       /* 020C */
+	reg_gicd_ispendr4_t        ispendr4;       /* 0210 */
+	reg_gicd_ispendr5_t        ispendr5;       /* 0214 */
+	reg_gicd_ispendr6_t        ispendr6;       /* 0218 */
+	u32                        res4[25];
+	reg_gicd_icpendr0_t        icpendr0;       /* 0280 */
+	reg_gicd_icpendr1_t        icpendr1;       /* 0284 */
+	reg_gicd_icpendr2_t        icpendr2;       /* 0288 */
+	reg_gicd_icpendr3_t        icpendr3;       /* 028C */
+	reg_gicd_icpendr4_t        icpendr4;       /* 0290 */
+	reg_gicd_icpendr5_t        icpendr5;       /* 0294 */
+	reg_gicd_icpendr6_t        icpendr6;       /* 0298 */
+	u32                        res5[25];
+	reg_gicd_isactiver0_t      isactiver0;     /* 0300 */
+	reg_gicd_isactiver1_t      isactiver1;     /* 0304 */
+	reg_gicd_isactiver2_t      isactiver2;     /* 0308 */
+	reg_gicd_isactiver3_t      isactiver3;     /* 030C */
+	reg_gicd_isactiver4_t      isactiver4;     /* 0310 */
+	reg_gicd_isactiver5_t      isactiver5;     /* 0314 */
+	reg_gicd_isactiver6_t      isactiver6;     /* 0318 */
+	u32                        res6[25];
+	reg_gicd_icactiver0_t      icactiver0;     /* 0380 */
+	reg_gicd_icactiver1_t      icactiver1;     /* 0384 */
+	reg_gicd_icactiver2_t      icactiver2;     /* 0388 */
+	reg_gicd_icactiver3_t      icactiver3;     /* 038C */
+	reg_gicd_icactiver4_t      icactiver4;     /* 0390 */
+	reg_gicd_icactiver5_t      icactiver5;     /* 0394 */
+	reg_gicd_icactiver6_t      icactiver6;     /* 0398 */
+	u32                        res7[25];
+	reg_gicd_ipriorityr0_t     ipriorityr0;    /* 0400 */
+	reg_gicd_ipriorityr1_t     ipriorityr1;    /* 0404 */
+	reg_gicd_ipriorityr2_t     ipriorityr2;    /* 0408 */
+	reg_gicd_ipriorityr3_t     ipriorityr3;    /* 040C */
+	reg_gicd_ipriorityr4_t     ipriorityr4;    /* 0410 */
+	reg_gicd_ipriorityr5_t     ipriorityr5;    /* 0414 */
+	reg_gicd_ipriorityr6_t     ipriorityr6;    /* 0418 */
+	reg_gicd_ipriorityr7_t     ipriorityr7;    /* 041C */
+	reg_gicd_ipriorityr8_t     ipriorityr8;    /* 0420 */
+	reg_gicd_ipriorityr9_t     ipriorityr9;    /* 0424 */
+	reg_gicd_ipriorityr10_t    ipriorityr10;   /* 0428 */
+	reg_gicd_ipriorityr11_t    ipriorityr11;   /* 042C */
+	reg_gicd_ipriorityr12_t    ipriorityr12;   /* 0430 */
+	reg_gicd_ipriorityr13_t    ipriorityr13;   /* 0434 */
+	reg_gicd_ipriorityr14_t    ipriorityr14;   /* 0438 */
+	reg_gicd_ipriorityr15_t    ipriorityr15;   /* 043C */
+	reg_gicd_ipriorityr16_t    ipriorityr16;   /* 0440 */
+	reg_gicd_ipriorityr17_t    ipriorityr17;   /* 0444 */
+	reg_gicd_ipriorityr18_t    ipriorityr18;   /* 0448 */
+	reg_gicd_ipriorityr19_t    ipriorityr19;   /* 044C */
+	reg_gicd_ipriorityr20_t    ipriorityr20;   /* 0450 */
+	reg_gicd_ipriorityr21_t    ipriorityr21;   /* 0454 */
+	reg_gicd_ipriorityr22_t    ipriorityr22;   /* 0458 */
+	reg_gicd_ipriorityr23_t    ipriorityr23;   /* 045C */
+	reg_gicd_ipriorityr24_t    ipriorityr24;   /* 0460 */
+	reg_gicd_ipriorityr25_t    ipriorityr25;   /* 0464 */
+	reg_gicd_ipriorityr26_t    ipriorityr26;   /* 0468 */
+	reg_gicd_ipriorityr27_t    ipriorityr27;   /* 046C */
+	reg_gicd_ipriorityr28_t    ipriorityr28;   /* 0470 */
+	reg_gicd_ipriorityr29_t    ipriorityr29;   /* 0474 */
+	reg_gicd_ipriorityr30_t    ipriorityr30;   /* 0478 */
+	reg_gicd_ipriorityr31_t    ipriorityr31;   /* 047C */
+	reg_gicd_ipriorityr32_t    ipriorityr32;   /* 0480 */
+	reg_gicd_ipriorityr33_t    ipriorityr33;   /* 0484 */
+	reg_gicd_ipriorityr34_t    ipriorityr34;   /* 0488 */
+	reg_gicd_ipriorityr35_t    ipriorityr35;   /* 048C */
+	reg_gicd_ipriorityr36_t    ipriorityr36;   /* 0490 */
+	reg_gicd_ipriorityr37_t    ipriorityr37;   /* 0494 */
+	reg_gicd_ipriorityr38_t    ipriorityr38;   /* 0498 */
+	reg_gicd_ipriorityr39_t    ipriorityr39;   /* 049C */
+	reg_gicd_ipriorityr40_t    ipriorityr40;   /* 04A0 */
+	reg_gicd_ipriorityr41_t    ipriorityr41;   /* 04A4 */
+	reg_gicd_ipriorityr42_t    ipriorityr42;   /* 04A8 */
+	reg_gicd_ipriorityr43_t    ipriorityr43;   /* 04AC */
+	reg_gicd_ipriorityr44_t    ipriorityr44;   /* 04B0 */
+	reg_gicd_ipriorityr45_t    ipriorityr45;   /* 04B4 */
+	reg_gicd_ipriorityr46_t    ipriorityr46;   /* 04B8 */
+	reg_gicd_ipriorityr47_t    ipriorityr47;   /* 04BC */
+	reg_gicd_ipriorityr48_t    ipriorityr48;   /* 04C0 */
+	reg_gicd_ipriorityr49_t    ipriorityr49;   /* 04C4 */
+	reg_gicd_ipriorityr50_t    ipriorityr50;   /* 04C8 */
+	reg_gicd_ipriorityr51_t    ipriorityr51;   /* 04CC */
+	reg_gicd_ipriorityr52_t    ipriorityr52;   /* 04D0 */
+	reg_gicd_ipriorityr53_t    ipriorityr53;   /* 04D4 */
+	reg_gicd_ipriorityr54_t    ipriorityr54;   /* 04D8 */
+	reg_gicd_ipriorityr55_t    ipriorityr55;   /* 04DC */
+	u32                        res8[200];
+	reg_gicd_itargetsr0_t      itargetsr0;     /* 0800 */
+	reg_gicd_itargetsr1_t      itargetsr1;     /* 0804 */
+	reg_gicd_itargetsr2_t      itargetsr2;     /* 0808 */
+	reg_gicd_itargetsr3_t      itargetsr3;     /* 080C */
+	reg_gicd_itargetsr4_t      itargetsr4;     /* 0810 */
+	reg_gicd_itargetsr5_t      itargetsr5;     /* 0814 */
+	reg_gicd_itargetsr6_t      itargetsr6;     /* 0818 */
+	reg_gicd_itargetsr7_t      itargetsr7;     /* 081C */
+	reg_gicd_itargetsr8_t      itargetsr8;     /* 0820 */
+	reg_gicd_itargetsr9_t      itargetsr9;     /* 0824 */
+	reg_gicd_itargetsr10_t     itargetsr10;    /* 0828 */
+	reg_gicd_itargetsr11_t     itargetsr11;    /* 082C */
+	reg_gicd_itargetsr12_t     itargetsr12;    /* 0830 */
+	reg_gicd_itargetsr13_t     itargetsr13;    /* 0834 */
+	reg_gicd_itargetsr14_t     itargetsr14;    /* 0838 */
+	reg_gicd_itargetsr15_t     itargetsr15;    /* 083C */
+	reg_gicd_itargetsr16_t     itargetsr16;    /* 0840 */
+	reg_gicd_itargetsr17_t     itargetsr17;    /* 0844 */
+	reg_gicd_itargetsr18_t     itargetsr18;    /* 0848 */
+	reg_gicd_itargetsr19_t     itargetsr19;    /* 084C */
+	reg_gicd_itargetsr20_t     itargetsr20;    /* 0850 */
+	reg_gicd_itargetsr21_t     itargetsr21;    /* 0854 */
+	reg_gicd_itargetsr22_t     itargetsr22;    /* 0858 */
+	reg_gicd_itargetsr23_t     itargetsr23;    /* 085C */
+	reg_gicd_itargetsr24_t     itargetsr24;    /* 0860 */
+	reg_gicd_itargetsr25_t     itargetsr25;    /* 0864 */
+	reg_gicd_itargetsr26_t     itargetsr26;    /* 0868 */
+	reg_gicd_itargetsr27_t     itargetsr27;    /* 086C */
+	reg_gicd_itargetsr28_t     itargetsr28;    /* 0870 */
+	reg_gicd_itargetsr29_t     itargetsr29;    /* 0874 */
+	reg_gicd_itargetsr30_t     itargetsr30;    /* 0878 */
+	reg_gicd_itargetsr31_t     itargetsr31;    /* 087C */
+	reg_gicd_itargetsr32_t     itargetsr32;    /* 0880 */
+	reg_gicd_itargetsr33_t     itargetsr33;    /* 0884 */
+	reg_gicd_itargetsr34_t     itargetsr34;    /* 0888 */
+	reg_gicd_itargetsr35_t     itargetsr35;    /* 088C */
+	reg_gicd_itargetsr36_t     itargetsr36;    /* 0890 */
+	reg_gicd_itargetsr37_t     itargetsr37;    /* 0894 */
+	reg_gicd_itargetsr38_t     itargetsr38;    /* 0898 */
+	reg_gicd_itargetsr39_t     itargetsr39;    /* 089C */
+	reg_gicd_itargetsr40_t     itargetsr40;    /* 08A0 */
+	reg_gicd_itargetsr41_t     itargetsr41;    /* 08A4 */
+	reg_gicd_itargetsr42_t     itargetsr42;    /* 08A8 */
+	reg_gicd_itargetsr43_t     itargetsr43;    /* 08AC */
+	reg_gicd_itargetsr44_t     itargetsr44;    /* 08B0 */
+	reg_gicd_itargetsr45_t     itargetsr45;    /* 08B4 */
+	reg_gicd_itargetsr46_t     itargetsr46;    /* 08B8 */
+	reg_gicd_itargetsr47_t     itargetsr47;    /* 08BC */
+	reg_gicd_itargetsr48_t     itargetsr48;    /* 08C0 */
+	reg_gicd_itargetsr49_t     itargetsr49;    /* 08C4 */
+	reg_gicd_itargetsr50_t     itargetsr50;    /* 08C8 */
+	reg_gicd_itargetsr51_t     itargetsr51;    /* 08CC */
+	reg_gicd_itargetsr52_t     itargetsr52;    /* 08D0 */
+	reg_gicd_itargetsr53_t     itargetsr53;    /* 08D4 */
+	reg_gicd_itargetsr54_t     itargetsr54;    /* 08D8 */
+	reg_gicd_itargetsr55_t     itargetsr55;    /* 08DC */
+	u32                        res9[200];
+	reg_gicd_icfgr0_t          icfgr0;         /* 0C00 */
+	reg_gicd_icfgr1_t          icfgr1;         /* 0C04 */
+	reg_gicd_icfgr2_t          icfgr2;         /* 0C08 */
+	reg_gicd_icfgr3_t          icfgr3;         /* 0C0C */
+	reg_gicd_icfgr4_t          icfgr4;         /* 0C10 */
+	reg_gicd_icfgr5_t          icfgr5;         /* 0C14 */
+	reg_gicd_icfgr6_t          icfgr6;         /* 0C18 */
+	reg_gicd_icfgr7_t          icfgr7;         /* 0C1C */
+	reg_gicd_icfgr8_t          icfgr8;         /* 0C20 */
+	reg_gicd_icfgr9_t          icfgr9;         /* 0C24 */
+	reg_gicd_icfgr10_t         icfgr10;        /* 0C28 */
+	reg_gicd_icfgr11_t         icfgr11;        /* 0C2C */
+	reg_gicd_icfgr12_t         icfgr12;        /* 0C30 */
+	reg_gicd_icfgr13_t         icfgr13;        /* 0C34 */
+	u32                        res10[178];
+	reg_gicd_sgir_t            sgir;           /* 0F00 */
+	u32                        res11[3];
+	reg_gicd_cpendsgir0_t      cpendsgir0;     /* 0F10 */
+	reg_gicd_cpendsgir1_t      cpendsgir1;     /* 0F14 */
+	reg_gicd_cpendsgir2_t      cpendsgir2;     /* 0F18 */
+	reg_gicd_cpendsgir3_t      cpendsgir3;     /* 0F1C */
+	reg_gicd_spendsgir0_t      spendsgir0;     /* 0F20 */
+	reg_gicd_spendsgir1_t      spendsgir1;     /* 0F24 */
+	reg_gicd_spendsgir2_t      spendsgir2;     /* 0F28 */
+	reg_gicd_spendsgir3_t      spendsgir3;     /* 0F2C */
+} reg_gicd_t;
+
+#endif /* ___GICD___H___ */

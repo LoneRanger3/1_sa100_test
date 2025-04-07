@@ -1,0 +1,336 @@
+menuconfig LOMBO_TEST
+    bool "lombo test module"
+    depends on ARCH_LOMBO
+    default n
+
+if LOMBO_TEST
+
+config LOMBO_TEST_MEMORY
+    bool "test memory management functions"
+    default n
+    help
+        Test memory management functions, such as rt_malloc, rt_mp_alloc, etc.
+
+config LOMBO_TEST_CACHE
+    bool "test cache operations"
+    default n
+
+config LOMBO_TEST_DMA
+    bool "test dma operations"
+    default n
+    help
+        Test sg and cyclic mem to mem transfer.
+
+config LOMBO_TEST_CLK
+    bool "test clock functions"
+    depends on LOMBO_TEST
+    default n
+    help
+        Test clk functions, such as clk_get, clk_get_rate, clk_get_parent etc.
+
+config LOMBO_TEST_GPIO
+    bool "test gpio functions"
+    depends on LOMBO_TEST
+    default n
+    help
+        Test pinctrl module.
+
+config LOMBO_TEST_UART
+    bool "test UART functions"
+    depends on LOMBO_TEST
+    default n
+    help
+        Test uart module.
+
+config LOMBO_TEST_PWM
+    bool "test PWM functions"
+    depends on (LOMBO_TEST && RT_USING_PWM)
+    default n
+    help
+        Test pwm module.
+
+config LOMBO_TEST_MEMCTRL
+    bool "test memctrl functions"
+    depends on (LOMBO_TEST && RT_USING_MEMCTRL)
+    default n
+    help
+        Test memctrl module.
+
+config LOMBO_TEST_SDC
+    bool "test sdc driver functions"
+    depends on (LOMBO_TEST && LOMBO_SDC)
+    default n
+
+config LOMBO_TEST_SPI_NOR
+    bool "test spi nor driver functions"
+    depends on (LOMBO_TEST && (LOMBO_SPI_NOR || RT_USING_SFUD))
+    default n
+
+config LOMBO_TEST_CFG
+    bool "test system config driver functions"
+    depends on (LOMBO_TEST)
+    default n
+
+config LOMBO_TEST_PM
+    bool "test power management functions"
+    depends on (LOMBO_TEST && RT_USING_PM)
+    default n
+
+config LOMBO_TEST_KEYBOARD
+    bool "keyboard driver test cases"
+    depends on (LOMBO_TEST && LOMBO_KEYBOARD)
+    default y
+
+config LOMBO_TEST_TOUCH_SCREEN
+    bool "touch screen driver test cases"
+    depends on (LOMBO_TEST && LOMBO_TOUCH_SCREEN)
+    default y
+
+config LOMBO_TEST_INPUT
+    bool "input subsystem driver test cases"
+    depends on (LOMBO_TEST)
+    default y
+
+config LOMBO_TEST_GSENSOR
+    bool "gsensor driver test cases"
+    depends on (LOMBO_TEST && LOMBO_GSENSOR)
+    default y
+
+config LOMBO_TEST_GPS
+    bool "gps driver test cases"
+    depends on (LOMBO_TEST && LOMBO_GPS)
+    default y
+
+config LOMBO_TEST_RTC
+    bool "test rtc driver functions"
+    depends on (LOMBO_TEST && RT_USING_RTC)
+    default n
+
+config LOMBO_TEST_VISS
+    bool "test viss driver functions"
+    depends on (LOMBO_TEST && RT_USING_VISS)
+    default n
+
+config LOMBO_TEST_SYS
+    bool "test eos base operations, such as sem, event, posix.."
+    depends on LOMBO_TEST
+    default n
+
+config LOMBO_TEST_PTHREAD
+    bool "test pthread functions"
+    depends on LOMBO_TEST
+    default n
+
+config LOMBO_TEST_PTHREAD_MUTEX
+    bool "test pthread_mutex_ functions"
+    depends on LOMBO_TEST
+    default n
+
+config LOMBO_TEST_SPINLOCK
+    bool "test spinlock functions"
+    depends on LOMBO_TEST
+    default n
+
+config LOMBO_TEST_VFP
+    bool "test eos vfp operations"
+    depends on (LOMBO_TEST && RT_USING_VFP)
+    default n
+
+config LOMBO_TEST_NEON
+    bool "test eos neon operations"
+    depends on (LOMBO_TEST && RT_USING_VFP)
+    default n
+
+config LOMBO_TEST_AUDIO
+    bool "audio driver test cases"
+    depends on (LOMBO_TEST && LOMBO_AUDIO)
+    default n
+
+config LOMBO_TEST_ISP
+    bool "test isp driver functions"
+	depends on (LOMBO_TEST && RT_USING_ISP)
+	default n
+
+config LOMBO_TEST_CPU
+    bool "test cpu hotpulg"
+    depends on (LOMBO_TEST && HOTPLUG_CPU)
+    default n
+
+if RT_USING_WDT
+    config LOMBO_TEST_WDOG
+        bool
+        prompt "test watchdog functions"
+        default n
+endif
+
+config LOMBO_TEST_BINDTIMER
+    bool "test cpu-binded timer function"
+    depends on (LOMBO_TEST && RT_USING_BIND_TIMER)
+    default n
+
+config LOMBO_TEST_DEADLOCK_MONITOR
+    bool "test deadlock monitor feature"
+    depends on (LOMBO_TEST && RT_USING_DEADLOCK_MONITOR)
+    default n
+
+config LOMBO_TEST_I2C
+    bool "i2c driver test cases"
+    depends on (LOMBO_TEST && LOMBO_I2C && LOMBO_I2C_BY24C)
+    default n
+
+config LOMBO_TEST_DISP
+    bool "test disp driver functions"
+	depends on (LOMBO_TEST && LOMBO_DISP)
+	default n
+
+config LOMBO_TEST_OSAL_MEM
+    bool "test osal_mem functions"
+	depends on (LOMBO_TEST)
+	default y
+
+config LOMBO_TEST_CPUFREQ
+    bool "test cpufreq"
+    depends on (LOMBO_TEST && LOMBO_CPUFREQ)
+    default n
+
+endif # LOMBO_TEST
+
+config DEBUG_LIST
+    bool "debug list module"
+    default y
+
+config LOMBO_DMA
+	bool "lombo DMA module"
+	depends on (ARCH_LOMBO && ARCH_LOMBO_N7)
+	default n
+
+config LOMBO_AUDIO
+	bool "lombo audio module"
+	depends on (ARCH_LOMBO)
+	default n
+
+config LOMBO_GPADC
+	bool "lombo GPADC module"
+	depends on (ARCH_LOMBO)
+	default y
+
+config LOMBO_POWER
+	bool "lombo power module"
+	depends on (ARCH_LOMBO && LOMBO_GPADC)
+	default y
+
+config LOMBO_ACC_SIO5
+	bool "lombo acc sio5 module"
+	default n
+
+config LOMBO_KEYBOARD
+	bool "lombo keyboard module"
+	depends on (ARCH_LOMBO && LOMBO_GPADC)
+	default n
+
+config LOMBO_TOUCH_SCREEN
+	bool "lombo touch screen module"
+	depends on (ARCH_LOMBO)
+	default n
+
+config LOMBO_TOUCH_SCREEN_GT913
+	bool "lombo touch screen GOODIX module"
+	depends on (ARCH_LOMBO && LOMBO_TOUCH_SCREEN)
+	default n
+
+config LOMBO_TOUCH_SCREEN_GSLX680
+	bool "lombo touch screen silead module"
+	depends on (ARCH_LOMBO && LOMBO_TOUCH_SCREEN)
+	default n
+
+config LOMBO_TOUCH_SCREEN_FOCALTECH
+	bool "lombo touch screen focaltech module"
+	depends on (ARCH_LOMBO && LOMBO_TOUCH_SCREEN)
+	default n
+
+config LOMBO_TOUCH_SCREEN_EGALAX_EXC3111
+	bool "lombo touch screen egalax module"
+	depends on (ARCH_LOMBO && LOMBO_TOUCH_SCREEN)
+	default n
+
+config LOMBO_GSENSOR
+	bool "lombo gsensor module"
+	depends on (ARCH_LOMBO)
+	default n
+
+config LOMBO_IR
+	bool "lombo ir module"
+	depends on (ARCH_LOMBO)
+	default n
+
+menuconfig LOMBO_GPS
+    bool "lombo GPS module"
+    depends on (ARCH_LOMBO)
+    default n
+
+    if LOMBO_GPS
+        config LOMBO_GPS_Q8
+            bool "using Q8 GPS module"
+            default n
+
+        config LOMBO_GPS_ST658G
+            bool "using ST658G-G11 GPS module"
+            default n
+
+    endif
+
+config RT_USING_ALARM
+	bool "using RTC alarm"
+	depends on (ARCH_LOMBO && RT_USING_RTC)
+	default y
+
+config RT_USING_DUMP
+	bool "lombo dump reg driver"
+	depends on (ARCH_LOMBO)
+	default n
+
+config LOMBO_CPUFREQ
+	bool "lombo cpufreq module"
+	default n
+
+if LOMBO_CPUFREQ
+	source "$BSP_DIR/drivers/cpufreq/Kconfig"
+endif
+
+config LOMBO_THERMAL
+	bool "lombo thermal module"
+	default n
+
+if LOMBO_THERMAL
+	source "$BSP_DIR/drivers/thermal/Kconfig"
+endif
+
+config LOMBO_SAVE_LOG
+	bool "lombo save log to sdcard"
+	depends on (ARCH_LOMBO)
+	default n
+
+menuconfig LOMBO_DISP
+	bool "lombo DISP module"
+	depends on ARCH_LOMBO
+	default y
+
+if LOMBO_DISP
+	source "$BSP_DIR/drivers/disp/Kconfig"
+endif
+
+menuconfig LOMBO_GPIO
+	bool "lombo gpio(pinctrl) module"
+	depends on ARCH_LOMBO
+	default y
+
+source "$BSP_DIR/drivers/usb/Kconfig"
+
+menuconfig LOMBO_WIFI_MODULE
+	bool "lombo wifi module"
+	depends on (ARCH_LOMBO && RT_USING_WIFI && RT_USING_LWIP)
+	default y
+
+if LOMBO_WIFI_MODULE
+	source "$BSP_DIR/drivers/net/Kconfig"
+endif

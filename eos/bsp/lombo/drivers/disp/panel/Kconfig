@@ -1,0 +1,44 @@
+config LOMBO_DISP_PANEL
+	bool "lombo disp panel config"
+	depends on LOMBO_DISP
+	default y
+
+	if LOMBO_DISP_PANEL
+	choice
+		prompt "Panel selection"
+		default	PANEL_WT1096601G01_24_IVO
+
+		config PANEL_SPC_S92048
+			bool "spc-s92048"
+
+		config PANEL_TIANMA_TM070JDHG30
+			bool "tianma-tm070jdhg30"
+
+		config PANEL_SLM5P5_HX8399C
+			bool "slm5p5-hx8399c"
+
+		config PANEL_WT1096601G01_24_IVO
+			bool "wtl096601G01-24-ivo"
+
+		config PANEL_ZT0936BOE
+			bool "ZT0936BOE"
+
+		config PANEL_WT1116601G01_24
+			bool "wtl116601G01-24"
+
+		config PANEL_WT1096602G02_24
+			bool "wtl096602G02-24"
+
+		config PANEL_ZT1180_2401
+			bool "zt1180-2401"
+
+		config PANEL_FCX701B21B2
+			bool "fcx701b21b2"
+
+		config PANEL_EK79003A_WKS70002
+			bool "ek79003a-wks70002"
+
+		config PANEL_YC024B_10HV
+			bool "yc024b-10hv"
+	endchoice
+	endif

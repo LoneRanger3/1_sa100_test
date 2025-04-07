@@ -1,0 +1,80 @@
+from building import *
+
+src = ['test.c', 'timer_test.c', 'common.c']
+if GetDepend('LOMBO_TEST_MEMORY'):
+	src += ['mem_test.c']
+if GetDepend('LOMBO_TEST_CACHE'):
+	src += ['cache_test.c']
+if GetDepend('LOMBO_TEST_DMA'):
+	src += ['dma_test.c']
+if GetDepend('LOMBO_TEST_CLK'):
+	src += ['clk_test.c']
+if GetDepend('LOMBO_TEST_SDC'):
+	src += ['sdc/sdc_blk_test.c', 'sdc/sdc_fs_test.c', 'sdc/sdc_test.c']
+if GetDepend('LOMBO_TEST_SPI_NOR'):
+	src += ['spi_nor_test.c']
+if GetDepend('LOMBO_TEST_GPIO'):
+	src += ['pinctrl_test.c']
+if GetDepend('LOMBO_TEST_UART'):
+	src += ['uart_test.c']
+if GetDepend('LOMBO_TEST_CFG'):
+	src += ['config_test.c']
+if GetDepend('LOMBO_TEST_PWM'):
+	src += ['pwm_test.c']
+if GetDepend('LOMBO_TEST_WDOG'):
+	src += ['wdog_test.c']
+if GetDepend('LOMBO_TEST_BINDTIMER'):
+	src += ['bind_timer_test.c']
+if GetDepend('LOMBO_TEST_DEADLOCK_MONITOR'):
+	src += ['deadlock_monitor_test.c']
+if GetDepend('LOMBO_TEST_PM'):
+	src += ['pm_test.c']
+if GetDepend('LOMBO_TEST_MEMCTRL'):
+	src += ['memctrl_test.c']
+if GetDepend('LOMBO_TEST_KEYBOARD'):
+	src += ['input/keyboard_test.c']
+if GetDepend('LOMBO_TEST_GSENSOR'):
+	src += ['input/gsensor_test.c']
+if GetDepend('LOMBO_TEST_TOUCH_SCREEN'):
+	src += ['input/touch_test.c']
+if GetDepend('LOMBO_TEST_INPUT'):
+	src += ['input/input_test.c']
+if GetDepend('LOMBO_TEST_GPS'):
+	src += ['input/gps_test.c']
+if GetDepend('LOMBO_TEST_RTC'):
+	src += ['rtc_test.c']
+if GetDepend('LOMBO_TEST_SYS'):
+	src += ['sys_test.c']
+if GetDepend('LOMBO_TEST_CPU'):
+	src += ['cpu_test.c']
+if GetDepend('LOMBO_TEST_PTHREAD'):
+	src += ['pthread_test.c']
+if GetDepend('LOMBO_TEST_PTHREAD_MUTEX'):
+	src += ['pthread_mutex_test.c']
+if GetDepend('LOMBO_TEST_SPINLOCK'):
+	src += ['spinlock_test.c']
+if GetDepend('LOMBO_TEST_AUDIO'):
+	src += ['audio/audio_test.c', 'audio/audio_play.c', 'audio/audio_record.c', 'audio/audio_volume.c']
+if GetDepend('LOMBO_TEST_I2C'):
+	src += ['i2c_test.c']
+if GetDepend('LOMBO_TEST_VISS'):
+	src += ['viss_test.c']
+if GetDepend('LOMBO_TEST_VFP'):
+	src += ['vfp_test.c']
+if GetDepend('LOMBO_TEST_NEON'):
+	src += ['neon_test.c']
+if GetDepend('LOMBO_TEST_ISP'):
+	src += ['isp_test.c']
+if GetDepend('LOMBO_TEST_DISP'):
+	src += ['disp/disp_test.c', 'disp/disp_ioctl_test.c', 'disp/disp_se_test.c']
+	src += ['disp/disp_dit_test.c', 'disp/disp_rot_test.c']
+if GetDepend('LOMBO_TEST_OSAL_MEM'):
+	src += ['osal_mem_test.c']
+if GetDepend('LOMBO_TEST_CPUFREQ'):
+	src += ['cpufreq_test.c']
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+group = []
+group = DefineGroup('test', src, depend = ['LOMBO_TEST'], CPPPATH = CPPPATH)
+
+Return('group')

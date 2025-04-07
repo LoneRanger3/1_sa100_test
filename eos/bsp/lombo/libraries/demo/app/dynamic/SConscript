@@ -1,0 +1,10 @@
+from building import *
+
+src = Glob('*.c') + Glob('*.cpp')
+cwd = GetCurrentDir()
+
+CPPPATH = [ cwd + '/../../inc' ]
+
+group = DefineGroup('', src, depend = [''], CPPPATH=CPPPATH)
+
+Return('group')

@@ -1,0 +1,23 @@
+import rtconfig
+from building import *
+from rtconfig import *
+
+src = Glob('*.c') + Glob('*.S')
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+
+group = []
+
+json2config_cmd = os.path.join(Rtt_Root, 'tools', 'json2config')
+def_name = 'lombo_' + LOMBO_CPU + LOMBO_SOC + '_' + LOMBO_BOARD + '.json'
+
+jsonfile = os.path.join(Rtt_Root, BSP_CFG_SOC, def_name)
+binfile = os.path.join(cwd , 'config.bin')
+os.system('rm ' + binfile)
+os.system(json2config_cmd + ' ' + jsonfile + ' ' + binfile)
+os.system('rm blob.o 2>/dev/null')
+
+
+group = DefineGroup('config', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

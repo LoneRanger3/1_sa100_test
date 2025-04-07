@@ -1,0 +1,14 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = Split("""
+udc.c
+ee_usbd.c
+csp/usbd_csp.c
+""")
+
+CPPPATH = [cwd]
+
+group = DefineGroup('lombo_usbd', src, depend = ['LOMBO_USB_UDC', 'RT_USING_USB_DEVICE'], CPPPATH = CPPPATH)
+
+Return('group')

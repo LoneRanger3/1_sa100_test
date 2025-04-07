@@ -1,0 +1,30 @@
+{
+	"disp": [
+		/*0*/
+		{
+			"ce": { /* color enhance for dc */
+				"status": "disabled",
+				"brightness": 50,
+				"saturation": 50,
+				"contrast": 50,
+				"min": 0,
+				"max": 100
+			},
+			"lti": { /* for se */
+				"status": "disabled",
+				"value": 5,
+				"min": 0,
+				"max": 31
+			},
+			"peak": { /* for se */
+				"status": "disabled",
+				"value": 10,
+				"min": 0,
+				"max": 15
+			},
+			"gamma": { /* for tcon */
+				"status": "disabled"
+			}
+		}
+	]
+}

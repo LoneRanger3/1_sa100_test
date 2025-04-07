@@ -1,0 +1,43 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = ['input.c', 'evdev.c', 'mousedev.c', 'notification.c']
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+if GetDepend(['LOMBO_KEYBOARD', 'LOMBO_GPADC']):
+	src += ['lombo_n7_keyboard.c']
+
+if GetDepend(['LOMBO_I2C', 'LOMBO_TOUCH_SCREEN', 'LOMBO_TOUCH_SCREEN_GT913']):
+	src += ['gt913_ts.c']
+
+if GetDepend(['LOMBO_I2C', 'LOMBO_TOUCH_SCREEN', 'LOMBO_TOUCH_SCREEN_GSLX680']):
+	src += ['gslx680_ts.c']
+
+if GetDepend(['LOMBO_I2C', 'LOMBO_TOUCH_SCREEN', 'LOMBO_TOUCH_SCREEN_FOCALTECH']):
+	src += ['focaltech_ts.c']
+
+if GetDepend(['LOMBO_I2C', 'LOMBO_TOUCH_SCREEN', 'LOMBO_TOUCH_SCREEN_EGALAX_EXC3111']):
+	src += ['egalax_exc3111_ts.c']
+
+if GetDepend(['LOMBO_I2C', 'LOMBO_GSENSOR']):
+	src += ['da380_gsensor.c']
+
+if GetDepend(['LOMBO_IR']):
+	src += ['lombo_ir.c']
+
+group = DefineGroup('input', src, depend = ['ARCH_LOMBO_N7'], CPPPATH = CPPPATH)
+
+objs = []
+list = os.listdir(cwd)
+
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+objs = objs + group
+
+Return('objs')

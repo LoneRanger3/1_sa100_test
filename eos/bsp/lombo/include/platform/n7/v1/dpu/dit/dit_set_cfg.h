@@ -1,0 +1,75 @@
+/* dit_set_cfg.h */
+
+#ifndef ___DIT__SET_CFG__H___
+#define ___DIT__SET_CFG__H___
+
+/*
+ * #define DEF_SET_DIT_VER
+ * #define DEF_SET_DIT_VER_VER_L
+ * #define DEF_SET_DIT_VER_VER_H
+ * #define DEF_SET_DIT_VER_COMP
+ * #define DEF_SET_DIT_FTR
+ * #define DEF_SET_DIT_FTR_HAS_FTR0
+ * #define DEF_SET_DIT_FTR_HAS_FTR1
+ * #define DEF_SET_DIT_FTR_HAS_FTR2
+ * #define DEF_SET_DIT_STA
+ * #define DEF_SET_DIT_STA_RDSTA
+ * #define DEF_SET_DIT_STA_WRSTA
+ * #define DEF_SET_DIT_CTL
+ * #define DEF_SET_DIT_CTL_RST
+ * #define DEF_SET_DIT_CTL_BISTEN
+ * #define DEF_SET_DIT_CTL_DBG_CTL
+ * #define DEF_SET_DIT_CTL_DIT_EN
+ * #define DEF_SET_DIT_CFG
+ * #define DEF_SET_DIT_CFG_DITMODE
+ * #define DEF_SET_DIT_CFG_PIXSEQ
+ * #define DEF_SET_DIT_CFG_FIELD_POL
+ * #define DEF_SET_DIT_WBCTL
+ * #define DEF_SET_DIT_WBCTL_START
+ * #define DEF_SET_DIT_WBTMR
+ * #define DEF_SET_DIT_WBTMR_WBTHR
+ * #define DEF_SET_DIT_WBTMR_WBTMR
+ * #define DEF_SET_DIT_INADDR0
+ * #define DEF_SET_DIT_INADDR0_ADDR
+ * #define DEF_SET_DIT_INADDR1
+ * #define DEF_SET_DIT_INADDR1_ADDR
+ * #define DEF_SET_DIT_INADDR2
+ * #define DEF_SET_DIT_INADDR2_ADDR
+ * #define DEF_SET_DIT_INADDR3
+ * #define DEF_SET_DIT_INADDR3_ADDR
+ * #define DEF_SET_DIT_OUTADDR
+ * #define DEF_SET_DIT_OUTADDR_ADDR
+ * #define DEF_SET_DIT_INSIZE
+ * #define DEF_SET_DIT_INSIZE_W
+ * #define DEF_SET_DIT_INSIZE_H
+ * #define DEF_SET_DIT_OUTSIZE
+ * #define DEF_SET_DIT_OUTSIZE_W
+ * #define DEF_SET_DIT_OUTSIZE_H
+ * #define DEF_SET_DIT_LSTR
+ * #define DEF_SET_DIT_LSTR_ILSTR
+ * #define DEF_SET_DIT_LSTR_OLSTR
+ * #define DEF_SET_DIT_WBINTCTL
+ * #define DEF_SET_DIT_WBINTCTL_WBFIN_EN
+ * #define DEF_SET_DIT_WBINTCTL_WBOVFL_EN
+ * #define DEF_SET_DIT_WBINTCTL_WBTMOUT_EN
+ * #define DEF_SET_DIT_WBINTSTA
+ * #define DEF_SET_DIT_WBINTSTA_WBFIN
+ * #define DEF_SET_DIT_WBINTSTA_WBOVFL
+ * #define DEF_SET_DIT_WBINTSTA_WBTMOUT
+ * #define DEF_SET_DIT_WBINTCLR
+ * #define DEF_SET_DIT_WBINTCLR_WBFINCLR
+ * #define DEF_SET_DIT_WBINTCLR_WBOVFLCLR
+ * #define DEF_SET_DIT_WBINTCLR_WBTMOUTCLR
+ * #define DEF_SET_DIT_STHR
+ * #define DEF_SET_DIT_STHR_STHR0
+ * #define DEF_SET_DIT_STHR_STAVG
+ * #define DEF_SET_DIT_ITHR
+ * #define DEF_SET_DIT_ITHR_THR0
+ * #define DEF_SET_DIT_ITHR_THR1
+ * #define DEF_SET_DIT_ITHR_THR2
+ * #define DEF_SET_DIT_ITHR_THR3
+ * #define DEF_SET_DIT_SPCNT
+ * #define DEF_SET_DIT_SPCNT_CNT
+*/
+
+#endif /* ___DIT__SET_CFG__H___ */

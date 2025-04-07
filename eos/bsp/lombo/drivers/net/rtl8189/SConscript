@@ -1,0 +1,16 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+# The set of source files associated with this SConscript file.
+src = Glob('*.c')
+
+LIBPATH = [cwd + '/lib']
+#LIBS = ['rtl8189ftv']
+LIBS = ['rtl8189ftv', 'wlan_lib']
+
+group = DefineGroup('rtl8189', src, depend = ['RTL8189FTV_MODULE'], LIBS=LIBS, LIBPATH=LIBPATH)
+
+Return('group')

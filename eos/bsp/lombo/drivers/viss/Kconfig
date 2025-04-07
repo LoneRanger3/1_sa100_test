@@ -1,0 +1,79 @@
+config RT_USING_VIC
+    bool "VIC controller support"
+    default y
+
+config RT_USING_VIC_DET_SIGNAL
+	bool "lombo vic detection module"
+	default y
+
+config RT_USING_VIC_DET
+	  bool "VIC Detection module support"
+	  default n
+
+config RT_USING_MCSI
+    bool "MIPI CSI controller support"
+    default y
+
+config RT_USING_ISP
+    bool "ISP controller support"
+    default n
+
+menu "Sensors select"
+	config RT_USING_OV5640_DVP
+		bool "OV5640 DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_OV5640_MIPI
+		bool "OV5640 MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_SC1335T_MIPI
+		bool "SC1335T MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_OV2710_DVP
+		bool "OV2710 DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_SC2363_MIPI
+		bool "SC2363 MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_SC4353_MIPI
+		bool "SC4353 MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_RN6752_DVP
+		bool "RN6752 DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_RN6752M_DVP
+		bool "RN6752M DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_SC2363P_MIPI
+		bool "SC2363P MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_GC2053_MIPI
+		bool "GC2053 MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_IMX307_MIPI
+		bool "IMX307 MIPI support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_TP9930_DVP
+		bool "TP9930 DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_TP9950_DVP
+		bool "TP9950 DVP support"
+		default n
+		select LOMBO_I2C
+	config RT_USING_BG0806_MIPI
+		bool "BG0806 MIPI support"
+		default n
+		select LOMBO_I2C
+endmenu
+

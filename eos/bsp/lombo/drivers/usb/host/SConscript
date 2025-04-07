@@ -1,0 +1,24 @@
+from building import *
+
+cwd = GetCurrentDir()
+src = Split("""
+ehci/ehci-hcd.c
+csp/usbh_csp.c
+core/usbhost.c
+host.c
+""")
+
+if GetDepend('LOMBO_USBH_HID'):
+	src += Glob('class/hid.c')
+
+if GetDepend('LOMBO_USBH_HID_MOUSE'):
+	src += Glob('class/usbmouse.c')
+
+if GetDepend('LOMBO_USBH_HID_KEYBOARD'):
+	src += Glob('class/usbkbd.c')
+
+CPPPATH = [cwd, cwd + '/class', cwd + '/core', cwd + '/ehci', cwd + '/csp']
+
+group = DefineGroup('lombo_usbh', src, depend = ['LOMBO_USB_HOST', 'RT_USING_USB_HOST'], CPPPATH = CPPPATH)
+
+Return('group')

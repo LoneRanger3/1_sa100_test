@@ -1,0 +1,57 @@
+import os
+import sys
+import rtconfig
+import cppcheck
+
+if os.getenv('RTT_ROOT'):
+    RTT_ROOT = os.getenv('RTT_ROOT')
+else:
+    RTT_ROOT = os.path.normpath(os.getcwd() + '/../..')
+
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+from building import *
+
+TARGET = 'rtthread-lombo.' + rtconfig.TARGET_EXT
+
+env = Environment(tools = ['mingw'],
+	AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS + ' -D__EOS__ ',
+	CC = rtconfig.CC, CCFLAGS = rtconfig.CFLAGS + ' -D__EOS__ ',
+	CXX = rtconfig.CXX,
+	AR = rtconfig.AR, ARFLAGS = '-rc',
+	LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS)
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)
+
+Export('RTT_ROOT')
+Export('rtconfig')
+
+# prepare building environment
+objs = PrepareBuilding(env, RTT_ROOT)
+
+# relocate the entry addr, must after PrepareBuilding
+if GetDepend('ENABLE_MMU'):
+	LD_START = ' -Xlinker --defsym=START_ADDR=0xC0008000'
+	#LD_START = ' -Xlinker --defsym=START_ADDR=' + GetConfigValue('LOMBO_DRAM_VBASE')
+else:
+	LD_START = ' -Xlinker --defsym=START_ADDR=0x40008000'
+	#LD_START = ' -Xlinker --defsym=START_ADDR=' + GetConfigValue('LOMBO_DRAM_PBASE')
+env.Replace(LINKFLAGS = LD_START + rtconfig.LFLAGS)
+
+# fix the case that cppcheck remove target file
+if rtconfig.cppcheck_dir != 'None':
+	cppcheck.cppcheck(env, Projects)
+	exit(0)
+
+# include extra directories, including case, framework, media, net...
+objs.extend(SConscript(RTT_ROOT + '/../case/common/SConscript',
+	variant_dir=RTT_ROOT + '/../out/build/case/common', duplicate=0))
+objs.extend(SConscript(RTT_ROOT + '/../media/SConscript',
+	variant_dir=RTT_ROOT + '/../out/build/media', duplicate=0))
+
+# the link step will sometime be absent during buiding, maybe is a bug, so remove the
+# target to force linking in each buiding, temporarilly
+if os.path.isfile(TARGET):
+	os.remove(TARGET)
+
+# make a building
+DoBuilding(TARGET, objs)
+

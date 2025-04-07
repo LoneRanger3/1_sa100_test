@@ -1,0 +1,10 @@
+from building import *
+
+src = Glob('*.c') + Glob('*.S')
+
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+group = []
+group = DefineGroup('pm', src, depend = ['RT_USING_PM'], CPPPATH = CPPPATH)
+
+Return('group')

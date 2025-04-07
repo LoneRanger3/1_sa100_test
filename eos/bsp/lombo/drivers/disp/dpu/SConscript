@@ -1,0 +1,14 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = os.path.join(str(Dir('#')), 'drivers')
+
+# add the general drivers.
+src = Glob('*.c')
+
+CPPPATH = [GetCurrentDir(), cwd]
+
+group = DefineGroup('dpu', src, depend = ['ARCH_LOMBO_N7', 'LOMBO_DISP'], CPPPATH = CPPPATH)
+
+Return('group')

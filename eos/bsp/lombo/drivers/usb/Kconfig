@@ -1,0 +1,7 @@
+config LOMBO_USB_HOST
+	bool "Lombo host controller"
+	depends on (RT_USING_USB_HOST)
+
+config LOMBO_USB_UDC
+	bool "Lombo device controller"
+	depends on (RT_USING_USB_DEVICE)

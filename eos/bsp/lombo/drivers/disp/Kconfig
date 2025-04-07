@@ -1,0 +1,16 @@
+config DEFAULT_SCREEN_WIDTH
+		int "Screen width size"
+		depends on LOMBO_DISP
+		default 800
+
+config DEFAULT_SCREEN_HEIGHT
+		int "Screen heigh size"
+		depends on LOMBO_DISP
+		default 480
+
+config LOMBO_DISP_HWC
+	bool "Enable HWC"
+	depends on LOMBO_DISP
+	default y
+
+source "$BSP_DIR/drivers/disp/panel/Kconfig"

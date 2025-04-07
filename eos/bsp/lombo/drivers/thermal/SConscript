@@ -1,0 +1,13 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+src = ['lombo_thermal.c']
+
+CPPPATH = [cwd, str(Dir('#'))]
+
+group = DefineGroup('thermal', src, depend = ['LOMBO_THERMAL'], CPPPATH = CPPPATH)
+
+Return('group')

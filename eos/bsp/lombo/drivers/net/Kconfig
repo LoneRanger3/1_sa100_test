@@ -1,0 +1,4 @@
+config RTL8189FTV_MODULE
+	bool "use realtek rtl8189ftv"
+	depends on (LOMBO_WIFI_MODULE && LOMBO_SDC)
+	default n

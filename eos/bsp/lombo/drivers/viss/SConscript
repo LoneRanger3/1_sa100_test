@@ -1,0 +1,35 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+src	= Glob('*.c')
+CPPPATH = [cwd, str(Dir('#'))]
+
+#
+# add subdirs' SConscript
+#
+
+list = []
+if GetDepend('RT_USING_VISS'):
+    list += ['common', 'core', 'device']
+    if GetDepend('RT_USING_VIC'):
+        list += ['vic']
+    if GetDepend('RT_USING_ISP'):
+		list += ['isp']
+    if GetDepend('RT_USING_MCSI'):
+        list += ['mcsi']
+    if GetDepend('RT_USING_VIC_DET'):
+        list += ['vic_det']
+
+group = DefineGroup('viss', src, depend = [''], CPPPATH = CPPPATH)
+objs = []
+
+for d in list :
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+group += objs
+Return('group')

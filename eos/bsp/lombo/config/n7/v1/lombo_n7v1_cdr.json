@@ -1,0 +1,1407 @@
+{
+	"cpus":[
+		{"cpufreq_table":[312000, 408000, 504000, 600000, 720000, 816000, 912000]},
+		{"cpu_clk" : "cpu_clk"},
+		{"cpu_pll" : "cpu_pll"}
+	],
+
+	"cpufreq_limit_table":[
+		{"max_freq":912000},
+		{"min_freq":312000}
+	],
+
+	"thermal":[
+		{"num_trips":5},
+		{"trip0_temp":65000},
+		{"trip0_type":"active"},
+		{"trip1_temp":85000},
+		{"trip1_type":"active"},
+		{"trip2_temp":95000},
+		{"trip2_type":"active"},
+		{"trip3_temp":105000},
+		{"trip3_type":"active"},
+		{"trip4_temp":240000},
+		{"trip4_type":"critical"}
+	],
+
+	"cpufreq-cooling":[
+		/* 0: cpufreq_table max value */
+		{"trip0_lower":1},
+		{"trip0_upper":1},
+		{"trip1_lower":2},
+		{"trip1_upper":2},
+		{"trip2_lower":3},
+		{"trip2_upper":3},
+		{"trip3_lower":4},
+		{"trip3_upper":5}
+	],
+
+	"pre-define":
+	[
+		{"GPIO_PORT_A":0},
+		{"GPIO_PORT_B":1},
+		{"GPIO_PORT_C":2},
+		{"GPIO_PORT_D":3},
+		{"GPIO_PORT_E":4},
+		{"GPIO_PORT_SIO":5},
+		{"GPIO_INPUT":1},
+		{"GPIO_OUT_PUT":2},
+		{"DISABLE_PULL_UP_DOWN":0},
+		{"ENABLE_PULL_UP":1},
+		{"ENABLE_PULL_DOWN":2},
+		{"DRV_LEVEL0":0},
+		{"DRV_LEVEL1":1},
+		{"DRV_LEVEL2":2},
+		{"DRV_LEVEL3":3},
+		{"DRV_LEVEL4":4},
+		{"DRV_LEVEL5":5},
+		{"DRV_LEVEL6":6},
+		{"DRV_LEVEL7":7},
+		{"PULL_100K":0},
+		{"PULL_20K":1},
+		{"LOW_LEVEL":0},
+		{"HIGH_LEVEL":1}
+	],
+
+	"pinctrl":
+	[
+		/* For gpio sample rate */
+		{"clock-src":1},
+		{"clock-div":0},
+		{"console":"uart0-gpio-2"},
+
+		{
+			"enable-group":
+			[
+				/*
+				 * NOTE: if boot procedure and eos both config uart0, but
+				 * with different gpio, there maybe wrong
+				 */
+				"uart:uart0-gpio-2",
+				"uart:uart2-gpio",
+				"sdc0:sdc0-gpio-clk",
+				"sdc0:sdc0-gpio-x4",
+				"spi0:spi0-gpio-clk",
+				"spi0:spi0-gpio-data",
+				"spi0:spi0-gpio-cs0",
+				"spi0:spi0-gpio-wp",
+				"i2c0:i2c0-gpio",
+				"i2c1:i2c1-gpio",
+				"i2c2:i2c2-gpio",
+				"ir:ir-gpio",
+				"debug:debug-gpio"
+			]
+		},
+
+		{
+			"pinctrl-test":
+			[
+				{"pins" : "gpe-12"},
+				{"pin-function" : "GPIO_INPUT"},
+				{"pin-drv" : "DRV_LEVEL2"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-data": "HIGH_LEVEL"}
+			]
+		}
+	],
+
+	"uart":[
+		{
+			/* gpa-5(rx) gpa-4(tx) */
+			"uart0-gpio-0":
+			[
+				{"pins" : ["gpa-4", "gpa-5"]},
+				{"pin-function" : 3},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		},
+
+		{
+			/* gpd-5(rx) gpd-4(tx) */
+			"uart0-gpio-1":
+			[
+				{"pins" : ["gpd-4", "gpd-5"]},
+				{"pin-function" : 4},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		},
+
+		{
+			/* gpe-6(rx) gpe-5(tx) */
+			"uart0-gpio-2":
+			[
+				{"pins" : ["gpe-5", "gpe-6"]},
+				{"pin-function" : 7},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		},
+
+		{
+			/* gpe-7(rx) gpe-4(tx) */
+			"uart1-gpio":
+			[
+				{"pins" : ["gpe-4", "gpe-7"]},
+				{"pin-function" : 5},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		},
+
+		{
+			/* gpe-3(rx) */
+			/* uart2 for gps device not use tx pin */
+			"uart2-gpio":
+			[
+				{"pins" : ["gpe-3"]},
+				{"pin-function" : 4},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		},
+
+		{
+			/* gpe-9(rx) gpe-8(tx) */
+			"uart3-gpio":
+			[
+				{"pins" : ["gpe-8", "gpe-9"]},
+				{"pin-function" : 4},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		}
+	],
+
+	"debug":[
+		{
+			"debug-gpio":
+			[
+				{"pins" : ["gpd-0", "gpd-1", "gpd-2", "gpd-3"]},
+				{"pin-function" : 4},
+				{"pin-drv" : "DRV_LEVEL3"}
+			]
+		}
+	],
+
+	"pwm":[
+		{"reg":0x0400D000},
+		{"channel":10},
+		{"clock-src":0},
+		{"clock-div":24}
+	],
+
+	"pwm-test":[
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm0-test":[0, 0, 5000, 10000]},
+
+		{
+			"pwm0-test-gpio":
+			[
+				{"pins" : "gpb-6"},
+				{"pin-function" : 6}
+			]
+		}
+	],
+
+	"sdc":[
+		/* module index: 0 - sdc0; 1 - sdc1 */
+		{"enable-module" : [0]}
+	],
+
+	"sdc0":[
+		{"reg" : 0x01220000},
+		{"clock-gate" : "ahb_sdc0_gate"},
+		{"clock-reset" : "ahb_sdc0_reset"},
+		{"clock" : "sdc0_clk"},
+		{"min-freq" : 120000},
+		{"max-freq" : 150000000},
+		/* card detect mode: 0 - no card detect; 1 - io interrupt; 2 - polling mode */
+		{"cd-mode" : 1},
+		{"cd-pin-group" : "GPIO_PORT_E"},
+		{"cd-pin-num" : 4},
+		{"no_lp" : 0},
+		{"status" : "okay"},
+
+		{
+			"sdc0-gpio-clk":
+			[
+				{"pins" : ["gpa-2"]},
+				{"pin-pud-res" : "PULL_100K"},
+				{"pin-pud" : "DISABLE_PULL_UP_DOWN"},
+				{"pin-drv" : "DRV_LEVEL3"},
+				{"pin-function" : 4}
+			]
+		},
+
+		{
+			"sdc0-gpio-x4":
+			[
+				{"pins" : ["gpa-3", "gpa-1", "gpa-0", "gpa-5", "gpa-4"]},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-drv" : "DRV_LEVEL2"},
+				{"pin-function" : 4}
+			]
+		}
+	],
+
+	"sdc1":[
+		{"reg" : 0x01221000},
+		{"clock-gate" : "ahb_sdc1_gate"},
+		{"clock-reset" : "ahb_sdc1_reset"},
+		{"clock" : "sdc1_clk"},
+		{"min-freq" : 120000},
+		{"max-freq" : 150000000},
+		/* card detect mode: 0 - no card detect; 1 - io interrupt; 2 - polling mode */
+		{"cd-mode" : 0},
+		{"no_lp" : 0},
+		{"status" : "disable"},
+
+		{
+			"sdc1-gpio-clk":
+			[
+				{"pins" : ["gpd-2"]},
+				{"pin-pud-res" : "PULL_100K"},
+				{"pin-pud" : "DISABLE_PULL_UP_DOWN"},
+				{"pin-drv" : "DRV_LEVEL6"},
+				{"pin-function" : 3}
+			]
+		},
+
+		{
+			"sdc1-gpio-x4":
+			[
+				{"pins" : ["gpd-3", "gpd-1", "gpd-0", "gpd-5", "gpd-4"]},
+				{"pin-pud-res" : "PULL_20K"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-drv" : "DRV_LEVEL5"},
+				{"pin-function" : 3}
+			]
+		}
+	],
+
+	"wdog":[
+		/* clock source: 0 - rtcclk, 1 - 32k clk */
+		{"clock-src":0},
+		/* time out period:
+		* 	[0]: 0.5s, [1]: 1s, [2]: 2s,
+		* 	[3]: 3s, [4]: 4s, [5]: 5s,
+		* 	[6]: 6s, [7]: 7s, [8]: 8s,
+		* 	[9]: 9s, [10]: 10s, [11]: 11s,
+		* 	[12]: 12s, [13]: 13s, [14]: 14s,
+		* 	[15]: 16s
+		*/
+		{"tmrout_period":0}
+	],
+
+	"spi0":[
+		{"reg" : 0x0122A000},
+		{"clock-gate" : "ahb_spi0_gate"},
+		{"clock-reset" : "ahb_spi0_reset"},
+		{"clock" : "spi0_clk"},
+		{"max-lines" : 4},
+		{"max-baud-rate" : 100000000},
+		{"init-baud-rate" : 12000000},
+		/* cs-bitmap: 0x01 - cs0; 0x02 - cs1; 0x03 - cs0&cs1 */
+		{"cs-bitmap" : 0x03},
+		{"status" : "okay"},
+
+		{
+			/* mosi(D0), miso(D1) */
+			"spi0-gpio-data":
+			[
+				{"pins" : ["gpa-8", "gpa-9"]},
+				{"pin-function" : 3},
+				{"pin-drv" : "DRV_LEVEL2"},
+				{"pin-pud" : "DISABLE_PULL_UP_DOWN"}
+			]
+		},
+
+		{
+			/* clk */
+			"spi0-gpio-clk":
+			[
+				{"pins" : ["gpa-7"]},
+				{"pin-function" : 3},
+				{"pin-drv" : "DRV_LEVEL3"},
+				{"pin-pud" : "ENABLE_PULL_DOWN"},
+				{"pin-pud-res" : "PULL_100K"}
+			]
+		},
+
+		{
+			/* cs0 */
+			"spi0-gpio-cs0":
+			[
+				{"pins" : ["gpa-6"]},
+				{"pin-function" : 3},
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_100K"}
+			]
+		},
+
+		{
+			/* cs1 */
+			"spi0-gpio-cs1":
+			[
+				{"pins" : ["gpe-4"]},
+				{"pin-function" : 4},
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_100K"}
+			]
+		},
+
+		{
+			/* wp(D2), hold(D3) */
+			"spi0-gpio-wp":
+			[
+				{"pins" : ["gpa-10", "gpa-11"]},
+				{"pin-function" : 3},
+				{"pin-drv" : "DRV_LEVEL2"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+
+	"nor0":[
+		{"bus_name" : "spi0"},
+		{"dev_name" : "nor0spi"},
+		{"chip-select" : 0},
+		/* msb-lsb: 0 - lsb; 1 - msb */
+		{"msb-lsb" : 1},
+		/* cpol-cpha: 0 - CPOL=0, CPHA=0; 1 - CPOL=0, CPHA=1; 2 - CPOL=1, CPHA=0; 3 - CPOL=1, CPHA=1 */
+		{"cpol-cpha" : 0},
+		{"max-lines" : 4},
+		{"max-baud-rate" : 50000000}
+	],
+
+	"i2c0":[
+		{"reg" : 0x04000000},
+		{"clock-gate" : "apb_i2c0_gate"},
+		{"clock-reset" : "apb_i2c0_reset"},
+		{"clock" : "i2c0_clk"},
+		{"clock-parent0" : "osc24m"},
+		{"clock-parent1" : "perh0_pll_div8"},
+		/* baud-rate between (0, 3.4M], please set proper DRV_LEVEL */
+		{"baud-rate" : 200000},
+		{"status" : "okay"},
+
+		{
+			/* SCL, SDA */
+			"i2c0-gpio":
+			[
+				{"pins" : ["gpe-8", "gpe-9"]},
+				{"pin-function" : 3},
+				/*
+				 * baud-rate <= 100K, set DRV_LEVEL0
+				 * else baud-rate <= 1M, set DRV_LEVEL1
+				 * else set DRV_LEVEL2
+				 */
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+
+	"i2c1":[
+		{"reg" : 0x04000800},
+		{"clock-gate" : "apb_i2c1_gate"},
+		{"clock-reset" : "apb_i2c1_reset"},
+		{"clock" : "i2c1_clk"},
+		{"clock-parent0" : "osc24m"},
+		{"clock-parent1" : "perh0_pll_div8"},
+		/* baud-rate between (0, 3.4M], please set proper DRV_LEVEL */
+		{"baud-rate" : 400000},
+		{"status" : "okay"},
+
+		{
+			/* SCL, SDA */
+			"i2c1-gpio":
+			[
+				{"pins" : ["gpc-21", "gpc-22"]},
+				{"pin-function" : 3},
+				/*
+				 * baud-rate <= 100K, set DRV_LEVEL0
+				 * else baud-rate <= 1M, set DRV_LEVEL1
+				 * else set DRV_LEVEL2
+				 */
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+
+	"i2c2":[
+		{"reg" : 0x04001000},
+		{"clock-gate" : "apb_i2c2_gate"},
+		{"clock-reset" : "apb_i2c2_reset"},
+		{"clock" : "i2c2_clk"},
+		{"clock-parent0" : "osc24m"},
+		{"clock-parent1" : "perh0_pll_div8"},
+		/* baud-rate between (0, 3.4M], please set proper DRV_LEVEL */
+		{"baud-rate" : 400000},
+		{"status" : "okay"},
+
+		{
+			/* SCL, SDA */
+			"i2c2-gpio":
+			[
+				{"pins" : ["gpe-1", "gpe-2"]},
+				{"pin-function" : 4},
+				/*
+				 * baud-rate <= 100K, set DRV_LEVEL0
+				 * else baud-rate <= 1M, set DRV_LEVEL1
+				 * else set DRV_LEVEL2
+				 */
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+
+	"i2c3":[
+		{"reg" : 0x04001800},
+		{"clock-gate" : "apb_i2c3_gate"},
+		{"clock-reset" : "apb_i2c3_reset"},
+		{"clock" : "i2c3_clk"},
+		{"clock-parent0" : "osc24m"},
+		{"clock-parent1" : "perh0_pll_div8"},
+		/* baud-rate between (0, 3.4M], please set proper DRV_LEVEL */
+		{"baud-rate" : 400000},
+		{"status" : "okay"},
+
+		{
+			/* SCL, SDA */
+			"i2c3-gpio":
+			[
+				{"pins" : ["gpe-5", "gpe-6"]},
+				{"pin-function" : 4},
+				/*
+				 * baud-rate <= 100K, set DRV_LEVEL0
+				 * else baud-rate <= 1M, set DRV_LEVEL1
+				 * else set DRV_LEVEL2
+				 */
+				{"pin-drv" : "DRV_LEVEL1"},
+				{"pin-pud" : "ENABLE_PULL_UP"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+	
+	"rn6752-dvp":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 2},
+		/*
+		 *	for VISS_IF_TYPE_DC:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 *	for VISS_IF_TYPE_ITU_601:
+		 *		mode 0: 8-bit HSYNC VSYNC
+		 *		mode 1: 8-bit HSYNC FIELD
+		 *		mode 2: 8-bit HSYNC VSYNC FIELD
+		 *		mode 3: 16-bit HSYNC VSYNC
+		 *	for VISS_IF_TYPE_ITU_656:
+		 *		mode 0: 8-bit
+		 *	for VISS_IF_TYPE_ITU_1120 = 3:
+		 *		mode 0: 16-bit
+		 *		mode 1: 8-bit
+		 *	for VISS_IF_TYPE_MCSI:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		{"if-mode" : 0},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 0},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x2c},
+		{"channel-num" : 1},
+		{"bus-width" : 8},
+		/*
+		 *  VISS_REF_HIGH = 0
+		 *	VISS_REF_LOW = 1
+		 */
+		{"hsync-active" : 0},
+		{"vsync-active" : 0},
+		{"interlaced" : 0},
+		/*
+		 * 	VISS_CLK_RISING = 0
+		 *	VISS_CLK_FALLING =1
+		 */
+		{"pclk-sample" : 0},
+		/*
+		 * 	VISS_FIELD_ODD = 0
+		 *	VISS_FIELD_EVEN = 1
+		 */
+		{"field-sel" : 0},
+
+		/* {"mclk-freq" : 24000000}, */
+		{"viss_top_freq" : 148500000},
+		{"status" : "okay"},
+		/*
+	 	 *	discrete = 0
+	 	 *	left_and_right = 1
+	 	 *	up_and_down = 2
+	 	 */
+		{"frame-buf-type" : 0},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		/*
+		{"dvp-mclk" : ["GPIO_PORT_C", 19, 3,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"dvp-pwdn" : ["GPIO_PORT_C", 1, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		*/
+		{"dvp-rst" : ["GPIO_PORT_C", 0, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_DOWN", "PULL_20K", 0]}
+	],
+	"rn6752m-dvp":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 2},
+		/*
+		 *	for VISS_IF_TYPE_DC:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 *	for VISS_IF_TYPE_ITU_601:
+		 *		mode 0: 8-bit HSYNC VSYNC
+		 *		mode 1: 8-bit HSYNC FIELD
+		 *		mode 2: 8-bit HSYNC VSYNC FIELD
+		 *		mode 3: 16-bit HSYNC VSYNC
+		 *	for VISS_IF_TYPE_ITU_656:
+		 *		mode 0: 8-bit
+		 *	for VISS_IF_TYPE_ITU_1120 = 3:
+		 *		mode 0: 16-bit
+		 *		mode 1: 8-bit
+		 *	for VISS_IF_TYPE_MCSI:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		{"if-mode" : 0},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 0},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x2c},
+		{"channel-num" : 1},
+		{"bus-width" : 8},
+		/*
+		 *  VISS_REF_HIGH = 0
+		 *	VISS_REF_LOW = 1
+		 */
+		{"hsync-active" : 0},
+		{"vsync-active" : 0},
+		{"interlaced" : 0},
+		/*
+		 * 	VISS_CLK_RISING = 0
+		 *	VISS_CLK_FALLING =1
+		 */
+		{"pclk-sample" : 0},
+		/*
+		 * 	VISS_FIELD_ODD = 0
+		 *	VISS_FIELD_EVEN = 1
+		 */
+		{"field-sel" : 0},
+
+		/* {"mclk-freq" : 24000000}, */
+		{"viss_top_freq" : 148500000},
+		{"status" : "okay"},
+		/*
+	 	 *	discrete = 0
+	 	 *	left_and_right = 1
+	 	 *	up_and_down = 2
+	 	 */
+		{"frame-buf-type" : 0},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		/*
+		{"dvp-mclk" : ["GPIO_PORT_C", 19, 3,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"dvp-pwdn" : ["GPIO_PORT_C", 1, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		*/
+		{"dvp-rst" : ["GPIO_PORT_C", 0, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_DOWN", "PULL_20K", 0]}
+	],
+	"tp9950-dvp":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 2},
+		/*
+		 *	for VISS_IF_TYPE_DC:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 *	for VISS_IF_TYPE_ITU_601:
+		 *		mode 0: 8-bit HSYNC VSYNC
+		 *		mode 1: 8-bit HSYNC FIELD
+		 *		mode 2: 8-bit HSYNC VSYNC FIELD
+		 *		mode 3: 16-bit HSYNC VSYNC
+		 *	for VISS_IF_TYPE_ITU_656:
+		 *		mode 0: 8-bit
+		 *	for VISS_IF_TYPE_ITU_1120 = 3:
+		 *		mode 0: 16-bit
+		 *		mode 1: 8-bit
+		 *	for VISS_IF_TYPE_MCSI:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		{"if-mode" : 0},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 0},
+		{"i2c-bus" : "i2c2"},
+		{"reg" : 0x44},
+		{"channel-num" : 1},
+		{"bus-width" : 8},
+		/*
+		 *  VISS_REF_HIGH = 0
+		 *	VISS_REF_LOW = 1
+		 */
+		{"hsync-active" : 0},
+		{"vsync-active" : 0},
+		{"interlaced" : 0},
+		/*
+		 * 	VISS_CLK_RISING = 0
+		 *	VISS_CLK_FALLING =1
+		 */
+		{"pclk-sample" : 0},
+		/*
+		 * 	VISS_FIELD_ODD = 0
+		 *	VISS_FIELD_EVEN = 1
+		 */
+		{"field-sel" : 0},
+
+		 {"mclk-freq" : 27000000}, 
+		{"viss_top_freq" : 148500000},
+		{"status" : "okay"},
+		/*
+	 	 *	discrete = 0
+	 	 *	left_and_right = 1
+	 	 *	up_and_down = 2
+	 	 */
+		{"frame-buf-type" : 0},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		
+		{"dvp-mclk" : ["GPIO_PORT_B", 25, 5,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"dvp-pwdn" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"dvp-rst" : ["GPIO_PORT_B", 3, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_DOWN", "PULL_20K", 0]}
+	],
+        "tp9930-dvp":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 3},
+		/*
+		 *	for VISS_IF_TYPE_DC:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 *	for VISS_IF_TYPE_ITU_601:
+		 *		mode 0: 8-bit HSYNC VSYNC
+		 *		mode 1: 8-bit HSYNC FIELD
+		 *		mode 2: 8-bit HSYNC VSYNC FIELD
+		 *		mode 3: 16-bit HSYNC VSYNC
+		 *	for VISS_IF_TYPE_ITU_656:
+		 *		mode 0: 8-bit
+		 *	for VISS_IF_TYPE_ITU_1120 = 3:
+		 *		mode 0: 16-bit
+		 *		mode 1: 8-bit
+		 *	for VISS_IF_TYPE_MCSI:
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		{"if-mode" : 0},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 0},
+		{"i2c-bus" : "i2c2"},
+		{"reg" : 0x44},
+		{"channel-num" : 2},
+		{"bus-width" : 8},
+		/*
+		 *  VISS_REF_HIGH = 0
+		 *	VISS_REF_LOW = 1
+		 */
+		{"hsync-active" : 0},
+		{"vsync-active" : 0},
+		{"interlaced" : 0},
+		/*
+		 * 	VISS_CLK_RISING = 0
+		 *	VISS_CLK_FALLING =1
+		 */
+		{"pclk-sample" : 1},
+		/*
+		 * 	VISS_FIELD_ODD = 0
+		 *	VISS_FIELD_EVEN = 1
+		 */
+		{"field-sel" : 0},
+
+		 {"mclk-freq" : 27000000}, 
+		{"viss_top_freq" : 148500000},
+		{"status" : "okay"},
+		/*
+	 	 *	discrete = 0
+	 	 *	left_and_right = 1
+	 	 *	up_and_down = 2
+	 	 */
+		{"frame-buf-type" : 2},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		
+		{"dvp-mclk" : ["GPIO_PORT_B", 25, 5,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"dvp-pwdn" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"dvp-rst" : ["GPIO_PORT_B", 3, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_DOWN", "PULL_20K", 0]}
+	],
+	"sc2363-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x30},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 624000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"sc2363p-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x30},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 624000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"sc4353-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x30},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 624000000},
+		{"viss_top_freq" : 148500000},
+		{"isp_top_freq" : 200000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 12, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"gc2053-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x37},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 624000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"sc1335t-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x30},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 225000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"imx307-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 2},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x1a},
+		{"data-lanes" : 2},
+		{"mclk-freq" : 37125000},
+		{"mipi-csi-freq" : 445000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"bg0806-mipi":[
+		/*
+		 *	VISS_IF_TYPE_DC = 0,
+		 *	VISS_IF_TYPE_ITU_601 = 1,
+		 *	VISS_IF_TYPE_ITU_656 = 2,
+		 *	VISS_IF_TYPE_ITU_1120 = 3,
+		 *	VISS_IF_TYPE_MCSI = 4,
+		 *	VISS_IF_TYPE_TVD = 5,
+		 */
+		{"if-type" : 4},
+		/*
+		 *		mode 0: RAW8
+		 *		mode 1: RAW10
+		 *		mode 2: RAW12
+		 */
+		 {"if-mode" : 1},
+		/*
+		 *  VISS_TO_DMA = 0
+		 *  VISS_TO_ISP = 1
+		 */
+		{"out-path" : 1},
+		{"i2c-bus" : "i2c1"},
+		{"reg" : 0x32},
+		{"data-lanes" : 1},
+		{"mclk-freq" : 24000000},
+		{"mipi-csi-freq" : 990000000},
+		{"viss_top_freq" : 70000000},
+		{"isp_top_freq" : 148000000},
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"mcsi-mclk" : ["GPIO_PORT_C", 20, 4,
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"mcsi-pwdn" : ["GPIO_PORT_C", 17, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"mcsi-rst" : ["GPIO_PORT_C", 18, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"cam-pwr-ctr":[
+		/* {"ahd-pwr-en" : ["GPIO_PORT_B", 4, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		*/
+		{"cam-pwr-en" : ["GPIO_PORT_A", 13, "GPIO_OUT_PUT",
+				"DRV_LEVEL3", "ENABLE_PULL_UP", "PULL_20K", 1]}
+	],
+	"vic_det":[
+		{"av_in_det" : ["GPIO_PORT_B", 27]},
+		{"back_det" : ["GPIO_PORT_E", 7]}
+	],
+	"vic":[
+		{"status" : "okay"},
+		{
+			"vic-grp":
+			[
+				/* {"pins" : ["gpb-4","gpb-5", "gpb-12", "gpb-13",
+					    "gpb-14", "gpb-15", "gpb-18", "gpb-19",
+                                            "gpb-20", "gpb-21", "gpb-22", "gpb-23",
+                                            "gpc-6","gpc-7", "gpc-10", "gpc-11",
+					    "gpb-24"]},*/
+
+                                {"pins" : ["gpb-4","gpb-5", "gpb-6", "gpb-7",
+					    "gpb-10", "gpb-11", "gpb-12", "gpb-13",
+                                            "gpb-14", "gpb-15", "gpb-18", "gpb-19",
+                                            "gpb-20","gpb-21", "gpb-22", "gpb-23",
+					    "gpb-24"]},
+				
+				 {"pin-function" : 5}, 
+
+				/*{"pins" : ["gpc-4","gpc-5", "gpc-6", "gpc-7",
+					    "gpc-8", "gpc-9", "gpc-10", "gpc-11",
+					    "gpc-16"]},*/
+				/* {"pins" : ["gpc-2", "gpc-3","gpc-0", "gpc-1",
+					    "gpc-4","gpc-5", "gpc-6", "gpc-7",
+					    "gpc-8", "gpc-9", "gpc-10", "gpc-11",
+					    "gpc-12", "gpc-13", "gpc-14", "gpc-15",
+					    "gpc-16"]},
+				*/
+				/*{"pin-function" : 3},*/
+				{"pin-drv" : "DRV_LEVEL3"},
+				{"pin-pud" : "DISABLE_PULL_UP_DOWN"},
+				{"pin-pud-res" : "PULL_20K"}
+			]
+		}
+	],
+	"mcsi":[
+		{"status" : "okay"}
+	],
+	"disp":[
+		/* the sclk0 src select: 0 is internal adpll0, 1 is ext sclk0,
+		 * config dpu-adpll0-freq is valid when it is 0,
+		 * otherwise dpu-ext-sclk0 is valid
+		 */
+		{"dpu-sclk0-select" : [0]},
+
+		/* the sclk1 src select: 0 is internal adpll1, 1 is ext sclk1,
+		 * config dpu-adpll1-freq is valid when it is 0,
+		 * otherwise dpu-ext-sclk1 is valid
+		 */
+		{"dpu-sclk1-select" : [0]},
+
+		/* the freq of adpll, the range is 312m to 816m */
+		{"dpu-adpll0-freq" : [594000000]},
+		{"dpu-adpll1-freq" : [360000000]},
+
+		/* [tune0, tune1], tune0 and tune1 reg value for adpll */
+		{"dpu-adpll-tune" : [0x139F0000, 0x57379120]},
+
+		/* module name : [parent, freq]
+		 * module name: the clk name of module
+		 * parent: the parent clk of module, 0 is perh0_pll_div2(594m), 1 is vc_pll(360m)
+		 * freq: the freq of clk, it div from parent clk so it must less than parent clk
+		 */
+		{"dpu-ext-sclk0" : [0, 594000000]},
+
+		/* module name : [parent, freq]
+		 * module name: the clk name of module
+		 * parent: the parent clk of module, 0 is disp_pll, 1 is vc_pll(360m)
+		 * freq: the freq of clk, it div from parent clk so it must less than parent clk
+		 */
+		{"dpu-ext-sclk1" : [1, 360000000]},
+
+		/* state: 0 is disable, 1 is enable, dpu_sclk2 parent is osc24m */
+		{"dpu-ext-sclk2-state" : [1]},
+
+		/* module name : [parent, div]
+		 * module name: the clk name of module
+		 * parent: the parent clk of module, 0 is sclk0, 1 is sclk1
+		 * div: the div of clk
+		 * se-clk must fast than dc-clk, so div of se-clk must less than div of dc-clk
+		 * doss_sclk0 parent is disp_pll, tcon-clk is div from doss_sclk0
+		 * tcon-clk is depends on panel
+		 * we must make sure tcon-clk freq less than dc-clk freq
+		 */
+		{"dc-clk" : [0, 4]},
+		{"se-clk" : [0, 3]},
+		{"rot-clk" : [0, 2]},
+		{"dit-clk" : [0, 4]},
+
+		/* specify disp pipeline index, which subject to tcon */
+		{"pipeline" : [0]},
+		/* module name : [index, base_address]
+		 * module name: the name of disp pipeline component, the value can be "dc", "tcon", "dsi", and so on
+		 * index: the path index of disp pipeline component, such as 0 is tcon0 if the module name is "tcon"
+		 * base_address: the base_address of the disp pipeline component, spicified by the module name and index
+		 */
+		 {"dc_pipe" : [0, 0x1520000]},
+		 {"tcon_pipe" : [0, 0x1602000]},
+		 {"dsi_pipe" : [0, 0x1606000]},
+
+		/* for uboot disp, the value can be 0, 90, 180 or 270 */
+		{"pictrue_rot" : [90]}
+	],
+
+	/* panel-wtl096601G01-24-ivo */
+	"panel_wtl096601":[
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"bl-grp" : ["GPIO_PORT_A", 12, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"rst-grp" : ["GPIO_PORT_A", 15, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"rglt-grp" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+
+		{"pwm-bl-gpio": [{"pins" : "gpe-0"}, {"pin-function" : 5}]},
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[0, 0, 50000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[10000, 125000, 125000]}
+	],
+
+	/* panel-ZT0936BOE1407 */
+	"panel_ZT0936BOE":[
+		{"status" : "disabled"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"bl-grp" : ["GPIO_PORT_A", 12, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"rst-grp" : ["GPIO_PORT_A", 15, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"rglt-grp" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+
+		{"pwm-bl-gpio": [{"pins" : "gpe-0"}, {"pin-function" : 5}]},
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[0, 0, 55000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[20000, 75000, 125000]}
+	],
+
+	/* panel-yc024b-10hv */
+	"panel_yc024b":[
+		{"status" : "disabled"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"bl-grp" : ["GPIO_PORT_E", 13, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"rst-grp" : ["GPIO_PORT_A", 15, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		/* {"rglt-grp" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]}, */
+
+		/* {"pwm-bl-gpio": [{"pins" : "gpe-0"}, {"pin-function" : 5}]}, */
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[0, 0, 55000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[35000, 75000, 125000]}
+	],
+
+	/* panel-wtl116601G01-24 */
+	"panel_wtl116601":[
+		{"status" : "okay"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"bl-grp" : ["GPIO_PORT_A", 12, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 0]},
+		{"rst-grp" : ["GPIO_PORT_A", 15, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"rglt-grp" : ["GPIO_PORT_B", 2, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+
+		{"pwm-bl-gpio": [{"pins" : "gpe-0"}, {"pin-function" : 5}]},
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[0, 0, 55000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[35000, 75000, 125000]}
+	],
+
+	/* panel-zt1180-2401 */
+	"panel_zt1180":[
+		{"status" : "disabled"},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"rst-grp" : ["GPIO_PORT_A", 15, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+
+		{"pwm-bl-gpio": [{"pins" : "gpe-13"}, {"pin-function" : 5}]},
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[7, 0, 55000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[35000, 75000, 125000]}
+	],
+
+	/* panel-fcx701b21b2 */
+	"panel_fcx701":[
+		{"status" : "disabled"},
+
+		{
+			"pin-grp": /* hight 6 bits for prgb 666 or prgb 888 */
+			[
+				{"pins" : ["gpb-2", "gpb-3", "gpb-4", "gpb-5", "gpb-6", "gpb-7",
+					    "gpb-10", "gpb-11", "gpb-12", "gpb-13", "gpb-14", "gpb-15",
+					    "gpb-18", "gpb-19", "gpb-20", "gpb-21", "gpb-22", "gpb-23",
+						"gpb-24", "gpb-25", "gpb-26", "gpb-27"]},
+				{"pin-function" : 3}
+			]
+		},
+
+		{
+			"pin-grp-e": /* extra low 2 bits for prgb 888 */
+			[
+				{"pins" : ["gpa-10", "gpa-11", "gpa-12",
+						"gpa-13", "gpa-14", "gpa-15"]},
+				{"pin-function" : 4}
+			]
+		},
+
+		/* port, pin, function, drv_level, pud, pud_res, data */
+		{"bl-grp" : ["GPIO_PORT_D", 0, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"rst-grp" : ["GPIO_PORT_D", 3, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"rglt-grp" : ["GPIO_PORT_D", 4, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+		{"vref-grp" : ["GPIO_PORT_D", 5, "GPIO_OUT_PUT",
+				"DRV_LEVEL5", "ENABLE_PULL_UP", "PULL_20K", 1]},
+
+		{"pwm-bl-gpio": [{"pins" : "gpe-0"}, {"pin-function" : 5}]},
+		/*
+		* [0]: channel
+		* [1]: polarity
+		* [2]: duty
+		* [3]: period
+		*/
+		{"pwm-bl-config":[0, 0, 35000, 125000]},
+		/*
+		* [0]: min duty
+		* [1]: max duty
+		* [2]: period must the same with pwm-bl-config
+		*/
+		{"pwm-bl-range":[35000, 75000, 125000]}
+	],
+
+	/* i2s */
+	"i2s":[
+		{"clock-gate" : "apb_i2s0_gate"},
+		{"clock-reset" : "apb_i2s0_reset"},
+		{"clock" : "i2s0_clk"},
+		{"clock-parent0" : "audio_pll_div7"},
+		{"clock-parent1" : "audio_pll_div17"}
+	],
+
+	/* ac */
+	"ac":[
+		{
+			"ac-gpio":
+			[
+				{"pins" : "gpa-14"},
+				{"pin-function" : 2}
+			]
+		}
+	],
+
+	/* cdr device battery level threshold */
+	"bat_th":[
+		{"bat_high_th" : 2000},
+		{"bat_middle_th" : 1650}
+	]
+}

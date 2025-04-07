@@ -1,0 +1,97 @@
+import os
+import sys
+sys.path.append("../")
+import rtconfig
+from tools.ua import BuildLibrary
+from tools.ua import BuildStaticLibrary
+from tools.ua import BuildApplication
+from tools.ua import BuildMod
+
+RTT_ROOT = os.path.abspath(os.path.join(os.getcwd(), "../../.."))
+BSP_ROOT = os.path.abspath(os.path.join(RTT_ROOT, "bsp/lombo"))
+
+Export('RTT_ROOT')
+Export('BSP_ROOT')
+
+#
+# add for slib building
+#
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+from building import *
+
+Export('rtconfig')
+
+AddOption('--lib',
+	dest='lib',
+	nargs=1, type='string',
+	action='store',
+	metavar='DIR',
+	help='Shared library to be built')
+
+AddOption('--slib',
+	dest='slib',
+	nargs=1, type='string',
+	action='store',
+	metavar='DIR',
+	help='Static library to be built')
+
+AddOption('--app',
+	dest='app',
+	nargs=1, type='string',
+	action='store',
+	metavar='DIR',
+	help='Application to be built')
+
+AddOption('--mod',
+	dest='mod',
+	nargs=1, type='string',
+	action='store',
+	metavar='DIR',
+	help='Shared library to be built')
+
+def dump_usage():
+	print("Invalid input, please use: ")
+	print("    scons --lib=your_lib_path    Shared library to be built")
+	print("    scons --slib=your_slib_path  Static library to be built")
+	print("    scons --app=your_app_path    Application to be built")
+	print("    scons --mod=your_mod_path    Module to be built")
+
+def build_modules(dir, type):
+	if dir.endswith('/'):
+		dir = dir[:-1]
+	script_file = dir + "/SConscript"
+	# print("dir is " + dir + ", script_file is " + script_file + ", type is " + type)
+
+	# warn if dir or SConscript not exist
+	if not os.path.exists(dir):
+		print("build dir " + dir + " not exist")
+		exit(-1)
+	if not os.path.exists(script_file):
+		print("SConscript file " + script_file + " not exist")
+		exit(-1)
+
+	if type == "DLIB":
+		BuildLibrary(dir, script_file, BSP_ROOT, RTT_ROOT)
+	elif type == "SLIB":
+		BuildStaticLibrary(dir, script_file, BSP_ROOT, RTT_ROOT)
+	elif type == "APP":
+		BuildApplication(dir, script_file, BSP_ROOT, RTT_ROOT)
+	elif type == "MOD":
+		BuildMod(dir, script_file, BSP_ROOT, RTT_ROOT)
+
+lib = GetOption('lib')
+slib = GetOption('slib')
+app = GetOption('app')
+mod = GetOption('mod')
+
+if lib != None:
+	build_modules(lib, "DLIB")
+elif slib != None:
+	build_modules(slib, "SLIB")
+elif app != None:
+	build_modules(app, "APP")
+elif mod != None:
+	build_modules(mod, "MOD")
+else:
+	dump_usage
+	exit(-1)
