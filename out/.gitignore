@@ -1,0 +1,3 @@
+build/bsp/system/compressed/piggy.o
+build/bsp/system/compressed/rtthread-z.axf
+target/n7/v1/cdr/rootfs_fat.img

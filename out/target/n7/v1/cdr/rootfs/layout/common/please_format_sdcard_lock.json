@@ -1,0 +1,87 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "align_mode": 0,
+    "align_with": 0,
+    "hidden": 1
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 300,
+      "x": 200,
+      "y": 80,
+      "w": 400,
+      "h": 160,
+      "style_idx": 15
+    },
+    "line": {
+      "type": "line",
+      "id": 302,
+      "auto_size": 1,
+      "points": [
+        [
+          200,
+          128
+        ],
+        [
+          600,
+          128
+        ]
+      ],
+      "style_idx": 15
+    },
+    "head_label": {
+      "type": "label",
+      "id": 301,
+      "name": "STR_PROMPT",
+      "long_mode": 0,
+      "align_mode": 2,
+      "align_with": 300,
+      "align_x_offset": 0,
+      "align_y_offset": 10,
+      "w": 400,
+      "h": 30,
+      "in_type": 1,
+      "in_which_obj": 300,
+      "text_align": 0
+    },
+    "quit_recorder_dialog": {
+      "type": "msgbox",
+      "id": 303,
+      "x": 200,
+      "y": 170,
+      "w": 400,
+      "h": 70,
+      "offset": 0,
+      "style_bg_idx": 15,
+      "init_func": "lock_format_sdcard_init",
+      "exit_func": "lock_format_sdcard_exit",
+      "text": "STR_LOCK_FILE_FULL_C2",
+      "btnm": [
+        "STR_WARN_OK",
+        "STR_WARN_CLOSE"
+      ]
+    },
+    "label_6": {
+      "type": "label",
+      "id": 306,
+      "name": "STR_LOCK_FILE_FULL_C1",
+      "long_mode": 0,
+      "align_mode": 2,
+      "align_with": 300,
+      "align_x_offset": 0,
+      "align_y_offset": 60,
+      "w": 400,
+      "h": 30,
+      "in_type": 1,
+      "in_which_obj": 300,
+      "text_align": 1
+    }
+  }
+}

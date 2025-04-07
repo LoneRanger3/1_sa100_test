@@ -1,0 +1,221 @@
+Archive member included to satisfy reference by file (symbol)
+
+./libcomp-n7v1-cdr.a(head.o)  (--whole-archive)
+./libcomp-n7v1-cdr.a(debug.o)
+                              (--whole-archive)
+./libcomp-n7v1-cdr.a(misc.o)  (--whole-archive)
+./libcomp-n7v1-cdr.a(string.o)
+                              (--whole-archive)
+./libcomp-n7v1-cdr.a(decompress.o)
+                              (--whole-archive)
+./libcomp-n7v1-cdr.a(early_uart.o)
+                              (--whole-archive)
+
+Allocating common symbols
+Common symbol       size              file
+
+malloc_ptr          0x4               ./libcomp-n7v1-cdr.a(decompress.o)
+malloc_count        0x4               ./libcomp-n7v1-cdr.a(decompress.o)
+free_mem_end_ptr    0x4               ./libcomp-n7v1-cdr.a(misc.o)
+output_data         0x4               ./libcomp-n7v1-cdr.a(misc.o)
+__machine_arch_type
+                    0x4               ./libcomp-n7v1-cdr.a(misc.o)
+free_mem_ptr        0x4               ./libcomp-n7v1-cdr.a(misc.o)
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(head.o)
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(debug.o)
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(misc.o)
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(string.o)
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(decompress.o)
+ .data          0x0000000000000000        0x0 ./libcomp-n7v1-cdr.a(early_uart.o)
+ .data          0x0000000000000000        0x0 ../../../../../out/build/bsp/system/compressed/piggy.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+
+/DISCARD/
+ *(.ARM.exidx*)
+ *(.ARM.extab*)
+ *(.data)
+                0x0000000000000000                . = 0x0
+                0x0000000000000000                _text = .
+
+.text           0x0000000000000000     0x12a8
+                0x0000000000000000                _start = .
+ *(.start)
+ .start         0x0000000000000000       0x90 ./libcomp-n7v1-cdr.a(head.o)
+ *(.text)
+ *fill*         0x0000000000000090       0x10 
+ .text          0x00000000000000a0      0x458 ./libcomp-n7v1-cdr.a(head.o)
+ *fill*         0x00000000000004f8        0x8 
+ .text          0x0000000000000500        0x4 ./libcomp-n7v1-cdr.a(debug.o)
+                0x0000000000000500                putc
+ .text          0x0000000000000504       0xc8 ./libcomp-n7v1-cdr.a(misc.o)
+                0x0000000000000504                error
+                0x0000000000000508                __div0
+                0x0000000000000518                decompress_kernel
+ .text          0x00000000000005cc      0x218 ./libcomp-n7v1-cdr.a(string.o)
+                0x00000000000005cc                memcpy
+                0x00000000000006ac                memmove
+                0x00000000000006f4                strlen
+                0x0000000000000718                memcmp
+                0x0000000000000740                strcmp
+                0x0000000000000760                memchr
+                0x0000000000000790                strchr
+                0x00000000000007c0                memset
+                0x00000000000007d8                __memzero
+ .text          0x00000000000007e4      0x69c ./libcomp-n7v1-cdr.a(decompress.o)
+                0x0000000000000808                malloc
+                0x00000000000008a8                free
+                0x00000000000008f8                lzo1x_decompress_safe
+                0x0000000000000c8c                do_decompress
+ .text          0x0000000000000e80      0x428 ./libcomp-n7v1-cdr.a(early_uart.o)
+                0x0000000000000e80                csp_gpio_init_clk
+                0x0000000000000eb4                csp_uart_init_clk
+                0x0000000000000f4c                __uart0_init_pin
+                0x00000000000010a0                __uart1_init_pin
+                0x00000000000010e0                __uart2_init_pin
+                0x0000000000001120                __uart3_init_pin
+                0x000000000000115c                csp_uart_debug_init_pin
+                0x0000000000001190                csp_uart_init_hw
+                0x0000000000001218                lombo_uart_setbrg
+                0x000000000000126c                lombo_uart_debug_init_dev
+                0x00000000000012a0                lombo_early_uart_config
+ .text          0x00000000000012a8        0x0 ../../../../../out/build/bsp/system/compressed/piggy.o
+ *(.text.*)
+ *(.fixup)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000000012a8        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000000012a8        0x0 linker stubs
+
+.vfp11_veneer   0x00000000000012a8        0x0
+ .vfp11_veneer  0x00000000000012a8        0x0 linker stubs
+
+.v4_bx          0x00000000000012a8        0x0
+ .v4_bx         0x00000000000012a8        0x0 linker stubs
+
+.iplt           0x00000000000012a8        0x0
+ .iplt          0x00000000000012a8        0x0 ./libcomp-n7v1-cdr.a(head.o)
+
+.rodata         0x00000000000012a8       0xfa
+ *(.rodata)
+ .rodata        0x00000000000012a8        0x9 ./libcomp-n7v1-cdr.a(decompress.o)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x00000000000012b1       0x39 ./libcomp-n7v1-cdr.a(misc.o)
+ .rodata.str1.1
+                0x00000000000012ea       0xb8 ./libcomp-n7v1-cdr.a(decompress.o)
+
+.piggydata      0x00000000000013a2   0x1dae1e
+ *(.piggydata)
+ .piggydata     0x00000000000013a2   0x1dae1e ../../../../../out/build/bsp/system/compressed/piggy.o
+                0x00000000000013a2                input_data
+                0x00000000001dc1c0                input_data_end
+
+.rel.dyn        0x00000000001dc1c0        0x0
+ .rel.iplt      0x00000000001dc1c0        0x0 ./libcomp-n7v1-cdr.a(head.o)
+ .rel.got       0x00000000001dc1c0        0x0 ./libcomp-n7v1-cdr.a(head.o)
+                0x00000000001dc1c0                . = ALIGN (0x4)
+                0x00000000001dc1c0                _etext = .
+
+.got.plt        0x00000000001dc1c0        0xc
+ *(.got.plt)
+ .got.plt       0x00000000001dc1c0        0xc ./libcomp-n7v1-cdr.a(head.o)
+                0x00000000001dc1c0                _GLOBAL_OFFSET_TABLE_
+                0x00000000001dc1cc                _got_start = .
+
+.got            0x00000000001dc1cc       0x24
+ *(.got)
+ .got           0x00000000001dc1cc       0x24 ./libcomp-n7v1-cdr.a(head.o)
+                0x00000000001dc1f0                _got_end = .
+
+.pad            0x00000000001dc1f0        0x8
+                0x00000000001dc1f0        0x1 BYTE 0x0
+                0x00000000001dc1f8                . = ALIGN (0x8)
+ *fill*         0x00000000001dc1f1        0x7 
+                0x00000000001dc1f8                _edata = .
+
+.igot.plt       0x00000000001dc1f8        0x0
+ .igot.plt      0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(head.o)
+                0x00000000001dc1f8                . = ALIGN (0x8)
+                0x00000000001dc1f8                __bss_start = .
+
+.bss            0x00000000001dc1f8       0x18
+ *(.bss)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(head.o)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(debug.o)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(misc.o)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(string.o)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(decompress.o)
+ .bss           0x00000000001dc1f8        0x0 ./libcomp-n7v1-cdr.a(early_uart.o)
+ .bss           0x00000000001dc1f8        0x0 ../../../../../out/build/bsp/system/compressed/piggy.o
+ COMMON         0x00000000001dc1f8       0x10 ./libcomp-n7v1-cdr.a(misc.o)
+                0x00000000001dc1f8                free_mem_end_ptr
+                0x00000000001dc1fc                output_data
+                0x00000000001dc200                __machine_arch_type
+                0x00000000001dc204                free_mem_ptr
+ COMMON         0x00000000001dc208        0x8 ./libcomp-n7v1-cdr.a(decompress.o)
+                0x00000000001dc208                malloc_ptr
+                0x00000000001dc20c                malloc_count
+                0x00000000001dc210                _end = .
+                0x00000000001dc210                . = ALIGN (0x8)
+
+.stack          0x00000000001dc210     0x1000
+ *(.stack)
+ .stack         0x00000000001dc210     0x1000 ./libcomp-n7v1-cdr.a(head.o)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x7e
+ *(.comment)
+ .comment       0x0000000000000000       0x7e ./libcomp-n7v1-cdr.a(misc.o)
+                                         0x7f (size before relaxing)
+ .comment       0x000000000000007e       0x7f ./libcomp-n7v1-cdr.a(string.o)
+ .comment       0x000000000000007e       0x7f ./libcomp-n7v1-cdr.a(decompress.o)
+ .comment       0x000000000000007e       0x7f ./libcomp-n7v1-cdr.a(early_uart.o)
+                0x0000000040000000                LOMBO_DRAM_PBASE = 0x40000000
+LOAD ./libcomp-n7v1-cdr.a
+LOAD ../../../../../out/build/bsp/system/compressed/piggy.o
+OUTPUT(../../../../../out/build/bsp/system/compressed/rtthread-z.axf elf32-littlearm)
+
+.ARM.attributes
+                0x0000000000000000       0x2d
+ .ARM.attributes
+                0x0000000000000000       0x1f ./libcomp-n7v1-cdr.a(head.o)
+ .ARM.attributes
+                0x000000000000001f       0x1f ./libcomp-n7v1-cdr.a(debug.o)
+ .ARM.attributes
+                0x000000000000003e       0x31 ./libcomp-n7v1-cdr.a(misc.o)
+ .ARM.attributes
+                0x000000000000006f       0x31 ./libcomp-n7v1-cdr.a(string.o)
+ .ARM.attributes
+                0x00000000000000a0       0x31 ./libcomp-n7v1-cdr.a(decompress.o)
+ .ARM.attributes
+                0x00000000000000d1       0x31 ./libcomp-n7v1-cdr.a(early_uart.o)
+ .ARM.attributes
+                0x0000000000000102       0x1f ../../../../../out/build/bsp/system/compressed/piggy.o

@@ -1,0 +1,134 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "click_resp_msg": "0xE002",
+    "hidden": 1
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 138,
+      "y": 32,
+      "w": 524,
+      "h": 64,
+      "style_idx": 115
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "long_mode": 0,
+      "name": "STR_SETTINGS_STANDBY",
+      "align_mode": 0,
+      "align_with": 200,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "w": 200,
+      "h": 64,
+      "in_type": 1,
+      "in_which_obj": 200
+    },
+    "line": {
+      "type": "line",
+      "id": 202,
+      "auto_size": 1,
+      "points": [
+        [
+          138,
+          94
+        ],
+        [
+          661,
+          94
+        ]
+      ],
+      "style_idx": 116
+    },
+    "settings": {
+      "type": "list",
+      "id": 203,
+      "x": 138,
+      "y": 96,
+      "w": 524,
+      "h": 192,
+      "anim_time": 100,
+      "sb_mode": 0,
+      "options_num": 4,
+      "options_w": 524,
+      "options_h": 64,
+      "style_rel_idx": 108,
+      "style_pr_idx": 109,
+      "click_resp_msg": "0xEA02"
+    },
+    "label0": {
+      "type": "label",
+      "id": 205,
+      "name": "STR_SETTINGS_STANDBY_10",
+      "x": 68,
+      "y": 20,
+      "w": 100,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 0
+    },
+    "label1": {
+      "type": "label",
+      "id": 206,
+      "name": "STR_SETTINGS_STANDBY_30",
+      "x": 68,
+      "y": 20,
+      "w": 100,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 1
+    },
+    "label2": {
+      "type": "label",
+      "id": 207,
+      "name": "STR_SETTINGS_STANDBY_60",
+      "x": 68,
+      "y": 20,
+      "w": 100,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 2
+    },
+    "label3": {
+      "type": "label",
+      "id": 208,
+      "name": "STR_SETTINGS_STANDBY_CLOSED",
+      "x": 68,
+      "y": 20,
+      "w": 100,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 3
+    },
+    "selected": {
+      "type": "img",
+      "id": 210,
+      "x": 400,
+      "y": 20,
+      "w": 21,
+      "h": 21,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 0,
+      "src_type": 1,
+      "src": "V:/image/04_setting_select.png.BGRA8888.ez",
+      "auto_size": 1,
+      "color_format": 5,
+      "init_func": "standby_init",
+      "exit_func": "standby_exit"
+    }
+  }
+}

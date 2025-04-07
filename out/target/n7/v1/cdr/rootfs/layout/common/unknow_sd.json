@@ -1,0 +1,65 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "align_mode": 0,
+    "align_with": 0,
+    "x": 540,
+    "y": 80,
+    "w": 200,
+    "h": 160
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 0,
+      "y": 0,
+      "w": 200,
+      "h": 160,
+      "style_idx": 14
+    },
+    "line": {
+      "type": "line",
+      "id": 202,
+      "auto_size": 1,
+      "points": [
+        [
+          0,
+          48
+        ],
+        [
+          200,
+          48
+        ]
+      ],
+      "style_idx": 15
+    },
+    "errmsg": {
+      "x": 0,
+      "y": 50,
+      "w": 200,
+      "h": 110,
+      "type": "msgbox",
+      "id": 203,
+      "delay": 2000,
+      "offset": 40,
+      "style_bg_idx": 14,
+      "text": "STR_CARD_INIT_FAIL"
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "long_mode": 0,
+      "name": "STR_PROMPT",
+      "align_mode": 2,
+      "align_with": 200,
+      "align_x_offset": 0,
+      "align_y_offset": 10,
+      "w": 200,
+      "h": 30,
+      "in_type": 1,
+      "in_which_obj": 200
+    }
+  }
+}

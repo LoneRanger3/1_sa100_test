@@ -1,0 +1,129 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "hidden": 1,
+    "click_resp_msg": "0xE7A0"
+  },
+  "objs": {
+    "cmdbar": {
+      "type": "container",
+      "id": 310,
+      "x": 0,
+      "y": 262,
+      "w": 800,
+      "h": 58,
+      "init_func": "video_init",
+      "exit_func": "video_exit",
+      "hidden": 1
+    },
+    "prev_imgbtn": {
+      "type": "imgbtn",
+      "id": 301,
+      "x": 236,
+      "y": 14,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/03_file_explorer_play_skip_prev.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/03_file_explorer_play_skip_prev.png.BGRA8888.ez",
+      "click_resp_msg": "0xE783"
+    },
+    "play_pause_imgbtn": {
+      "type": "imgbtn",
+      "id": 302,
+      "x": 374,
+      "y": 14,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/03_file_explorer_play_pause.png.BGRA8888.ez",
+      "rel_img_list": [
+        "V:/image/03_file_explorer_play_pause.png.BGRA8888.ez",
+        "V:/image/03_file_explorer_play_stop.png.BGRA8888.ez"
+      ],
+      "pr_img_type": 1,
+      "pr_img": "V:/image/03_file_explorer_play_pause.png.BGRA8888.ez",
+      "pr_img_list": [
+        "V:/image/03_file_explorer_play_pause.png.BGRA8888.ez",
+        "V:/image/03_file_explorer_play_stop.png.BGRA8888.ez"
+      ],
+      "click_resp_msg": "0xE784"
+    },
+    "next_imgbtn": {
+      "type": "imgbtn",
+      "id": 303,
+      "x": 512,
+      "y": 14,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/03_file_explorer_play_skip_next.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/03_file_explorer_play_skip_next.png.BGRA8888.ez",
+      "click_resp_msg": "0xE782"
+    },
+    "cur_time": {
+      "type": "label",
+      "id": 304,
+      "x": 24,
+      "y": 13,
+      "w": 96,
+      "h": 32,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "init_func": "cur_time_init",
+      "exit_func": "cur_time_exit"
+    },
+    "total_time": {
+      "type": "label",
+      "id": 305,
+      "x": 700,
+      "y": 13,
+      "w": 96,
+      "h": 32,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "init_func": "total_time_init",
+      "exit_func": "total_time_exit"
+    },
+    "progress_bar": {
+      "type": "slider",
+      "id": 306,
+      "x": 0,
+      "y": 256,
+      "w": 800,
+      "h": 22,
+      "min": 0,
+      "max": 100,
+      "cur": 0,
+      "ch_msg": "0xE785",
+      "style_bg_idx": 122,
+      "style_indic_idx": 123,
+      "style_knob_idx": 124
+    },
+    "list_index": {
+      "type": "label",
+      "id": 307,
+      "x": 120,
+      "y": 13,
+      "w": 96,
+      "h": 32,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "init_func": "index_init",
+      "exit_func": "index_exit"
+    }
+  }
+}

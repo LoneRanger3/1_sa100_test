@@ -1,0 +1,168 @@
+{
+  "bg": {
+    "type": "container",
+    "layer": 0,
+    "y": 0,
+    "x": 0,
+    "h": 320,
+    "w": 800,
+    "hidden": 1,
+    "click_resp_msg": "0xE002"
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 138,
+      "y": 64,
+      "w": 524,
+      "h": 64,
+      "style_idx": 115
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "w": 200,
+      "h": 64,
+      "in_type": 1,
+      "in_which_obj": 200,
+      "align_y_offset": 0,
+      "align_x_offset": 0,
+      "align_mode": 0,
+      "align_with": 200,
+      "name": "STR_SETTINGS_LANGUAGE",
+      "long_mode": 0
+    },
+    "line_4": {
+      "type": "line",
+      "id": 202,
+      "points": [
+        [
+          138,
+          126
+        ],
+        [
+          661,
+          126
+        ]
+      ],
+      "style_idx": 116
+    },
+    "setting": {
+      "type": "list",
+      "id": 203,
+      "x": 138,
+      "y": 128,
+      "w": 524,
+      "h": 192,
+      "anim_time": 100,
+      "sb_mode": 0,
+      "style_rel_idx": 108,
+      "style_pr_idx": 109,
+      "options_num": 7,
+      "options_w": 524,
+      "options_h": 64,
+      "click_resp_msg": "0xE913"
+    },
+    "label_6": {
+      "type": "label",
+      "id": 205,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 0,
+      "name": "STR_SETTINGS_LANGUAGE_ENGLISH"
+    },
+    "label_7": {
+      "type": "label",
+      "id": 206,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 1,
+      "name": "STR_SETTINGS_LANGUAGE_SC"
+    },
+    "label_8": {
+      "type": "label",
+      "id": 207,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 2,
+      "name": "STR_SETTINGS_LANGUAGE_TC"
+    },
+    "selected": {
+      "type": "img",
+      "id": 210,
+      "x": 400,
+      "y": 20,
+      "w": 21,
+      "h": 21,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "init_func": "language_init",
+      "exit_func": "language_exit",
+      "src_type": 1,
+      "src": "V:/image/04_setting_select.png.BGRA8888.ez",
+      "auto_size": 1,
+      "color_format": 5
+    },
+    "label_10": {
+      "type": "label",
+      "id": 208,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 3,
+      "name": "STR_SETTINGS_LANGUAGE_JAP"
+    },
+    "label_11": {
+      "type": "label",
+      "id": 209,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 4,
+      "name": "STR_SETTINGS_LANGUAGE_RUS"
+    },
+    "label_12": {
+      "type": "label",
+      "id": 211,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 5,
+      "name": "STR_SETTINGS_LANGUAGE_THA"
+    },
+    "label_13": {
+      "type": "label",
+      "id": 212,
+      "x": 68,
+      "y": 20,
+      "w": 200,
+      "h": 64,
+      "in_type": 5,
+      "in_which_obj": 203,
+      "in_which_btn": 6,
+      "name": "STR_SETTINGS_LANGUAGE_CRAN"
+    }
+  }
+}

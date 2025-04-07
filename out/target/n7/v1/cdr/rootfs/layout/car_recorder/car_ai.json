@@ -1,0 +1,200 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 1280,
+    "h": 320,
+    "click": 0,
+    "hidden": 1
+  },
+  "objs": {
+    "btn0": {
+      "type": "button",
+      "id": 220,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn1": {
+      "type": "button",
+      "id": 221,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn2": {
+      "type": "button",
+      "id": 222,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn3": {
+      "type": "button",
+      "id": 223,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn4": {
+      "type": "button",
+      "id": 224,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn5": {
+      "type": "button",
+      "id": 225,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn6": {
+      "type": "button",
+      "id": 226,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn7": {
+      "type": "button",
+      "id": 227,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "left_war_img": {
+      "type": "img",
+      "id": 228,
+      "x": 100,
+      "y": 200,
+      "w": 83,
+      "h": 93,
+      "in_type": 0,
+      "in_which_obj": 255,
+      "src_type": 1,
+      "src": "V:/image/02_cdr_bsd_alarm_left.png.BGRA8888.ez",
+      "src_list": [
+        "V:/image/02_cdr_bsd_alarm_left.png.BGRA8888.ez"
+      ],
+      "hidden": 1
+    },
+    "right_war_img": {
+      "type": "img",
+      "id": 229,
+      "x": 1100,
+      "y": 200,
+      "w": 83,
+      "h": 93,
+      "in_type": 0,
+      "in_which_obj": 255,
+      "src_type": 1,
+      "src": "V:/image/02_cdr_bsd_alarm_right.png.BGRA8888.ez",
+      "src_list": [
+        "V:/image/02_cdr_bsd_alarm_right.png.BGRA8888.ez"
+      ],
+      "hidden": 1
+    },
+    "gps": {
+      "type": "label",
+      "id": 268,
+      "x": 900,
+      "y": 160,
+      "w": 180,
+      "h": 44,
+      "style_idx": 113,
+      "click": 0,
+      "name": "STR_NULL",
+      "hidden": 1
+    },
+    "line_l": {
+      "type": "line",
+      "id": 292,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "style_idx": 118,
+      "click": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "hidden": 1
+    },
+    "line_r": {
+      "type": "line",
+      "id": 293,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "style_idx": 119,
+      "click": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "hidden": 1
+    }
+  }
+}

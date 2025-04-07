@@ -1,0 +1,79 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "click_resp_msg": "0xE002",
+    "hidden": 1
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 138,
+      "y": 64,
+      "w": 524,
+      "h": 64,
+      "style_idx": 115
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "long_mode": 0,
+      "name": "DISCLAIMER",
+      "align_mode": 0,
+      "align_with": 200,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "w": 200,
+      "h": 60,
+      "in_type": 1,
+      "in_which_obj": 200,
+      "x": 162,
+      "y": 2
+    },
+    "line": {
+      "type": "line",
+      "id": 202,
+      "auto_size": 1,
+      "points": [
+        [
+          138,
+          126
+        ],
+        [
+          661,
+          126
+        ]
+      ],
+      "style_idx": 116
+    },
+    "bottom_page": {
+      "type": "page",
+      "id": 7,
+      "x": 138,
+      "y": 128,
+      "w": 524,
+      "h": 192,
+      "sb_mode": 2,
+      "en_ver_fit": 1
+    },
+    "bottom_label": {
+      "type": "label",
+      "id": 8,
+      "x": 1,
+      "y": 0,
+      "w": 500,
+      "h": 192,
+      "in_type": 2,
+      "in_which_obj": 7,
+      "hidden": 0,
+      "name": "DISCLAIMER_C1",
+      "long_mode": 1,
+      "font_size": 25
+    }
+  }
+}

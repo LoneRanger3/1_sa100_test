@@ -1,0 +1,8 @@
+# without rootfs mount
+#						null_means_no_content	0:internal_part
+# not_dev_path	mount_point	elm_means_fat	no_space		1:external_part
+# dev_name	path		fs_type		data		rwfalg	type
+data		/mnt/data	elm		null		0	0
+private		/mnt/private	elm		null		0	0
+UDISK		/mnt/sdcard	elm		show_timeout,stride=128k,idir=F:R:FO:RO:PHOTO		0	0
+sda		/mnt/udisk	elm		null		0	1
