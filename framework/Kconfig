@@ -1,0 +1,28 @@
+menu "RT-Thread Gui"
+
+config RT_USING_EGUI
+    bool "Graphic drawing engine"
+    select LOMBO_DISP
+    default n
+	
+if RT_USING_EGUI
+choice
+    prompt "Gui select"
+    config RT_USING_LITTLEVGL
+        bool "Littlevgl"
+        select RT_USING_PTHREADS
+        default y
+endchoice
+endif
+
+config RT_USING_LOMBO_JSON_UI
+    bool "LOMBO JSON UI Frame"
+    select LOMBO_JSON_UI
+    default n
+
+config RT_USING_LOMBO_SERIAL_MOUSE
+    bool "LOMBO SERIAL MOUSE"
+    select RT_USING_EGUI
+    default n
+	
+endmenu
