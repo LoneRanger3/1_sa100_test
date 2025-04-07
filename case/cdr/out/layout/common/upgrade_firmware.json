@@ -1,0 +1,65 @@
+{
+  "bg": {
+    "type": "container",
+    "layer": 0,
+    "y": 0,
+    "x": 0,
+    "h": 320,
+    "w": 1280
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 201,
+      "x": 440,
+      "y": 110,
+      "w": 400,
+      "h": 40,
+      "in_type": 0,
+      "in_which_obj": 255,
+      "hidden": 0
+    },
+    "label_name": {
+      "type": "label",
+      "id": 202,
+      "x": 100,
+      "y": 0,
+      "w": 120,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 201,
+      "name": "STR_ERASE_NORFLASH",
+      "long_mode": 0
+    },
+    "progress": {
+      "type": "bar",
+      "id": 200,
+      "x": 440,
+      "y": 150,
+      "w": 400,
+      "h": 60,
+      "in_type": 0,
+      "in_which_obj": 255,
+      "hidden": 0,
+      "min": 0,
+      "max": 100,
+      "cur": 0,
+      "bg_color": "0x373738",
+      "indic_maincolor": "0x60FFFF",
+      "indic_gradcolor": "0x60FFFF"
+    },
+    "label_perc": {
+      "type": "label",
+      "id": 203,
+      "x": 220,
+      "y": 0,
+      "w": 120,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 201,
+      "hidden": 1,
+      "name": "STR_UPGRADE_PERCENT",
+      "long_mode": 0
+    }
+  }
+}

@@ -1,0 +1,7 @@
+menu "RT-Thread Case"
+
+config RT_SEL_CAR_VIDEO_CASE
+    bool "Select car video cases"
+    default n
+
+endmenu

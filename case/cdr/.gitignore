@@ -1,0 +1,9 @@
+apps/car_recorder/car_recorder.app
+apps/cdr_setting/cdr_setting.app
+apps/file_explorer/file_explorer.app
+apps/home/home.app
+apps/smart_drive/smart_drive.app
+apps/system_setting/system_setting.app
+mod/mod_adas/mod_adas.mod
+mod/mod_bsd/mod_bsd.mod
+mod/mod_media/mod_media.mod

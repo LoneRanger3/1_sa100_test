@@ -1,0 +1,70 @@
+{
+  "bg": {
+    "type": "container",
+    "layer": 0,
+    "y": 0,
+    "x": 0,
+    "h": 320,
+    "w": 800,
+    "hidden": 1
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 138,
+      "y": 64,
+      "w": 524,
+      "h": 256,
+      "init_func": "format_init",
+      "exit_func": "format_exit",
+      "style_idx": 115
+    },
+    "line_3": {
+      "type": "line",
+      "id": 202,
+      "points": [
+        [
+          138,
+          126
+        ],
+        [
+          661,
+          126
+        ]
+      ],
+      "auto_size": 1,
+      "style_idx": 116
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "w": 200,
+      "in_type": 1,
+      "in_which_obj": 200,
+      "align_y_offset": 22,
+      "align_x_offset": 0,
+      "align_mode": 2,
+      "align_with": 200,
+      "name": "STR_SETTINGS_FORMAT",
+      "long_mode": 0
+    },
+    "formatting": {
+      "type": "msgbox",
+      "id": 203,
+      "x": 138,
+      "y": 160,
+      "w": 524,
+      "h": 160,
+      "in_type": 0,
+      "in_which_obj": 255,
+      "text": "STR_SETTINGS_FORMAT_WARN",
+      "btnm": [
+        "STR_WARN_OK",
+        "STR_WARN_CLOSE"
+      ],
+      "style_bg_idx": 115,
+      "offset": 60
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "hidden": 1,
+    "click_resp_msg": "0x0E7A1"
+  },
+  "objs": {
+    "cmdbar": {
+      "type": "container",
+      "id": 310,
+      "x": 0,
+      "y": 262,
+      "w": 800,
+      "h": 49,
+      "init_func": "image_init",
+      "exit_func": "image_exit",
+      "hidden": 1
+    },
+    "prev_imgbtn": {
+      "type": "imgbtn",
+      "id": 301,
+      "x": 236,
+      "y": 5,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/03_file_explorer_play_skip_prev.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/03_file_explorer_play_skip_prev.png.BGRA8888.ez",
+      "click_resp_msg": "0xE781"
+    },
+    "next_imgbtn": {
+      "type": "imgbtn",
+      "id": 303,
+      "x": 512,
+      "y": 5,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 310,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/03_file_explorer_play_skip_next.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/03_file_explorer_play_skip_next.png.BGRA8888.ez",
+      "click_resp_msg": "0xE780"
+    }
+  }
+}

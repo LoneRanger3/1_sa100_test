@@ -1,0 +1,89 @@
+# File      : SConstruct.py
+#             Building Script for User Applications
+# This file is part of RT-Thread RTOS
+# COPYRIGHT (C) 2006 - 2015, RT-Thread Development Team
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License along
+#  with this program; if not, write to the Free Software Foundation, Inc.,
+#  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Change Logs:
+# Date           Author       Notes
+# 2015-02-07     Bernard      The firstly version
+# 2018-04-15     Bernard      Add the build option for library
+#
+
+import os
+import sys
+
+
+from apps import BuildApplication
+from apps import BuildMod
+from apps import BuildLibrary
+
+
+if os.getenv('RTT_ROOT'):
+    RTT_ROOT = os.getenv('RTT_ROOT')
+else:
+    RTT_ROOT = os.path.normpath(os.getcwd() + '/../../../eos')
+
+if os.getenv('BSP_ROOT'):
+    BSP_ROOT = os.getenv('BSP_ROOT')
+else:
+    BSP_ROOT = os.path.normpath(os.getcwd()+ '/../../../eos/bsp/lombo')
+
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'bsp','lombo')]
+Export('RTT_ROOT')
+Export('BSP_ROOT')
+
+AddOption('--app',
+  dest='app',
+  nargs=1, type='string',
+  action='store',
+  metavar='DIR',
+  help='application to be built')
+
+AddOption('--mod',
+  dest='mod',
+  nargs=1, type='string',
+  action='store',
+  metavar='DIR',
+  help='mod to be built')
+
+AddOption('--lib',
+  dest='lib',
+  nargs=1, type='string',
+  action='store',
+  metavar='DIR',
+  help='library to be built')
+
+app = GetOption('app')
+mod = GetOption('mod')
+lib = GetOption('lib')
+
+if app == None and mod == None and lib == None:
+  print("none application module or library, please use ")
+  print("    scons --app=your_app")
+  print("    scons --mod=your_mod")
+  print("    scons --lib=your_lib")
+  exit(0)
+
+else:
+  if app:
+    BuildApplication(app + '/' + app + '.app', app +'/SConscript')
+
+  if mod:
+    BuildMod(mod + '/' + mod + '.mod', mod +'/SConscript')
+
+  if lib:
+    BuildLibrary(lib + '/' + lib + '.so', lib +'/SConscript')

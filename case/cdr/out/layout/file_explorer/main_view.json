@@ -1,0 +1,140 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 240,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "hidden": 1
+  },
+  "objs": {
+    "view_all_cont": {
+      "type": "tabview",
+      "id": 103,
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 320,
+      "tab_cur": 0,
+      "anim_time": 200,
+      "en_sliding": 1,
+      "draging": 1,
+      "drag_hor": 1,
+      "btn_pos": 0,
+      "style_bg_idx": 113,
+      "style_btn_bg_idx": 114,
+      "style_indic_idx": 117,
+      "style_tab_bg_idx": 118,
+      "style_tab_scrl_idx": 119,
+      "style_btn_rel_idx": 115,
+      "style_btn_tgl_rel_idx": 116,
+      "style_btn_tgl_pr_idx": 111,
+      "tabs": [
+        "STR_FILE_VIDEO",
+        "STR_FILE_IMAGE"
+      ],
+      "init_func": "lb_file_exp_init",
+      "exit_func": "lb_file_exp_exit",
+      "load_msg": "0xE700"
+    },
+    "file_vid_list": {
+      "type": "filelist",
+      "id": 105,
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 256,
+      "options_h": 64,
+      "in_type": 3,
+      "in_which_obj": 103,
+      "in_which_tab": 0,
+      "anim_time": 100,
+      "sb_mode": 2,
+      "name_align": 7,
+      "name_x_offset": 168,
+      "name_y_offset": 0,
+      "style_flist_bg_idx": 120,
+      "style_flist_scrl_idx": 121,
+      "type_src": [
+        "V:\\image\\03_file_explorer_folder_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_file_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_video_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_picture_p.png.BGRA8888.ez"
+      ],
+      "type_align": 7,
+      "type_x_offset": 68,
+      "type_y_offset": 0,
+      "lock_src": [
+        "V:\\image\\03_file_explorer_lock.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_unlock.png.BGRA8888.ez"
+      ],
+      "lock_align": 8,
+      "lock_x_offset": -130,
+      "lock_y_offset": 0,
+      "lock_has_dialog": 1,
+      "lock_iso_dialog": 6,
+      "unlock_iso_dialog": 18,
+      "bin_src": [
+        "V:\\image\\03_file_explorer_delete.png.BGRA8888.ez"
+      ],
+      "bin_align": 8,
+      "bin_x_offset": -68,
+      "bin_y_offset": 0,
+      "bin_has_dialog": 1,
+      "bin_iso_dialog": 7,
+      "init_func": "lb_file_video_init",
+      "exit_func": "lb_file_video_exit",
+      "link": "/layout/file_explorer/video_player.json"
+    },
+    "file_image_list": {
+      "type": "filelist",
+      "id": 106,
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 256,
+      "options_h": 64,
+      "in_type": 3,
+      "in_which_obj": 103,
+      "in_which_tab": 1,
+      "anim_time": 100,
+      "sb_mode": 2,
+      "name_align": 7,
+      "name_x_offset": 168,
+      "name_y_offset": 0,
+      "style_flist_bg_idx": 120,
+      "style_flist_scrl_idx": 121,
+      "type_src": [
+        "V:\\image\\03_file_explorer_folder_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_file_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_video_p.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_picture_p.png.BGRA8888.ez"
+      ],
+      "type_align": 7,
+      "type_x_offset": 68,
+      "type_y_offset": 0,
+      "lock_src": [
+        "V:\\image\\03_file_explorer_lock.png.BGRA8888.ez",
+        "V:\\image\\03_file_explorer_unlock.png.BGRA8888.ez"
+      ],
+      "lock_align": 8,
+      "lock_x_offset": -130,
+      "lock_y_offset": 0,
+      "lock_has_dialog": 1,
+      "lock_iso_dialog": 6,
+      "unlock_iso_dialog": 18,
+      "bin_src": [
+        "V:\\image\\03_file_explorer_delete.png.BGRA8888.ez"
+      ],
+      "bin_align": 8,
+      "bin_x_offset": -68,
+      "bin_y_offset": 0,
+      "bin_has_dialog": 1,
+      "bin_iso_dialog": 7,
+      "init_func": "lb_file_image_init",
+      "exit_func": "lb_file_image_exit",
+      "link": "/layout/file_explorer/image_player.json"
+    }
+  }
+}

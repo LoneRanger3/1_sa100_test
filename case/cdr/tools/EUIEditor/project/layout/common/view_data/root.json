@@ -1,0 +1,70 @@
+{
+  "version": 100,
+  "styles": "/layout/common/styles.json",
+  "font": {
+    "font_25": {
+      "is_v_font": false,
+      "font_type": 2,
+      "font_file": "V:/font/font_25.edf.ez",
+      "h_px": 25,
+      "bpp": 1
+    },
+    "font_30": {
+      "is_v_font": false,
+      "font_type": 2,
+      "font_file": "V:/font/font_30.edf.ez",
+      "h_px": 30,
+      "bpp": 1
+    },
+    "font_60": {
+      "is_v_font": false,
+      "font_type": 2,
+      "font_file": "V:/font/font_60.edf.ez",
+      "h_px": 60,
+      "bpp": 1
+    },
+    "font_15": {
+      "is_v_font": false,
+      "font_type": 2,
+      "font_file": "V:/font/font_15.edf.ez",
+      "h_px": 15,
+      "bpp": 1
+    }
+  },
+  "language": 1,
+  "tone_filepath": "/res/tone.wav",
+  "statics": "/layout/home/home.json",
+  "isolates": [
+    "/layout/smart_drive/save_succeed.json",
+    "/layout/smart_drive/save_failed.json",
+    "/layout/common/warn.json",
+    "/layout/common/error.json",
+    "/layout/common/lowpower_shutdown.json",
+    "/layout/common/shutdown.json",
+    "/layout/file_explorer/lock_dialog.json",
+    "/layout/file_explorer/delete_dialog.json",
+    "/layout/common/please_plugin_sdcard.json",
+    "/layout/common/sdcard_plugin.json",
+    "/layout/common/sdcard_plugout.json",
+    "/layout/common/sdcard_full.json",
+    "/layout/common/sdcard_lock_full.json",
+    "/layout/common/park_monitor_times.json",
+    "/layout/common/unknow_sd.json",
+    "/layout/common/format_sd.json",
+    "/layout/common/quit_recorder.json",
+    "/layout/common/progress_bar.json",
+    "/layout/file_explorer/unlock_dialog.json",
+    "/layout/common/please_plugin_av.json",
+    "/layout/common/sdcard_format_succeed.json",
+    "/layout/common/sdcard_format_failed.json",
+    "/layout/common/lock_recorder_file.json",
+    "/layout/common/unlock_recorder_file.json",
+    "/layout/common/please_format_sdcard.json",
+    "/layout/common/lower_perf_format_sdcard.json",
+    "/layout/common/start_interval_rec.json",
+    "/layout/common/stop_interval_rec.json",
+    "/layout/common/upgrade_firmware.json",
+     "/layout/common/shutdown_new.json",
+     "/layout/common/please_format_sdcard_lock.json"
+  ]
+}

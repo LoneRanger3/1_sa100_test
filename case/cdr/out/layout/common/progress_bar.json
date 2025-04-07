@@ -1,0 +1,49 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "align_mode": 0,
+    "align_with": 0,
+    "w": 1280,
+    "h": 320,
+    "hidden": 1
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 201,
+      "x": 440,
+      "y": 110,
+      "w": 400,
+      "h": 40
+    },
+    "label": {
+      "type": "label",
+      "id": 202,
+      "align_mode": 0,
+      "align_with": 201,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "long_mode": 0,
+      "in_type": 1,
+      "in_which_obj": 201,
+      "name": "STR_CARD_FORMAT_WORKING"
+    },
+    "progress": {
+      "type": "bar",
+      "id": 200,
+      "x": 440,
+      "y": 150,
+      "w": 400,
+      "h": 60,
+      "min": 0,
+      "max": 100,
+      "cur": 0,
+      "bg_color": "0x373738",
+      "indic_maincolor": "0x60ffff",
+      "indic_gradcolor": "0x60ffff"
+    }
+  }
+}

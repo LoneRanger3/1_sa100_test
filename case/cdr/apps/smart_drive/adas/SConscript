@@ -1,0 +1,32 @@
+Import('RTT_ROOT')
+#Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+objs = []
+CPPPATH = [cwd,
+		cwd+'/../../includes',
+		RTT_ROOT +'/../include',
+		RTT_ROOT +'/../framework/lvgl/lvgl',
+		RTT_ROOT +'/../framework/eui',
+		RTT_ROOT +'/../framework/eui/inc',
+		RTT_ROOT +'/../framework/eui/inc/lbal/gal',
+		RTT_ROOT +'/../framework/eui/inc/lbal/osal',
+		RTT_ROOT +'/../framework/eui/inc/lbcomm',
+		RTT_ROOT +'/../framework/eui/inc/lbobjs',
+		RTT_ROOT +'/../framework/eui/inc/lbrsc',
+		RTT_ROOT +'/../framework/eui/inc/lbview',
+		RTT_ROOT +'/../framework/eui/inc/lbzlib',
+		str(Dir('#'))]
+
+group = DefineGroup('inteli_drive', src, depend = [''], CPPPATH = CPPPATH)
+
+list = os.listdir(cwd)
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+group = group + objs
+
+Return('group')

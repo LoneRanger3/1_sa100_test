@@ -1,0 +1,79 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "align_mode": 0,
+    "align_with": 0,
+    "x": 540,
+    "y": 80,
+    "w": 470,
+    "h": 180
+  },
+  "objs": {
+    "head_bg": {
+      "type": "container",
+      "id": 200,
+      "x": 0,
+      "y": 0,
+      "w": 470,
+      "h": 180,
+      "style_idx": 21
+    },
+    "line": {
+      "type": "line",
+      "id": 202,
+      "auto_size": 1,
+      "points": [
+        [
+          0,
+          60
+        ],
+        [
+          470,
+          60
+        ]
+      ],
+      "style_idx": 20
+    },
+    "errmsg": {
+      "x": 0,
+      "y": 70,
+      "w": 470,
+      "h": 40,
+      "type": "msgbox",
+      "id": 203,
+      "delay": 2000,
+      "style_bg_idx": 21,
+      "init_func": "system_poweroff_init",
+      "exit_func": "system_poweroff_exit",
+      "text": "STR_SHUT_DOWN"
+    },
+    "head_label": {
+      "type": "label",
+      "id": 201,
+      "long_mode": 0,
+      "name": "REMINDER",
+      "align_mode": 2,
+      "align_with": 200,
+      "align_x_offset": 0,
+      "align_y_offset": 10,
+      "w": 470,
+      "h": 30,
+      "in_type": 1,
+      "in_which_obj": 200
+    },
+    "label_6": {
+      "type": "label",
+      "id": 6,
+      "x": 0,
+      "y": 120,
+      "w": 470,
+      "h": 30,
+      "in_type": 1,
+      "in_which_obj": 200,
+      "hidden": 0,
+      "name": "REMINDER_POWEROFF",
+      "text_align": 1
+    }
+  }
+}

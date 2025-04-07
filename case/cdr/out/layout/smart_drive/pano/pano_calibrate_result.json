@@ -1,0 +1,216 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 800,
+    "h": 320,
+    "hidden": 1
+  },
+  "objs": {
+    "left_bg": {
+      "type": "container",
+      "id": 199,
+      "x": 0,
+      "y": 64,
+      "w": 162,
+      "h": 232,
+      "hidden": 1
+    },
+    "left_line": {
+      "type": "line",
+      "id": 200,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          161,
+          0
+        ]
+      ],
+      "x": 0,
+      "y": 0,
+      "w": 162,
+      "h": 1,
+      "in_type": 1,
+      "in_which_obj": 199,
+      "auto_size": 1,
+      "style_idx": 120,
+      "hidden": 1
+    },
+    "right_bg": {
+      "type": "container",
+      "id": 210,
+      "x": 574,
+      "y": 0,
+      "w": 226,
+      "h": 320,
+      "init_func": "pano_view_init",
+      "exit_func": "pano_view_exit"
+    },
+    "right_head_bar": {
+      "type": "container",
+      "id": 211,
+      "x": 0,
+      "y": 0,
+      "w": 226,
+      "h": 64,
+      "in_type": 1,
+      "in_which_obj": 210
+    },
+    "right_head_label": {
+      "type": "label",
+      "id": 212,
+      "name": "STR_SMART_DRIVE_PANO_CALIBRATE",
+      "align_mode": 0,
+      "align_with": 211,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "long_mode": 0,
+      "w": 100,
+      "h": 64,
+      "in_type": 1,
+      "in_which_obj": 211,
+      "style_idx": 113,
+      "font_size": 30
+    },
+    "right_bottom_cont": {
+      "type": "container",
+      "id": 213,
+      "x": 0,
+      "y": 64,
+      "w": 226,
+      "h": 256,
+      "in_type": 1,
+      "in_which_obj": 210
+    },
+    "right_bottom_result_imgbtn": {
+      "type": "imgbtn",
+      "id": 215,
+      "align_mode": 5,
+      "align_with": 213,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "w": 100,
+      "h": 32,
+      "in_type": 1,
+      "in_which_obj": 213,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/05_smart_drive_pano_cali_next.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/05_smart_drive_pano_cali_next.png.BGRA8888.ez",
+      "click_resp_msg": "0xEB0B"
+    },
+    "right_bottom_result_label": {
+      "type": "label",
+      "id": 216,
+      "name": "STR_SMART_DRIVE_PANO_CALIBRATE_RESULT",
+      "align_mode": 0,
+      "align_with": 215,
+      "align_x_offset": 0,
+      "align_y_offset": 0,
+      "long_mode": 0,
+      "w": 100,
+      "h": 64,
+      "in_type": 1,
+      "in_which_obj": 213,
+      "style_idx": 114,
+      "font_size": 25
+    },
+    "explain_cont": {
+      "type": "container",
+      "id": 250,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "hidden": 1,
+      "init_func": "explain_init",
+      "exit_func": "explain_exit"
+    },
+    "result_cont": {
+      "type": "container",
+      "id": 251,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "hidden": 1,
+      "init_func": "result_init",
+      "exit_func": "result_exit"
+    },
+    "line_cont": {
+      "type": "container",
+      "id": 252,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "hidden": 1,
+      "init_func": "line_init",
+      "exit_func": "line_exit"
+    },
+    "right_up_imgbtn": {
+      "type": "imgbtn",
+      "id": 232,
+      "x": 90,
+      "y": 200,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 210,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/05_smart_drive_adas_up_B.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/05_smart_drive_adas_up_B.png.BGRA8888.ez",
+      "click_resp_msg": "0xEB09"
+    },
+    "right_down_imgbtn": {
+      "type": "imgbtn",
+      "id": 233,
+      "x": 90,
+      "y": 240,
+      "w": 40,
+      "h": 40,
+      "in_type": 1,
+      "in_which_obj": 210,
+      "rel_img_type": 1,
+      "rel_img": "V:/image/05_smart_drive_adas_down_B.png.BGRA8888.ez",
+      "pr_img_type": 1,
+      "pr_img": "V:/image/05_smart_drive_adas_down_B.png.BGRA8888.ez",
+      "click_resp_msg": "0xEB0A"
+    },
+    "right_bottom_page": {
+      "type": "page",
+      "id": 217,
+      "x": 0,
+      "y": 0,
+      "w": 228,
+      "h": 110,
+      "in_type": 1,
+      "in_which_obj": 213,
+      "hidden": 0,
+      "sb_mode": 0,
+      "en_hor_fit": 0,
+      "en_ver_fit": 1
+    },
+    "right_bottom_label": {
+      "type": "label",
+      "id": 218,
+      "name": "STR_SMART_DRIVE_PANO_CALIBRATE_EXPLAIN",
+      "long_mode": 1,
+      "w": 210,
+      "h": 64,
+      "in_type": 2,
+      "in_which_obj": 217,
+      "x": 0,
+      "y": 0,
+      "hidden": "0",
+      "style_idx": 114,
+      "font_size": 25
+    }
+  }
+}

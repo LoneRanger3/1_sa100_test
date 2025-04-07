@@ -1,0 +1,260 @@
+{
+  "bg": {
+    "layer": 0,
+    "type": "container",
+    "x": 0,
+    "y": 0,
+    "w": 1280,
+    "h": 320,
+    "click": 0,
+    "hidden": 1
+  },
+  "objs": {
+    "btn0": {
+      "type": "button",
+      "id": 220,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn1": {
+      "type": "button",
+      "id": 221,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn2": {
+      "type": "button",
+      "id": 222,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn3": {
+      "type": "button",
+      "id": 223,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn4": {
+      "type": "button",
+      "id": 224,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn5": {
+      "type": "button",
+      "id": 225,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn6": {
+      "type": "button",
+      "id": 226,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "btn7": {
+      "type": "button",
+      "id": 227,
+      "x": 0,
+      "y": 0,
+      "w": 10,
+      "h": 10,
+      "name": "STR_NULL",
+      "style_rel_idx": 120,
+      "click": 0,
+      "hidden": 1
+    },
+    "gps": {
+      "type": "label",
+      "id": 268,
+      "x": 900,
+      "y": 160,
+      "w": 180,
+      "h": 44,
+      "style_idx": 113,
+      "click": 0,
+      "name": "STR_NULL",
+      "hidden": 1
+    },
+    "line_1": {
+      "type": "line",
+      "id": 292,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "style_idx": 118,
+      "click": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "hidden": 1
+    },
+    "line_2": {
+      "type": "line",
+      "id": 293,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "style_idx": 117,
+      "click": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "hidden": 1
+    },
+    "line_3": {
+      "type": "line",
+      "id": 294,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "hidden": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "style_idx": 119,
+      "click": 0
+    },
+    "line_4": {
+      "type": "line",
+      "id": 295,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "hidden": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "style_idx": 123,
+      "click": 0
+    },
+    "line_5": {
+      "type": "line",
+      "id": 296,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "hidden": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "style_idx": 118,
+      "click": 0
+    },
+    "line_6": {
+      "type": "line",
+      "id": 297,
+      "x": 0,
+      "y": 0,
+      "w": 30,
+      "h": 30,
+      "hidden": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "auto_size": 1,
+      "y_inv": 0,
+      "style_idx": 118,
+      "click": 0
+    }
+  }
+}

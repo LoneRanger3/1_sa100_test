@@ -1,0 +1,29 @@
+Import('RTT_ROOT')
+#Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')
+CPPPATH = [cwd]
+
+LIBPATH = [RTT_ROOT + '/../media/common/prebuilts']
+LIBPATH += [RTT_ROOT +'/../media/component/jpeg_component/libs']
+LIBS = ['libjpeg_dec_codec.a','libjpeg_enc_codec.a', 'libvc_core.a','libalc.a']
+
+group = DefineGroup('jpeg_component',
+                    src,
+                    depend = [""],
+                    CPPPATH = CPPPATH,
+                    LIBS = LIBS,
+                    LIBPATH = LIBPATH)
+
+# build for sub-directory
+list = os.listdir(cwd)
+objs = []
+for d in list:
+    path = os.path.join(cwd, d)
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+group = group + objs
+
+Return('group')

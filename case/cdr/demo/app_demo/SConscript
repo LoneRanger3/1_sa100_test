@@ -1,0 +1,12 @@
+Import('RTT_ROOT')
+#Import('rtconfig')
+from building import *
+
+cwd     = GetCurrentDir()
+src     = Glob('*.c')+ Glob('*.cpp')
+CPPPATH = [cwd,cwd+'/../../../../include',str(Dir('#'))]
+
+
+group = DefineGroup('car_recorder_app', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')
